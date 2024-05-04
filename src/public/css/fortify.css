@@ -1,0 +1,106 @@
+.content {
+    width: 30vw;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.content__ttl {
+    width: 100%;
+    background-color:  #0066ff;
+    color: white;
+    font-size: 2rem;
+    border-radius: 5px 5px 0 0;
+    padding: 1vw 0 1vw 1vw;
+}
+
+.form{
+    margin-left: 1vw;
+    width: 80%;
+}
+
+
+.form__content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.form__content--item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__input {
+    font-size: 1.6rem;
+    border: none;
+    width: 85%;
+    border-bottom: solid;
+    outline: none;
+}
+
+.form__user {
+    content: '';
+    background: url(../image/user.png);
+    background-size: cover;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 1vw;
+    filter: brightness(0) saturate(100%) invert(22%) sepia(1%) saturate(3089%) hue-rotate(352deg) brightness(108%) contrast(86%);
+}
+
+.form__email {
+    content: '';
+    background: url(../image/mail.png);
+    background-size: cover;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 1vw;
+    filter: brightness(0) saturate(100%) invert(22%) sepia(1%) saturate(3089%) hue-rotate(352deg) brightness(108%) contrast(86%);
+}
+
+.form__pass {
+    content: '';
+    background: url(../image/lock.png);
+    background-size: cover;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 1vw;
+    filter: brightness(0) saturate(100%) invert(22%) sepia(1%) saturate(3089%) hue-rotate(352deg) brightness(108%) contrast(86%);
+}
+
+.form__btn {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5vw 1vw 0.5vw 1vw;
+    margin: 1vw 1vw 1vw 0;
+}
+
+
+
+.verify {
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 3vw;
+}
+
+.verify div {
+    padding: 1vw 0 1vw 0;
+}
+
+.verify button {
+    border: none;
+    padding: 0.5vw 1vw 0.5vw 1vw;
+    border-radius: 5px;
+    background-color: #0066ff;
+    color: white;
+    font-size: 1.5rem;
+}

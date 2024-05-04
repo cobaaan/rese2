@@ -1,0 +1,62 @@
+html {
+    width: 100%;
+    font-size: 62.5%;
+    background-color: #eee;
+}
+
+header {
+    width: 90%;
+    margin: 3vw auto 3vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    text-decoration: none;
+}
+
+.header__ttl {
+    font-size: 4rem;
+    color: #0066ff;
+    margin-left: 1vw;
+    border: none;
+}
+
+.header__ttl::before {
+    content: "";
+    background: url(/../image/list.png);
+    background-size: cover;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(80%) saturate(7088%) hue-rotate(211deg) brightness(101%) contrast(108%);
+}
+
+.square_btn {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: #0066ff; /* ボタンの背景色 */
+    border-radius: 5px;
+    margin-top: 3vw;
+}
+
+.square_btn::before, .square_btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px; /* 棒の幅（太さ） */
+    height: 27px; /* 棒の高さ */
+    background: white; /* バツ印の色 */
+}
+
+.square_btn::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.square_btn::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
