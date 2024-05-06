@@ -98,6 +98,7 @@
 
 
 
+
 .card {
     width: 18vw;
     height: 18vw;
@@ -132,8 +133,10 @@
 }
 
 .card__form {
+    /*
     display: flex;
     justify-content: space-between;
+    */
 }
 
 .card__form--btn {

@@ -1,0 +1,110 @@
+
+   .review__area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+   }
+
+   .review__btn {
+    border: none;
+    text-decoration: none;
+    background-color: white;
+   }
+   .review__area p {
+    margin: 0;
+   }
+   .review__area .name,
+   .review__area .date,
+   .review-section a {
+    font-size: 0.8rem;
+   }
+   .review__area .star5:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: #cda85a;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star4-5:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 90%, #d9d9d9 91%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star4:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 80%, #d9d9d9 81%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star3-5:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 70%, #d9d9d9 71%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star3:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 60%, #d9d9d9 61%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star2-5:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 50%, #d9d9d9 51%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star2:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 40%, #d9d9d9 41%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star1-5:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 30%, #d9d9d9 31%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star1:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: linear-gradient(to right, #cda85a 20%, #d9d9d9 21%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .star0:before {
+    content: '★★★★★';
+    font-size: 2rem;
+    background: #d9d9d9;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+   .review__area .comment {
+    text-align: justify;
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+   }

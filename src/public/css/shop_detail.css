@@ -9,7 +9,17 @@
     width: 46%;
 }
 
+.shop__header {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
 .shop__name {
+    font-size: 3rem;
+}
+
+.shop__date-time {
     font-size: 3rem;
 }
 
@@ -105,6 +115,38 @@
     border-radius: 0 0 10px 10px;
 }
 
+.reserve__form {
+    width: 100%;
+}
+
+.reserve__txt {
+    font-size: 2.5rem;
+    color: white;
+    margin: 3vw 0 0 2vw;
+}
+
+.reserve__select {
+    width: 20%;
+    font-size: 2rem;
+    padding: 0.5vw;
+    border: none;
+    border-radius: 5px;
+    margin: 0.5vw 0 0 2vw;
+}
+
+.reserve__textarea {
+    margin: 0.5vw 0 2vw 2vw;
+    width: 100%;
+}
+
+.reserve__textarea--input {
+    font-size: 2rem;
+    color: #454545;
+    padding: 1vw;
+    border: none;
+    border-radius: 10px;
+}
+
 
 input[type="date"]{
     position: relative;
@@ -129,4 +171,23 @@ input[type=time]::-webkit-calendar-picker-indicator {
 input {
     text-indent: 5px;
     width: 100%;
+}
+
+
+
+.review {
+    width: 90%;
+    margin: 2vw auto 0;
+    background-color: white;
+    color: #454545;
+    padding: 1vw;
+    border: solid;
+}
+
+.review__name {
+    font-size: 2rem;
+}
+
+.review__comment {
+    font-size: 1.8rem;
 }
