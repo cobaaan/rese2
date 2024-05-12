@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/shop.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/review.css') }}" />
 @endsection
 
 @section('header')
@@ -30,7 +31,7 @@
 <div class="shop">
     @foreach ($shops as $shop)
     <div class="card">
-        <img class="card__img" src="{{ $shop->image }}">
+        <img class="card__img" src="{{ $shop->image_path }}">
         <div>
             <div class="card__ttl">{{ $shop->name }}</div>
             <div class="card__tag">
@@ -45,9 +46,15 @@
                     <input type="hidden" name="area" value="{{ $shop->area }}">
                     <input type="hidden" name="genre" value="{{ $shop->genre }}">
                     <input type="hidden" name="description" value="{{ $shop->description }}">
-                    <input type="hidden" name="image" value="{{ $shop->image }}">
+                    <input type="hidden" name="image_path" value="{{ $shop->image_path }}">
+                    
                     <button class="card__form--btn" formaction="/shop_detail">詳しく見る</button>
                     
+                    <button class="review__btn" formaction="/shop_detail">
+                        <div class="review__area">
+                            <p class="{{ $averageRatings[$shop->id] }}"></p>
+                        </div>
+                    </button>
                     @php
                     $color = 'card__form--heart-img';
                     @endphp

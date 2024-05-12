@@ -15,9 +15,19 @@
                     <div class="form__email form__content--left"></div>
                     <input class="form__input form__content--right" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                 </div>
+                <div class="error">
+                    @if($errors->has('email'))
+                    <div class="error__txt">{{ $errors->first('email') }}</div>
+                    @endif
+                </div>
                 <div class="form__content--item">
                     <div class="form__pass form__content--left"></div>
                     <input class="form__input form__content--right" type="password" name="password" placeholder="Password">
+                </div>
+                <div class="error">
+                    @if($errors->has('password'))
+                    <div class="error__txt">{{ $errors->first('password') }}</div>
+                    @endif
                 </div>
                 <div class="form__content--item">
                     <div></div>

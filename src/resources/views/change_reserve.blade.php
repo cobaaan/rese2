@@ -34,11 +34,22 @@
         <h2 class="reserve__ttl">予約の変更</h2>
         <form action="/update_reserve" method="post">
             @csrf
+            <input type="hidden" name="page" value="change_reserve">
             <input type="hidden" name="id" value="{{ $reserves[0]->id }}">
             <input type="hidden" name="user_id" value="{{ $auth->id }}">
             <input type="hidden" name="shop_id" value="{{ $reserves[0]->id - 1 }}">
             <input class="reserve__date" type="date" name="date" value="{{ old('date') }}" min="{{ $dt->format('Y-m-d') }}">
+            <div class="form__subject--error reserve__date--error">
+                @error('date')
+                <p class="error__message">{{ $errors->first('date') }}</p>
+                @enderror
+            </div>
             <input class="reserve__time" type="time" name="time" value="{{ old('time') }}">
+            <div class="form__subject--error reserve__date--error">
+                @error('time')
+                <p class="error__message">{{ $errors->first('time') }}</p>
+                @enderror
+            </div>
             <select class="reserve__number" name="number" value="{{ old('number') }}">
                 @for($i = 1; $i < 10; $i++)
                 <option value="{{ $i }}">{{ $i }}人</option>

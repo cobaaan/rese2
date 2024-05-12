@@ -12,8 +12,8 @@
     <div class="left">
         <h2 class="body__ttl">予約状況</h2>
         @if(!is_null($futureReservations))
-        @foreach($futureReservations as $futureReservation)
         <?php $counter = 0; ?>
+        @foreach($futureReservations as $futureReservation)
         <div class="left__content">
             <div class="left__content--header">
                 <p class="left__content--ttl">予約{{ $counter + 1 }}</p>
@@ -55,11 +55,11 @@
     <div class="center">
         <h2 class="body__ttl">お気に入り店舗</h2>
         <div class="center__content">
-            @if($favorites->isNotEmpty())
+            @if(!is_null($favorites))
             <div class="center__content">
                 @foreach ($favorites as $favorite)
                 <div class="card">
-                    <img class="card__img" src="{{ $shops[$favorite->shop_id - 1]->image }}">
+                    <img class="card__img" src="{{ $shops[$favorite->shop_id - 1]->image_path }}">
                     <div>
                         <div class="card__ttl">{{ $shops[$favorite->shop_id - 1]->name }}</div>
                         <div class="card__tag">
@@ -69,13 +69,16 @@
                         <div>
                             <form class="card__form" method="post" action="?">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $shops[$favorite->shop_id - 1]->id }}">
                                 <input type="hidden" name="name" value="{{ $shops[$favorite->shop_id - 1]->name }}">
                                 <input type="hidden" name="area" value="{{ $shops[$favorite->shop_id - 1]->area }}">
                                 <input type="hidden" name="genre" value="{{ $shops[$favorite->shop_id - 1]->genre }}">
                                 <input type="hidden" name="description" value="{{ $shops[$favorite->shop_id - 1]->description }}">
-                                <input type="hidden" name="image" value="{{ $shops[$favorite->shop_id - 1]->image }}">
-                                <button class="card__form--btn" formaction="/shopDetail">詳しく見る</button>
-                                <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.png"></button>
+                                <input type="hidden" name="image_path" value="{{ $shops[$favorite->shop_id - 1]->image_path }}">
+                                <div class="card__form--footer">
+                                    <button class="card__form--btn" formaction="/shop_detail">詳しく見る</button>
+                                    <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.png"></button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -93,7 +96,7 @@
             <div class="right__content">
                 @foreach ($pastReservations as $pastReservation)
                 <div class="card right__card">
-                    <img class="card__img" src="{{ $shops[$pastReservation->shop_id - 1]->image }}">
+                    <img class="card__img" src="{{ $shops[$pastReservation->shop_id - 1]->image_path }}">
                     <div>
                         <div class="card__ttl">{{ $shops[$pastReservation->shop_id - 1]->name }}</div>
                         <div>
@@ -102,6 +105,8 @@
                         <div>
                             <form class="card__form" method="get" action="/review">
                                 @csrf
+                                <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">
+                                <input type="hidden" name="shop_id" value="{{ $pastReservation->shop_id }}">
                                 <button class="card__form--btn">レビュー</button>
                             </form>
                         </div>
@@ -112,4 +117,5 @@
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

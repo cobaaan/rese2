@@ -15,7 +15,7 @@
                 <button>再送信</button>
             </div>
         </form>
-        <form action="/register" method="get">
+        <form action="/logout" method="post">
             @csrf
             <div>
                 <p>アカウントの作り直しはこちら</p>
