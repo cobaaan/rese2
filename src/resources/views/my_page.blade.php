@@ -42,6 +42,7 @@
                     <td>{{ $futureReservation->number }}</td>
                 </tr>
             </table>
+            
             <form action="/change_reserve" method="post">
                 @csrf
                 <input type="hidden" name="id" value="{{ $futureReservation->id }}">
@@ -103,12 +104,20 @@
                             <div class="card__date-time">来店日時 {{ $pastReservation->date }} {{ $pastReservation->time }}</div>
                         </div>
                         <div>
-                            <form class="card__form" method="get" action="/review">
-                                @csrf
-                                <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">
-                                <input type="hidden" name="shop_id" value="{{ $pastReservation->shop_id }}">
-                                <button class="card__form--btn">レビュー</button>
-                            </form>
+                            <div class="card__date-time">人数 {{ $pastReservation->number }}人</div>
+                        </div>
+                        <div class="card__footer">
+                            <div class="card__footer--qr">
+                                
+                            </div>
+                            <div class="card__footer--btn">
+                                <form class="card__form" method="get" action="/review">
+                                    @csrf
+                                    <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">
+                                    <input type="hidden" name="shop_id" value="{{ $pastReservation->shop_id }}">
+                                    <button class="card__form--btn">レビュー</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

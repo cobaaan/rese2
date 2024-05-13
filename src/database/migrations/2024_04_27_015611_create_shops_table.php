@@ -15,11 +15,12 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('area');
             $table->string('genre');
             $table->string('description');
-            $table->string('image');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

@@ -136,3 +136,22 @@ input {
     text-indent: 5px;
     width: 100%;
 }
+
+
+
+.form__subject--error {
+    margin: 1vw 0 2vw 0;
+}
+
+.error__message {
+    display: inline;
+    font-size: 2rem;
+    padding: 1vw;
+    background-color: #dc143c;
+    border-radius: 5px;
+    color: white;
+}
+
+.reserve__date--error {
+    margin: 1vw  0 0 2vw;
+}

@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 
+use Auth;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**

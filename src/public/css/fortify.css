@@ -75,6 +75,19 @@
     filter: brightness(0) saturate(100%) invert(22%) sepia(1%) saturate(3089%) hue-rotate(352deg) brightness(108%) contrast(86%);
 }
 
+.form__select {
+    content: '';
+    background: url(../image/role.png);
+    background-size: cover;
+    vertical-align: middle;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 1vw;
+    filter: brightness(0) saturate(100%) invert(22%) sepia(1%) saturate(3089%) hue-rotate(352deg) brightness(108%) contrast(86%);
+}
+
 .form__btn {
     background-color: #0066ff;
     color: white;
@@ -103,4 +116,19 @@
     background-color: #0066ff;
     color: white;
     font-size: 1.5rem;
+}
+
+
+
+.error {
+    margin: 1vw 0 2vw 4vw;
+}
+
+.error__txt {
+    display: inline;
+    font-size: 1.5rem;
+    padding: 1vw;
+    background-color: #dc143c;
+    border-radius: 5px;
+    color: white;
 }

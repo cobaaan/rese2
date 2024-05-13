@@ -53,39 +53,39 @@
 .reserve__ttl {
     font-size: 3rem;
     color: white;
-    margin: 1vw 0 0 2vw;
+    margin: 1vw;
 }
 
 .reserve__date {
     width: 30%;
-    height: 3vh;
-    margin: 1vw 0 0 2vw;
+    padding: 0.5vw;
     border: none;
     border-radius: 5px;
+    margin: 1vw;
 }
 
 .reserve__time {
     width: 80%;
-    height: 3vh;
-    margin: 1vw 0 0 2vw;
+    padding: 0.5vw;
     border: none;
     border-radius: 5px;
+    margin: 1vw;
 }
 
 .reserve__number {
     width: 80%;
-    height: 3vh;
-    margin: 1vw 0 0 2vw;
+    padding: 0.5vw;
     border: none;
     border-radius: 5px;
     text-indent: 10px;
+    margin: 1vw;
 }
 
 .reserve__confirm {
     width: 80%;
     background-color: #6699ff;
     border-radius: 5px;
-    margin: 1vw 0 0 2vw;
+    margin: 1vw;
 }
 
 .reserve__confirm table {
@@ -190,4 +190,24 @@ input {
 
 .review__comment {
     font-size: 1.8rem;
+}
+
+
+
+
+.form__subject--error {
+    margin: 1vw 0 2vw 0;
+}
+
+.error__message {
+    display: inline;
+    font-size: 2rem;
+    padding: 1vw;
+    background-color: #dc143c;
+    border-radius: 5px;
+    color: white;
+}
+
+.reserve__date--error {
+    margin: 1vw;
 }

@@ -132,11 +132,9 @@
     margin: 0.5vw 0 0 1vw;
 }
 
-.card__form {
-    /*
+.card__form--footer {
     display: flex;
     justify-content: space-between;
-    */
 }
 
 .card__form--btn {
@@ -166,5 +164,19 @@
 
 .right__card {
     background-color: #ddd;
+    height: auto;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__footer--qr {
+    margin: 1vw;
+}
+
+.card__footer--btn {
+    margin: 1vw;
 }
 
