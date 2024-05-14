@@ -17,6 +17,13 @@ class MailController extends Controller
     }
     
     public function sendMail(MailRequest $request) {
+        /*
+        Mail::send([], [], function ($message) use ($request) {
+            $message->to($request['email'])
+            ->subject($request['subject'])
+            ->setBody($request['body']);
+        });
+        */
         Mail::send([], [], function ($message) use ($request) {
             $message->to($request['email'])
             ->subject($request['subject'])

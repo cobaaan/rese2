@@ -109,3 +109,4 @@ Route::get('/shop_reserve', [ShopController::class, 'shopReserve']);
 Route::post('/shop_create', [ShopController::class, 'shopCreate']);
 Route::post('/shop_update', [ShopController::class, 'shopUpdate']);Route::get('/shop_detail', [ReseController::class,'shopDetail'])->name('shop_detail');
 Route::post('/shop_detail', [ShopController::class,'shopDetail']);
+//ユーザー認証にて学ぼう　ミドルウェアの作成
