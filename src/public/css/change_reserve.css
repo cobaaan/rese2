@@ -59,12 +59,36 @@
     border-radius: 5px;
 }
 
+
 .reserve__time {
-    width: 80%;
-    height: 3vh;
-    margin: 1vw 0 0 2vw;
+    display: flex;
+    align-items: center;
+    margin: 1vw 0 0 1vw;
+}
+
+.reserve__time--time {
+    width: 10%;
+    padding: 0.5vw;
     border: none;
     border-radius: 5px;
+    margin: 1vw;
+    appearance: none;
+    text-indent: 10px;
+}
+
+.reserve__time--colon {
+    font-size: 2rem;
+    color: white;
+}
+
+.reserve__time--minute {
+    width: 10%;
+    padding: 0.5vw;
+    border: none;
+    border-radius: 5px;
+    margin: 1vw;
+    appearance: none;
+    text-indent: 10px;
 }
 
 .reserve__number {
@@ -74,6 +98,7 @@
     border: none;
     border-radius: 5px;
     text-indent: 10px;
+    appearance: none;
 }
 
 .reserve__confirm {

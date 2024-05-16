@@ -68,10 +68,11 @@ class ReserveController extends Controller
     
     public function updateReserve(ReserveRequest $request) {
         $requests = $request->all();
+        $time = sprintf('%02d:%02d:00', $requests['time'], $requests['minute']);
         
         $param = [
             'date' => $requests['date'],
-            'time' => $requests['time'],
+            'time' => $time,
             'number' => $requests['number'],
         ];
         

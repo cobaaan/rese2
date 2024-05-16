@@ -44,7 +44,18 @@
                 <p class="error__message">{{ $errors->first('date') }}</p>
                 @enderror
             </div>
-            <input class="reserve__time" type="time" name="time" value="{{ old('time') }}">
+            <div class="reserve__time">
+                <select name="time" class="reserve__time--time">
+                    @for($i = 00; $i < 24; $i++)
+                    <option value={{ $i }}>{{ $i }}</option>
+                    @endfor
+                </select>
+                <p class="reserve__time--colon">:</p>
+                <select name="minute" class="reserve__time--minute">
+                    <option value="00">00</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
             <div class="form__subject--error reserve__date--error">
                 @error('time')
                 <p class="error__message">{{ $errors->first('time') }}</p>
