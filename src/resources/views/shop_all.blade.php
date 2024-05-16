@@ -59,6 +59,7 @@
                     $color = 'card__form--heart-img';
                     @endphp
                     
+                    @if(isset($auths))
                     @foreach($favorites as $favorite)
                     @if($favorite['user_id'] === $auths->id && $favorite['shop_id'] === $shop->id)
                     @php
@@ -68,6 +69,8 @@
                     @endforeach
                     
                     <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img  class="{{ $color }}" src="image/life.png"></button>
+                    
+                    @endif
                 </form>
             </div>
         </div>

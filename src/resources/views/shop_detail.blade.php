@@ -63,6 +63,7 @@
         <p class="shop__description">{{ $requests['description'] }}</p>
     </div>
     
+    @if(isset($auth))
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
         <form action="/reserve" method="post">
@@ -133,20 +134,6 @@
             <button class="reserve__btn">予約する</button>
         </form>
     </div>
+    @endif
 </div>
-
-<!--
-    <div>
-        @foreach ($reviews as $review)
-        <div class="review">
-            <h2 class="review__name">{{ $user[$review['user_id'] - 1]->name }}</h2>
-            <div class="review__area">
-                <p class="star{{ $review['rate'] }}"></p>
-            </div>
-            <p class="review__comment">{{ $review['comment'] }}</p>
-        </div>
-        @endforeach
-    </div>
-    
--->
 @endsection

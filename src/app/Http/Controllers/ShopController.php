@@ -40,7 +40,6 @@ class ShopController extends Controller
         $requests = $request->all();
         $dt = Carbon::now();
         $auths = Auth::user();
-        $auth = $auths->id;
         
         $averageRatings = ReseController::reviewStar();
         
@@ -48,7 +47,13 @@ class ShopController extends Controller
         
         $reviews = Review::where('shop_id', $request->id)->get();
         
-        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        if(isset($auths)){
+            $auth = $auths->id;
+            return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        } else {
+            return view('shop_detail', compact('requests', 'dt', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        }
+        
     }
     
     public function modal(Request $request) {
@@ -57,15 +62,19 @@ class ShopController extends Controller
         $requests = $request->all();
         $dt = Carbon::now();
         $auths = Auth::user();
-        $auth = $auths->id;
+        
         
         $averageRatings = ReseController::reviewStar();
         
         $user = User::all();
         
         $reviews = Review::where('shop_id', $request->id)->get();
-        
-        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        if(isset($auths)){
+            $auth = $auths->id;
+            return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        } else {
+            return view('shop_detail', compact('requests', 'dt', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        }
     }
     
     public function shopCreate(Request $request) {

@@ -102,8 +102,8 @@ Route::post('/send_mail', [MailController::class, 'sendMail']);
 Route::post('/admin_create', [FortifyController::class, 'adminCreate']);
 Route::get('/verify', [FortifyController::class,'verify']);
 
-Route::get('/', [ShopController::class,'shopAll'])->middleware(['auth', 'verified']);
-Route::post('/', [ShopController::class,'shopAll'])->middleware(['auth', 'verified']);
+Route::get('/', [ShopController::class,'shopAll']);
+Route::post('/', [ShopController::class,'shopAll']);
 Route::get('/shop_manager', [ShopController::class, 'shopManager'])->name('shop_manager');
 Route::get('/shop_reserve', [ShopController::class, 'shopReserve']);
 Route::post('/shop_create', [ShopController::class, 'shopCreate']);
