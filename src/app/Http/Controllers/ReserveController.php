@@ -21,11 +21,13 @@ class ReserveController extends Controller
     public function reserve(ReserveRequest $request) {
         $requests = $request->all();
         
+        $time = sprintf('%02d:%02d:00', $requests['time'], $requests['minute']);
+        
         $param = [
             'user_id' => $requests['user_id'],
             'shop_id' => $requests['shop_id'],
             'date' => $requests['date'],
-            'time' => $requests['time'],
+            'time' => $time,
             'number' => $requests['number'],
         ];
         Reserve::create($param);

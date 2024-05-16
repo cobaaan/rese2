@@ -35,16 +35,37 @@ class ShopController extends Controller
     }
     
     public function shopDetail(Request $request) {
+        $shopModal = null;
+        
         $requests = $request->all();
         $dt = Carbon::now();
         $auths = Auth::user();
         $auth = $auths->id;
         
+        $averageRatings = ReseController::reviewStar();
+        
         $user = User::all();
         
         $reviews = Review::where('shop_id', $request->id)->get();
         
-        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews'));
+        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+    }
+    
+    public function modal(Request $request) {
+        $shopModal = 'set';
+        
+        $requests = $request->all();
+        $dt = Carbon::now();
+        $auths = Auth::user();
+        $auth = $auths->id;
+        
+        $averageRatings = ReseController::reviewStar();
+        
+        $user = User::all();
+        
+        $reviews = Review::where('shop_id', $request->id)->get();
+        
+        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
     }
     
     public function shopCreate(Request $request) {

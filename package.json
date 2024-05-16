@@ -1,0 +1,31 @@
+{
+  "name": "rese",
+  "version": "1.0.0",
+  "description": "A simple Laravel project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production",
+    "build": "npm run production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.21",
+    "bootstrap": "^5.3.3",
+    "cross-env": "^7.0",
+    "laravel-mix": "^6.0.6",
+    "lodash": "^4.17.19",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.11.3",
+    "url-loader": "^4.1.1"
+  }
+}

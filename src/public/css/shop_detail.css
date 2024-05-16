@@ -11,8 +11,11 @@
 
 .shop__header {
     display: flex;
-    justify-content: space-between;
-    
+    align-items: center;
+}
+
+.shop__header--rate {
+    margin-left: 2vw;
 }
 
 .shop__name {
@@ -175,24 +178,92 @@ input {
 
 
 
-.review {
-    width: 90%;
-    margin: 2vw auto 0;
-    background-color: white;
-    color: #454545;
-    padding: 1vw;
-    border: solid;
+.modal {
+    position: fixed;
+    top: 0vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255,0.5);
+    position: fixed;
+    z-index: 7;
+    overflow-y: scroll;
 }
 
-.review__name {
+.modal__back {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #66ccff;
+    padding: 2vw;
+}
+
+.modal__header {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal__header--ttl {
+    color: white;
+    font-size: 4rem;
+}
+
+.modal__header--btn {
+    width: 40px;
+    height: 40px;
+    font-size: 3rem;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal__content {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    background-color: white;
+    border: solid;
+    border-radius: 10px;
+    margin-top: 2vh;
+    padding: 1vw;
+    z-index: 10;
+}
+
+.modal__content--header {
+    display: flex;
+    align-items: center;
+}
+
+.modal__content--star {
+    margin-left: 3vw;
+}
+
+.modal__content--name {
     font-size: 2rem;
 }
 
-.review__comment {
-    font-size: 1.8rem;
+.modal__content--comment {
+    font-size: 2rem;
+    background-color: #eee;
+    padding: 0.5vw;
+    border-radius: 5px;
 }
 
+.modal__content--comment-ttl {
+    font-size: 1.8rem;
+    margin-bottom: -2vh;
+}
 
+.review__area--btn {
+    border: none;
+    font-size: 1.5rem;
+    background-color: #0066ff;
+    color: white;
+    border-radius: 5px;
+}
 
 
 .form__subject--error {

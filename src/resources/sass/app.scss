@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@use "./base/bootstrap";
+
+@use "./modules/btn";
+@use "./modules/footer";
+
+@use "bootstrap-icons/font/bootstrap-icons";
