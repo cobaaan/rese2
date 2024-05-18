@@ -7,22 +7,24 @@
 
 @section('header')
 <div class="search">
-    <form class="search__form" action="/search" method="post">
+    <form class="search__form" id="searchForm" action="/search" method="post">
         @csrf
-        <select class="search__area" name="area" id="">
+        <select class="search__area" name="area" id="areaSelect">
             <option value="" selected>All area</option>
             @foreach ($shopAreas as $shopArea)
             <option value="{{ $shopArea->area }}">{{ $shopArea->area }}</option>
             @endforeach
         </select>
-        <select class="search__genre" name="genre" id="">
+        
+        <select class="search__genre" name="genre" id="genreSelect">
             <option value="" selected>All genre</option>
             @foreach ($shopGenres as $shopGenre)
             <option value="{{ $shopGenre->genre }}">{{ $shopGenre->genre }}</option>
             @endforeach
         </select>
-        <input class="search__text" type="text" name="text" value="" placeholder="Search...">
-        <button class="search__btn">Search</button>
+        
+        <input class="search__text" type="text" name="text" value="{{ old('text') }}" id="searchText" placeholder="Search...">
+        <button type="button" class="search__btn" id="searchButton" style="display: none;">Search</button>
     </form>
 </div>
 @endsection
@@ -68,7 +70,7 @@
                     @endif
                     @endforeach
                     
-                    <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img  class="{{ $color }}" src="image/life.png"></button>
+                    <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
                     
                     @endif
                 </form>
@@ -77,4 +79,64 @@
     </div>
     @endforeach
 </div>
+
+<!-- JavaScript to handle automatic form submission -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('searchForm');
+        const areaSelect = document.getElementById('areaSelect');
+        const genreSelect = document.getElementById('genreSelect');
+        const searchText = document.getElementById('searchText');
+        const searchButton = document.getElementById('searchButton');
+        
+        function submitForm() {
+            form.submit();
+        }
+        
+        function saveFormValues() {
+            localStorage.setItem('area', areaSelect.value);
+            localStorage.setItem('genre', genreSelect.value);
+            localStorage.setItem('text', searchText.value);
+        }
+        
+        function restoreFormValues() {
+            const area = localStorage.getItem('area');
+            const genre = localStorage.getItem('genre');
+            const text = localStorage.getItem('text');
+            
+            if (area) areaSelect.value = area;
+            if (genre) genreSelect.value = genre;
+            if (text) searchText.value = text;
+        }
+        
+        areaSelect.addEventListener('change', function () {
+            saveFormValues();
+            submitForm();
+        });
+        
+        genreSelect.addEventListener('change', function () {
+            saveFormValues();
+            submitForm();
+        });
+        
+        searchText.addEventListener('input', function () {
+            if (searchText.value.trim() !== "") {
+                searchButton.style.display = "inline-block";
+            }
+        });
+        
+        searchButton.addEventListener('click', function () {
+            saveFormValues();
+            submitForm();
+        });
+        
+        // Restore form values on page load
+        restoreFormValues();
+        
+        // Show search button if search text is not empty on page load
+        if (searchText.value.trim() !== "") {
+            searchButton.style.display = "inline-block";
+        }
+    });
+</script>
 @endsection
