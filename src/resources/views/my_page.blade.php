@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/my_page.css') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 @endsection
 
 @section('content')
@@ -16,11 +17,12 @@
         @foreach($futureReservations as $futureReservation)
         <div class="left__content">
             <div class="left__content--header">
+                <i class="bi bi-clock"></i>
                 <p class="left__content--ttl">予約{{ $counter + 1 }}</p>
-                <form action="/cancel" method="post">
+                <form action="/cancel" method="post"  class="left__content--cross">
                     @csrf
                     <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                    <button class="left__content--cross"></button>
+                    <button class="left__content--btn bi bi-x-circle"></button>
                 </form>
             </div>
             <?php $counter++; ?>

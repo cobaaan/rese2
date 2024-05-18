@@ -66,7 +66,7 @@
     @if(isset($auth))
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
-        <form action="/reserve" method="post">
+        <form action="/reserve" method="post" id="reserveForm">
             @csrf
             <input type="hidden" name="page" value="shop_detail">
             <input type="hidden" name="user_id" value="{{ $auth }}">
@@ -77,20 +77,20 @@
             <input type="hidden" name="description" value="{{ $requests['description'] }}">
             <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
             <input type="hidden" name="id" value="{{ $requests['id'] }}">
-            <input class="reserve__date" type="date" name="date" value="{{ old('date') }}" min="{{ $dt->format('Y-m-d') }}">
+            <input class="reserve__date" type="date" name="date" value="{{ old('date') }}" min="{{ $dt->format('Y-m-d') }}" id="date">
             <div class="form__subject--error reserve__date--error">
                 @error('date')
                 <p class="error__message">{{ $errors->first('date') }}</p>
                 @enderror
             </div>
             <div class="reserve__time">
-                <select name="time" class="reserve__time--time">
+                <select name="time" class="reserve__time--time" id="time">
                     @for($i = 00; $i < 24; $i++)
                     <option value={{ $i }}>{{ $i }}</option>
                     @endfor
                 </select>
                 <p class="reserve__time--colon">:</p>
-                <select name="minute" class="reserve__time--minute">
+                <select name="minute" class="reserve__time--minute" id="minute">
                     <option value="00">00</option>
                     <option value="30">30</option>
                 </select>
@@ -100,7 +100,7 @@
                 <p class="error__message">{{ $errors->first('time') }}</p>
                 @enderror
             </div>
-            <select class="reserve__number" name="number" value="{{ old('number') }}">
+            <select class="reserve__number" name="number" value="{{ old('number') }}" id="number">
                 <div class="form__subject--error reserve__date--error">
                     @error('number')
                     <p class="error__message">{{ $errors->first('number') }}</p>
@@ -119,15 +119,15 @@
                     </tr>
                     <tr>
                         <td>Date</td>
-                        <td>あとで設定</td>
+                        <td id="confirmDate"></td>
                     </tr>
                     <tr>
                         <td>Time</td>
-                        <td>あとで設定</td>
+                        <td id="confirmTime"></td>
                     </tr>
                     <tr>
                         <td>Number</td>
-                        <td>あとで設定</td>
+                        <td id="confirmNumber"></td>
                     </tr>
                 </table>
             </div>
@@ -136,4 +136,29 @@
     </div>
     @endif
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        const timeInput = document.getElementById('time');
+        const minuteInput = document.getElementById('minute');
+        const numberInput = document.getElementById('number');
+        const confirmDate = document.getElementById('confirmDate');
+        const confirmTime = document.getElementById('confirmTime');
+        const confirmNumber = document.getElementById('confirmNumber');
+        
+        function updateConfirm() {
+            confirmDate.textContent = dateInput.value || '年/月/日';
+            confirmTime.textContent = `${timeInput.value || '00'}:${minuteInput.value || '00'}`;
+            confirmNumber.textContent = numberInput.options[numberInput.selectedIndex].text || 'あとで設定';
+        }
+        
+        dateInput.addEventListener('input', updateConfirm);
+        timeInput.addEventListener('input', updateConfirm);
+        minuteInput.addEventListener('input', updateConfirm);
+        numberInput.addEventListener('change', updateConfirm);
+        
+        updateConfirm();
+    });
+</script>
 @endsection

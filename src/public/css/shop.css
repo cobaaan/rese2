@@ -84,6 +84,7 @@
 .search__area {
     width: 23%;
     border: none;
+    outline: none;
 }
 
 .search__genre {
@@ -95,11 +96,13 @@
     height: 100%;
     box-sizing: border-box;
     padding: 0 1vw 0 1vw;
+    outline: none;
 }
 
 .search__text {
     width: 30%;
     border: none;
+    outline: none;
 }
 
 .search__btn {

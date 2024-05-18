@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/fortify.css') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 @endsection
 
 @section('content')
@@ -12,23 +13,21 @@
             @csrf
             <div class="form__content">
                 <div class="form__content--item">
-                    <div class="form__email form__content--left"></div>
+                    <i class="bi bi-envelope-fill"></i>
                     <input class="form__input form__content--right" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                 </div>
-                <div class="error">
-                    @if($errors->has('email'))
-                    <div class="error__txt">{{ $errors->first('email') }}</div>
-                    @endif
-                </div>
+                @if($errors->has('email'))
+                <div class="error__txt">{{ $errors->first('email') }}</div>
+                @endif
                 <div class="form__content--item">
-                    <div class="form__pass form__content--left"></div>
+                    <i class="bi bi-file-lock-fill"></i>
                     <input class="form__input form__content--right" type="password" name="password" placeholder="Password">
                 </div>
-                <div class="error">
-                    @if($errors->has('password'))
-                    <div class="error__txt">{{ $errors->first('password') }}</div>
-                    @endif
-                </div>
+                
+                @if($errors->has('password'))
+                <div class="error__txt">{{ $errors->first('password') }}</div>
+                @endif
+                
                 <div class="form__content--item">
                     <div></div>
                     <button class="form__btn">ログイン</button>

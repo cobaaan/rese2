@@ -55,7 +55,7 @@
                     </form>
                 </li>
                 <li class="ham__nav--link">
-                    <form action="/register" method="post">
+                    <form action="/register" method="get">
                         @csrf
                         <button class="ham__nav--link-txt">Registration</button>
                     </form>

@@ -29,26 +29,36 @@
     margin-top: 1vw;
 }
 
+i {
+    font-size: 3rem;
+    background-color: none;
+}
+
 .left__content--header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .left__content--ttl {
     margin-bottom: 2vw;
+    position: relative;
+    top: 10px;
+    left: 20px;
 }
 
-.left__content-ttl::before {
-    content: '';
-    background: url(../image/time.png);
-    background-size: cover;
-    vertical-align: middle;
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    margin-right: 1vw;
+.left__content--cross {
+    margin-left: auto;
+    margin-right: 2vw;
 }
 
+.left__content--btn {
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+/*
 .left__content--cross {
     content: '';
     background: url(../image/cross.png);
@@ -61,7 +71,7 @@
     border: none;
     margin: 1vw 2vw 0 0;
 }
-
+*/
 .left__content td {
     width: 120px;
     display: inline-block;
