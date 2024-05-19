@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use App\Http\Requests\MailRequest;
 
 use Illuminate\Http\Request;
@@ -12,24 +14,19 @@ class MailController extends Controller
     public function mailForm(Request $request) {
         $requests = $request->all();
         unset($requests['_token']);
+        $auth = Auth::user();
         
-        return view('mail_form', compact('requests'));
+        return view('mail_form', compact('requests', 'auth'));
     }
     
     public function sendMail(MailRequest $request) {
-        /*
-        Mail::send([], [], function ($message) use ($request) {
-            $message->to($request['email'])
-            ->subject($request['subject'])
-            ->setBody($request['body']);
-        });
-        */
+        $auth = Auth::user();
         Mail::send([], [], function ($message) use ($request) {
             $message->to($request['email'])
             ->subject($request['subject'])
             ->setBody($request['body']);
         });
         
-        return view('mail_sended');
+        return view('mail_sended', compact('auth'));
     }
 }

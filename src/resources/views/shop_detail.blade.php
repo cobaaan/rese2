@@ -69,7 +69,7 @@
         <form action="/reserve" method="post" id="reserveForm">
             @csrf
             <input type="hidden" name="page" value="shop_detail">
-            <input type="hidden" name="user_id" value="{{ $auth }}">
+            <input type="hidden" name="user_id" value="{{ $auth['id'] }}">
             <input type="hidden" name="name" value="{{ $requests['name'] }}">
             <input type="hidden" name="image_path" value="{{ $requests['image_path'] }}">
             <input type="hidden" name="area" value="{{ $requests['area'] }}">

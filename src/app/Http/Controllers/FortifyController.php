@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminRequest;
+
+use Auth;
+
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -12,7 +16,7 @@ use Illuminate\Http\Request;
 
 class FortifyController extends Controller
 {
-    public function adminCreate(Request $request) {
+    public function adminCreate(AdminRequest $request) {
         $requests = $request->all();
         $dt = Carbon::now();
         
@@ -26,6 +30,8 @@ class FortifyController extends Controller
     }
     
     public function verify() {
-        return view('auth/verify');
+        $auth = Auth::user();
+        
+        return view('auth/verify', compact('auth'));
     }
 }

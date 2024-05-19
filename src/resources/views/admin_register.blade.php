@@ -14,24 +14,24 @@
                 <div class="form__content--item">
                     <div class="form__user form__content--left"></div>
                     <input class="form__input form__content--right" type="text" name="name" value="{{ old('name') }}" placeholder="Username">
-                    @if($errors->has('name'))
-                    <div class="message__error">{{ $errors->first('name') }}</div>
-                    @endif
                 </div>
+                @if($errors->has('name'))
+                <div class="error__txt">{{ $errors->first('name') }}</div>
+                @endif
                 <div class="form__content--item">
                     <div class="form__email form__content--left"></div>
                     <input class="form__input form__content--right" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
-                    @if($errors->has('email'))
-                    <div class="message__error">{{ $errors->first('email') }}</div>
-                    @endif
                 </div>
+                @if($errors->has('email'))
+                <div class="error__txt">{{ $errors->first('email') }}</div>
+                @endif
                 <div class="form__content--item">
                     <div class="form__pass form__content--left"></div>
                     <input class="form__input form__content--right" type="password" name="password" placeholder="Password">
-                    @if($errors->has('password'))
-                    <div class="message__error">{{ $errors->first('password') }}</div>
-                    @endif
                 </div>
+                @if($errors->has('password'))
+                <div class="error__txt">{{ $errors->first('password') }}</div>
+                @endif
                 <div class="form__content--item">
                     <div class="form__select form__content--left"></div>
                     <select class="form__input form__content--right" name="role">

@@ -44,12 +44,21 @@
                     <td>{{ $futureReservation->number }}</td>
                 </tr>
             </table>
-            
-            <form action="/change_reserve" method="post">
-                @csrf
-                <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                <button class="left__content--change-btn">変更</button>
-            </form>
+            <div class="card__footer">
+                <div class="card__footer--qr">
+                    {!! QrCode::encoding('UTF-8')->generate(
+                    'Shop: ' . $shops[$futureReservation->shop_id - 1]->name . "\n" .
+                    'Date: ' . $futureReservation->date . "\n" .
+                    'Time: ' . $futureReservation->time . "\n" .
+                    'Number: ' . $futureReservation->number
+                    ) !!}
+                </div>
+                <form action="/change_reserve" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $futureReservation->id }}">
+                    <button class="left__content--change-btn">変更</button>
+                </form>
+            </div>
         </div>
         @endforeach
         @endif
@@ -110,7 +119,12 @@
                         </div>
                         <div class="card__footer">
                             <div class="card__footer--qr">
-                                
+                                {!! QrCode::encoding('UTF-8')->generate(
+                                'Shop: ' . $shops[$pastReservation->shop_id - 1]->name . "\n" .
+                                'Date: ' . $pastReservation->date . "\n" .
+                                'Time: ' . $pastReservation->time . "\n" .
+                                'Number: ' . $pastReservation->number
+                                ) !!}
                             </div>
                             <div class="card__footer--btn">
                                 <form class="card__form" method="get" action="/review">

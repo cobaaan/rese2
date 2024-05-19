@@ -58,20 +58,7 @@ i {
     color: white;
     cursor: pointer;
 }
-/*
-.left__content--cross {
-    content: '';
-    background: url(../image/cross.png);
-    background-size: cover;
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    margin: 1vw 2vw 0 0;
-}
-*/
+
 .left__content td {
     width: 120px;
     display: inline-block;
@@ -88,10 +75,9 @@ i {
     background-color: white;
     border-radius: 5px;
     color: #454545;
-    margin-left: auto;
-    margin-right: 2vw;
     display: block;
     padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+    margin: 1vw;
 }
 
 
@@ -100,12 +86,9 @@ i {
     width: 25%;
 }
 
-
-
 .right {
     width: 25%;
 }
-
 
 
 
@@ -180,6 +163,7 @@ i {
 .card__footer {
     display: flex;
     justify-content: space-between;
+    align-items: end;
 }
 
 .card__footer--qr {

@@ -43,6 +43,34 @@
                         <button class="ham__nav--link-txt">Mypage</button>
                     </form>
                 </li>
+                @if ($auth->role === 'admin')
+                <li class="ham__nav--link">
+                    <form action="/admin_register" method="get">
+                        @csrf
+                        <button class="ham__nav--link-txt">AdminRegister</button>
+                    </form>
+                </li>
+                <li class="ham__nav--link">
+                    <form action="/user_all" method="get">
+                        @csrf
+                        <button class="ham__nav--link-txt">UserAll</button>
+                    </form>
+                </li>
+                @endif
+                @if ($auth->role === 'shopManager')
+                <li class="ham__nav--link">
+                    <form action="/shop_manager" method="get">
+                        @csrf
+                        <button class="ham__nav--link-txt">ShopManager</button>
+                    </form>
+                </li>
+                <li class="ham__nav--link">
+                    <form action="/shop_reserve" method="get">
+                        @csrf
+                        <button class="ham__nav--link-txt">ShopReserve</button>
+                    </form>
+                </li>
+                @endif
             </ul>
         </nav>
         @else

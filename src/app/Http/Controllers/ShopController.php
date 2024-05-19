@@ -22,16 +22,21 @@ use Illuminate\Support\Facades\DB;
 class ShopController extends Controller
 {
     public function shopAll() {
-        $auths = Auth::user();
+        $auth = Auth::user();
         $shops = Shop::all();
         $shopAreas = DB::select('SELECT DISTINCT area FROM shops');
         $shopGenres = DB::select('SELECT DISTINCT genre FROM shops');
         
         $favorites = Favorite::all();
-        //$averageRatings = $this->reviewStar();
+        
         $averageRatings = ReseController::reviewStar();
         
-        return view('shop_all', compact('shops', 'shopAreas', 'shopGenres', 'favorites', 'auths', 'averageRatings'));
+        if(isset($auth)){
+            return view('shop_all', compact('shops', 'shopAreas', 'shopGenres', 'favorites', 'auth', 'averageRatings'));
+        } else {
+            return view('shop_all', compact('shops', 'shopAreas', 'shopGenres', 'favorites', 'averageRatings'));
+        }
+        
     }
     
     public function shopDetail(Request $request) {
@@ -39,21 +44,23 @@ class ShopController extends Controller
         
         $requests = $request->all();
         $dt = Carbon::now();
-        $auths = Auth::user();
+        $auth = Auth::user();
+        //$auths = Auth::user();
         
         $averageRatings = ReseController::reviewStar();
         
         $user = User::all();
         
         $reviews = Review::where('shop_id', $request->id)->get();
-        
+        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        /*
         if(isset($auths)){
             $auth = $auths->id;
             return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
         } else {
             return view('shop_detail', compact('requests', 'dt', 'user', 'reviews', 'averageRatings', 'shopModal'));
         }
-        
+        */   
     }
     
     public function modal(Request $request) {
@@ -61,7 +68,8 @@ class ShopController extends Controller
         
         $requests = $request->all();
         $dt = Carbon::now();
-        $auths = Auth::user();
+        //$auths = Auth::user();
+        $auth = Auth::user();
         
         
         $averageRatings = ReseController::reviewStar();
@@ -69,12 +77,16 @@ class ShopController extends Controller
         $user = User::all();
         
         $reviews = Review::where('shop_id', $request->id)->get();
+        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        
+        /*
         if(isset($auths)){
             $auth = $auths->id;
             return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
         } else {
             return view('shop_detail', compact('requests', 'dt', 'user', 'reviews', 'averageRatings', 'shopModal'));
         }
+        */
     }
     
     public function shopCreate(Request $request) {
@@ -137,11 +149,12 @@ class ShopController extends Controller
             }
         }
         
-        return view('shop_reserve', compact('users', 'shop', 'pastReserves', 'todayReserves', 'futureReserves'));
+        return view('shop_reserve', compact('users', 'shop', 'pastReserves', 'todayReserves', 'futureReserves', 'auth'));
     }
     
     public function shopUpdate(ShopRequest $request) {
         $requests = $request->all();
+        $auth = Auth::user();
         
         $dir = 'image';
         $file_name = $request->file('image')->getClientOriginalName();
@@ -164,8 +177,6 @@ class ShopController extends Controller
         
         Shop::where('id', $requests['shop_id'])->update($nonNull);
         
-        //$this->imageUpload($params, $requests);
-        
-        return view('thanks_shop_create');
+        return view('thanks_shop_create', compact('auth'));
     }
 }

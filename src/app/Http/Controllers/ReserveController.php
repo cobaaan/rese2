@@ -20,6 +20,7 @@ class ReserveController extends Controller
 {
     public function reserve(ReserveRequest $request) {
         $requests = $request->all();
+        $auth = Auth::user();
         
         $time = sprintf('%02d:%02d:00', $requests['time'], $requests['minute']);
         
@@ -30,9 +31,10 @@ class ReserveController extends Controller
             'time' => $time,
             'number' => $requests['number'],
         ];
+        
         Reserve::create($param);
         
-        return view('done');
+        return view('done', compact('auth'));
     }
     
     public function cancel(Request $request) {
@@ -68,6 +70,7 @@ class ReserveController extends Controller
     
     public function updateReserve(ReserveRequest $request) {
         $requests = $request->all();
+        $auth = Auth::user();
         $time = sprintf('%02d:%02d:00', $requests['time'], $requests['minute']);
         
         $param = [
@@ -78,6 +81,6 @@ class ReserveController extends Controller
         
         Reserve::where('id', $requests['id'])->update($param);
         
-        return view('done');
+        return view('done', compact('auth'));
     }
 }

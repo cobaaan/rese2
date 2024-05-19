@@ -61,9 +61,9 @@
                     $color = 'card__form--heart-img';
                     @endphp
                     
-                    @if(isset($auths))
+                    @if(isset($auth))
                     @foreach($favorites as $favorite)
-                    @if($favorite['user_id'] === $auths->id && $favorite['shop_id'] === $shop->id)
+                    @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
                     @php
                     $color = 'card__form--heart-red';
                     @endphp
@@ -80,7 +80,6 @@
     @endforeach
 </div>
 
-<!-- JavaScript to handle automatic form submission -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('searchForm');
@@ -130,10 +129,8 @@
             submitForm();
         });
         
-        // Restore form values on page load
         restoreFormValues();
         
-        // Show search button if search text is not empty on page load
         if (searchText.value.trim() !== "") {
             searchButton.style.display = "inline-block";
         }
