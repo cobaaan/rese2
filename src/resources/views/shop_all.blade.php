@@ -30,9 +30,9 @@
 @endsection
 
 @section('content')
-<div class="shop">
+<div class="shop" id="shopList">
     @foreach ($shops as $shop)
-    <div class="card">
+    <div class="card" data-area="{{ $shop->area }}" data-genre="{{ $shop->genre }}" data-name="{{ $shop->name }}">
         <img class="card__img" src="{{ $shop->image_path }}">
         <div>
             <div class="card__ttl">{{ $shop->name }}</div>
@@ -81,6 +81,41 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const areaSelect = document.getElementById('areaSelect');
+        const genreSelect = document.getElementById('genreSelect');
+        const searchText = document.getElementById('searchText');
+        const shopList = document.getElementById('shopList');
+        const shopCards = shopList.getElementsByClassName('card');
+        
+        function filterShops() {
+            const area = areaSelect.value.toLowerCase();
+            const genre = genreSelect.value.toLowerCase();
+            const text = searchText.value.toLowerCase();
+            
+            Array.from(shopCards).forEach(function(card) {
+                const cardArea = card.getAttribute('data-area').toLowerCase();
+                const cardGenre = card.getAttribute('data-genre').toLowerCase();
+                const cardName = card.getAttribute('data-name').toLowerCase();
+                
+                const matchesArea = area === '' || cardArea.includes(area);
+                const matchesGenre = genre === '' || cardGenre.includes(genre);
+                const matchesText = text === '' || cardName.includes(text);
+                
+                if(matchesArea && matchesGenre && matchesText) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        areaSelect.addEventListener('change', filterShops);
+        genreSelect.addEventListener('change', filterShops);
+        searchText.addEventListener('input', filterShops);
+    });
+    
+    /*
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('searchForm');
         const areaSelect = document.getElementById('areaSelect');
@@ -135,5 +170,6 @@
             searchButton.style.display = "inline-block";
         }
     });
+    */
 </script>
 @endsection

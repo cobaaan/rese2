@@ -72,6 +72,7 @@
     font-size: 2rem;
     border: none;
     padding: 0.5vw;
+    cursor: pointer;
 }
 
 .right__textarea {
@@ -79,10 +80,12 @@
     font-size: 2rem;
     border: none;
     padding: 0.5vw;
+    cursor: pointer;
 }
 
 .right__file {
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .right__btn {
@@ -93,6 +96,7 @@
     color: white;
     padding: 0.5vw 1vw 0.5vw 1vw;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .form__subject--error {

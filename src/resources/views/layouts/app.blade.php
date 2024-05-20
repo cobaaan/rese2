@@ -25,6 +25,7 @@
         @auth
         <nav class="ham__nav" id="nav">
             <ul class="ham__nav--menu">
+                @if($auth->role === 'user')
                 <li class="ham__nav--link">
                     <form action="/" method="get">
                         @csrf
@@ -43,7 +44,7 @@
                         <button class="ham__nav--link-txt">Mypage</button>
                     </form>
                 </li>
-                @if ($auth->role === 'admin')
+                @elseif ($auth->role === 'admin')
                 <li class="ham__nav--link">
                     <form action="/admin_register" method="get">
                         @csrf
@@ -51,13 +52,18 @@
                     </form>
                 </li>
                 <li class="ham__nav--link">
-                    <form action="/user_all" method="get">
+                    <form action="/mail_form" method="get">
                         @csrf
-                        <button class="ham__nav--link-txt">UserAll</button>
+                        <button class="ham__nav--link-txt">SendMail</button>
                     </form>
                 </li>
-                @endif
-                @if ($auth->role === 'shopManager')
+                <li class="ham__nav--link">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="ham__nav--link-txt">Logout</button>
+                    </form>
+                </li>
+                @elseif ($auth->role === 'shopManager')
                 <li class="ham__nav--link">
                     <form action="/shop_manager" method="get">
                         @csrf
@@ -68,6 +74,12 @@
                     <form action="/shop_reserve" method="get">
                         @csrf
                         <button class="ham__nav--link-txt">ShopReserve</button>
+                    </form>
+                </li>
+                <li class="ham__nav--link">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="ham__nav--link-txt">Logout</button>
                     </form>
                 </li>
                 @endif

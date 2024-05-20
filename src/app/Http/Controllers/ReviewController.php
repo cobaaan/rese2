@@ -25,6 +25,7 @@ class ReviewController extends Controller
     
     public function reviewPost(ReviewRequest $request) {
         $requests = $request->all();
+        $auth = Auth::user();
         
         $param = [
             'user_id' => $requests['user_id'],
@@ -36,6 +37,6 @@ class ReviewController extends Controller
         
         Review::create($param);
         
-        return view('thanks_review');
+        return view('thanks_review', compact('auth'));
     }
 }

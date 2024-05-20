@@ -57,6 +57,7 @@
     margin: 1vw 0 0 2vw;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 
@@ -74,6 +75,7 @@
     margin: 1vw;
     appearance: none;
     text-indent: 10px;
+    cursor: pointer;
 }
 
 .reserve__time--colon {
@@ -89,6 +91,7 @@
     margin: 1vw;
     appearance: none;
     text-indent: 10px;
+    cursor: pointer;
 }
 
 .reserve__number {
@@ -99,6 +102,7 @@
     border-radius: 5px;
     text-indent: 10px;
     appearance: none;
+    cursor: pointer;
 }
 
 .reserve__confirm {
@@ -133,6 +137,7 @@
     position: absolute;
     bottom: 0;
     border-radius: 0 0 10px 10px;
+    cursor: pointer;
 }
 
 

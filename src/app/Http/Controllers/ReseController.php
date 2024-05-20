@@ -55,7 +55,7 @@ class ReseController extends Controller
         
         return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth'));
     }
-    
+    /*
     public function search(Request $request) {
         $auths = Auth::user();
         $query = Shop::query();
@@ -70,7 +70,7 @@ class ReseController extends Controller
         
         return view('shop_all', compact('auths', 'shops', 'shopAreas', 'shopGenres', 'favorites', 'averageRatings'));
     }
-    
+    */
     public function getSearchQuery($request, $query) {
         if(!empty($request->text)) {
             $query->where('name', 'like', '%' . $request->text . '%');

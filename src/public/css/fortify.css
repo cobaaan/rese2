@@ -38,6 +38,7 @@
     width: 85%;
     border-bottom: solid;
     outline: none;
+    cursor: pointer;
 }
 
 .form__user {
@@ -96,6 +97,7 @@
     border-radius: 5px;
     padding: 0.5vw 1vw 0.5vw 1vw;
     margin: 1vw 1vw 1vw 0;
+    cursor: pointer;
 }
 
 

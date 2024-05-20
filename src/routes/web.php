@@ -22,6 +22,8 @@ use App\Http\Controllers\ShopController;
 |
 */
 
+//Route::get('/test', [ShopController::class, 'test']);
+
 Route::get('/my_page', [ReseController::class,'myPage'])->middleware(['auth', 'verified']);
 Route::post('/my_page', [ReseController::class,'myPage'])->middleware(['auth', 'verified']);
 
@@ -43,7 +45,7 @@ Route::get('/menu', [ReseController::class,'menu']);
 //Route::post('/cancel', [ReseController::class, 'cancel']);
 
 
-Route::post('/search', [ReseController::class, 'search']);
+//Route::post('/search', [ReseController::class, 'search']);
 
 //Route::post('/favorite/{id}', [ReseController::class, 'toggleFavorite'])->name('favorite.toggle');
 Route::post('/favorite/{id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
@@ -76,7 +78,7 @@ Route::post('/favorite/{id}', [FavoriteController::class, 'toggleFavorite'])->na
 
 
 
-Route::get('/user_all', [AdminController::class, 'userAll']);
+//Route::get('/user_all', [AdminController::class, 'userAll']);
 Route::get('/admin_register', [AdminController::class, 'adminRegister']);
 
 Route::prefix('payment')->name('payment.')->group(function () {

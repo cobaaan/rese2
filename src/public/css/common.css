@@ -172,4 +172,5 @@ header {
     border: none;
     text-decoration: none;
     background-color: white;
+    cursor: pointer;
 }
