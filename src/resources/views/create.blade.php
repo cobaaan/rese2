@@ -28,6 +28,12 @@
                         <div id="card-cvc" class="form-control"></div>
                     </div>
                     
+                    <div>
+                        <label for="card-amount">支払い価格</label>
+                        <input type="text" name="card-amount">
+                        <div id="card-amount" class="form-control"></div>
+                    </div>
+                    
                     <div id="card-errors" class="text-danger"></div>
                     
                     <button class="mt-3 btn btn-primary">支払い</button>

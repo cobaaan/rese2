@@ -217,7 +217,7 @@ input {
     height: 100vh;
     background-color: rgba(255,255,255,0.5);
     position: fixed;
-    z-index: 7;
+    z-index: 10;
     overflow-y: scroll;
 }
 

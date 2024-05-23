@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+@if(isset($shop))
 <div>
     <h2 class="shop-name">{{ $shop->name }}</h2>
     <div class="today">
@@ -104,4 +105,8 @@
         </div>
     </div>
 </div>
+@else
+<h2 class="ttl">店舗情報が登録されていません。</h2>
+<h2 class="ttl">ShopManagerにて店舗情報を登録してください。</h2>
+@endif
 @endsection

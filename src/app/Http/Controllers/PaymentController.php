@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -13,17 +15,17 @@ class PaymentController extends Controller
     
     public function store(Request $request)
     {
+        $auth = Auth::user();
         \Stripe\Stripe::setApiKey(config('stripe.stripe_secret_key'));
-        
         try {
             \Stripe\Charge::create([
                 'source' => $request->stripeToken,
-                'amount' => 1000,
+                'amount' => $request->amount,
                 'currency' => 'jpy',
             ]);
         } catch (Exception $e) {
-            return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
+            return view('done', compact('auth'));
         }
-        return back()->with('status', '決済が完了しました！');
+        return view('thanks', compact('auth'))->with('massage', 'お支払いありがとうございます。');
     }
 }

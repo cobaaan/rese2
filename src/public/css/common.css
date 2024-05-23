@@ -5,6 +5,89 @@ html {
     color: #454545;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header-area {
+    display: flex;
+    align-items: center;
+}
+.header-area-ttl {
+    color: #0066ff;
+    font-size: 5rem;
+    margin-left: 3vw;
+    font-weight: bold;
+}
+
+.hamburger {
+    width: 40px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    z-index: 9;
+}
+
+.hamburger span {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: #0066ff;
+    transition: .5s;
+}
+
+.hamburger span:first-of-type {
+    top: 0;
+}
+.hamburger span:nth-last-of-type(2) {
+    top: 50%;
+}
+.hamburger span:last-of-type {
+    top: 100%;
+}
+
+.hamburger.active span:first-of-type {
+    top: 50%;
+    transform: rotate(45deg);
+}
+.hamburger.active span:nth-last-of-type(2) {
+    opacity: 0;
+}
+.hamburger.active span:last-of-type {
+    top: 50%;
+    transform: rotate(-45deg);
+}
+
+.slide-menu {
+    background-color: rgba(256, 256, 256, 256);
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    height: 105vh;
+    left: 0;
+    transform: translateX(100%);
+    transition: .5s;
+    padding-top: 30vh;
+    z-index: 88;
+}
+
+.slide-menu.active {
+    transform: translateX(0);
+}
+
+.slide-menu li {
+    text-align: center;
+    margin-top: 3vh;
+    list-style: none;
+}
+
+
+
+
 header {
     width: 90%;
     margin: 3vw auto 3vw;
@@ -73,7 +156,7 @@ header {
 }
 
 .ham.is-active {
-    display: none;
+
 }
 
 .ham__line {
@@ -140,12 +223,16 @@ header {
 
 
 .ham__nav {
-    display: none;
+    display: flex;
+    position: fixed;
     flex-direction: column;
     z-index: 10;
     width: 100%;
     height: 100vh;
     opacity: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s linear;
 }
 
 .ham__nav.is-active {
@@ -155,6 +242,9 @@ header {
     right: 0;
     background: white;
     opacity: 1;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity .3s linear;
 }
 
 .ham__nav--menu {

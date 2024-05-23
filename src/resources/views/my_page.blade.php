@@ -2,10 +2,50 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/my_page.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/shop_modal.css') }}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 @endsection
 
 @section('content')
+@if(isset($showModal))
+<div class="container">
+    @if (session('flash_alert'))
+    <div class="alert alert-danger">{{ session('flash_alert') }}</div>
+    @elseif(session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+    <div class="modal">
+        <div class="modal__ttl">事前決済</div>
+        <div id="card-errors" class="text-danger"></div>
+        <form id="card-form" action="{{ route('payment.store') }}" method="POST">
+            @csrf
+            <div class="modal__content">
+                <label for="card_number">カード番号</label>
+                <div id="card-number" class="form__control"></div>
+            </div>
+            <div class="modal__content">
+                <label for="card_expiry">有効期限</label>
+                <div id="card-expiry" class="form__control"></div>
+            </div>
+            <div class="modal__content">
+                <label for="card-cvc">セキュリティコード</label>
+                <div id="card-cvc" class="form__control"></div>
+            </div>
+            <div class="modal__content">
+                <label for="card-amount">支払い価格</label><br>
+                <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000">
+            </div>
+            <button class="mt-3 btn btn-primary" type="submit">支払い</button>
+        </form>
+        <form action="/my_page" method="get">
+            <button class="cancel__btn">キャンセル</button>
+        </form>
+    </div>
+</div>
+@endif
+
 <div>
     <h2 class="ttl">{{ $auth['name'] }}さん</h2>
 </div>
@@ -53,10 +93,11 @@
                     'Number: ' . $futureReservation->number
                     ) !!}
                 </div>
-                <form action="/change_reserve" method="post">
+                <form class="card__footer--form" action="?" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                    <button class="left__content--change-btn">変更</button>
+                    <button class="left__content--change-btn" formaction="/my_page_modal">事前決済</button>
+                    <button class="left__content--change-btn" formaction="/change_reserve">変更</button>
                 </form>
             </div>
         </div>
@@ -143,4 +184,74 @@
         </div>
     </div>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    /* 基本設定*/
+    const stripe_public_key = "{{ config('stripe.stripe_public_key') }}"
+    const stripe = Stripe(stripe_public_key);
+    const elements = stripe.elements();
+    
+    var cardNumber = elements.create('cardNumber');
+    cardNumber.mount('#card-number');
+    cardNumber.on('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    
+    var cardExpiry = elements.create('cardExpiry');
+    cardExpiry.mount('#card-expiry');
+    cardExpiry.on('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    
+    var cardCvc = elements.create('cardCvc');
+    cardCvc.mount('#card-cvc');
+    cardCvc.on('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    
+    var form = document.getElementById('card-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var errorElement = document.getElementById('card-errors');
+        if (event.error) {
+            errorElement.textContent = event.error.message;
+        } else {
+            errorElement.textContent = '';
+        }
+        
+        stripe.createToken(cardNumber).then(function(result) {
+            if (result.error) {
+                errorElement.textContent = result.error.message;
+            } else {
+                stripeTokenHandler(result.token);
+            }
+        });
+    });
+    
+    function stripeTokenHandler(token) {
+        var form = document.getElementById('card-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+        form.submit();
+    }
+</script>
 @endsection

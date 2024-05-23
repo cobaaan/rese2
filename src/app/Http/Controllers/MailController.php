@@ -23,10 +23,7 @@ class MailController extends Controller
     
     public function sendMail(MailRequest $request) {
         $auth = Auth::user();
-        
         $users = User::all();
-        
-        //dd($users);
         
         foreach($users as $user){
             Mail::send([], [], function ($message) use ($request, $user) {
@@ -35,13 +32,7 @@ class MailController extends Controller
                 ->setBody($request['body']);
             });
         }
-        /*
-        Mail::send([], [], function ($message) use ($request) {
-            $message->to($request['email'])
-            ->subject($request['subject'])
-            ->setBody($request['body']);
-        });
-        */
-        return view('mail_sended', compact('auth'));
+        
+        return view('thanks', compact('auth'))->with('massage', 'メールを送信しました。');
     }
 }

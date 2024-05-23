@@ -7,11 +7,11 @@
 @section('content')
 <div class="content">
     <div>
-        <p class="content__ttl">会員登録ありがとうございます</p>
+        <p class="content__ttl">{{ $massage }}</p>
         <form action="/" method="get">
             @csrf
             <div class="content__form">
-                <button class="content__btn">ログインする</button>
+                <button class="content__btn">HOME</button>
             </div>
         </div>
     </form>

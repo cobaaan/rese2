@@ -1,0 +1,102 @@
+.container {
+    position: fixed;
+    top: 0vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(70, 168, 221, 0.5);
+    position: fixed;
+    z-index: 10;
+    overflow-y: scroll;
+    padding-top: 20vh;
+}
+
+.modal {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+    color: #454545;
+    font-size: 2rem;
+    padding: 3vw;
+}
+
+.modal__content {
+    margin: 1vw 0 1vw 0;
+}
+
+.modal__ttl {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2vw;
+}
+
+.form__control {
+    width: 70%;
+    padding: 0.5vw;
+    border: #454545 solid 0.5px;
+}
+
+.form__control--number {
+
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+.card_expiry {
+}
+
+.btn {
+    display: block;
+    margin-top: 3vw;
+	text-decoration: none;
+	position: relative;
+	width: 120px;
+	padding: 1vh 0 1vh 0;
+	font-weight: bold;
+	border-radius: 10px;
+	color: #454545;
+	border: 3px solid #27acd9;
+	box-shadow: 2px 2px #27acd9;
+	transition: 0.3s ease-in-out;
+}
+
+.btn:active {
+    box-shadow: none;
+	transform: translate(2px, 2px);
+	color: #eee;
+    background-color: #27acd9;
+}
+
+.cancel__btn {
+    display: block;
+    margin-top: 1vw;
+	text-decoration: none;
+	position: relative;
+	width: 120px;
+	padding: 1vh 0 1vh 0;
+	font-weight: bold;
+	border-radius: 10px;
+	color: #454545;
+	border: 3px solid #454545;
+	box-shadow: 2px 2px #454545;
+	transition: 0.3s ease-in-out;
+}
+
+.cancel__btn:active {
+    box-shadow: none;
+	transform: translate(2px, 2px);
+	color: #eee;
+    background-color: #454545;
+}
+
+.text-danger {
+    font-size: 2rem;
+    color: red;
+}
