@@ -2,7 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/shop.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/review.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/review_star.css') }}" />
 @endsection
 
 @section('header')
@@ -35,7 +36,31 @@
     <div class="card" data-area="{{ $shop->area }}" data-genre="{{ $shop->genre }}" data-name="{{ $shop->name }}">
         <img class="card__img" src="{{ $shop->image_path }}">
         <div>
-            <div class="card__ttl">{{ $shop->name }}</div>
+            <div class="card__top">
+                <div>
+                    <div class="card__ttl">{{ $shop->name }}</div>
+                    <div class="review__area card__review">
+                        <p class="{{ $averageRatings[$shop->id] }}"></p>
+                    </div>
+                </div>
+                @php
+                $color = 'card__form--heart-img';
+                @endphp
+                @if(isset($auth))
+                @foreach($favorites as $favorite)
+                @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
+                @php
+                $color = 'card__form--heart-red';
+                @endphp
+                @endif
+                @endforeach
+                <form method="post" action="?">
+                    @csrf
+                    <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
+                </form>
+                @endif
+            </div>
+            
             <div class="card__tag">
                 <div>#{{ $shop->area }}</div>
                 <div>#{{ $shop->genre }}</div>
@@ -52,27 +77,6 @@
                     
                     <button class="card__form--btn" formaction="/shop_detail">詳しく見る</button>
                     
-                    <button class="review__btn" formaction="/shop_detail">
-                        <div class="review__area">
-                            <p class="{{ $averageRatings[$shop->id] }}"></p>
-                        </div>
-                    </button>
-                    @php
-                    $color = 'card__form--heart-img';
-                    @endphp
-                    
-                    @if(isset($auth))
-                    @foreach($favorites as $favorite)
-                    @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
-                    @php
-                    $color = 'card__form--heart-red';
-                    @endphp
-                    @endif
-                    @endforeach
-                    
-                    <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
-                    
-                    @endif
                 </form>
             </div>
         </div>

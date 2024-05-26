@@ -22,3 +22,15 @@
     margin: 1vw 0 3vw 0;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .content {
+        width: 90%;
+    }
+
+.content__btn {
+    font-size: 1.8rem;
+    padding: 1vw 3vw 1vw 3vw;
+    margin: 0 0 3vw 0;
+}
+}

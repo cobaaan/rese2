@@ -15,4 +15,8 @@ class Shop extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
+    public function reserves() {
+        return $this->hasMany(Reserve::class);
+    }
 }

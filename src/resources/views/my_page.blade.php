@@ -16,6 +16,7 @@
         {{ session('status') }}
     </div>
     @endif
+    
     <div class="modal">
         <div class="modal__ttl">事前決済</div>
         <div id="card-errors" class="text-danger"></div>
@@ -35,11 +36,17 @@
             </div>
             <div class="modal__content">
                 <label for="card-amount">支払い価格</label><br>
-                <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000">
+                <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000" required min="100">
+            </div>
+            <div>
+                @if($errors->has('amount'))
+                <div>{{ $erros->first('amount') }}</div>
+                @endif
             </div>
             <button class="mt-3 btn btn-primary" type="submit">支払い</button>
         </form>
         <form action="/my_page" method="get">
+            @csrf
             <button class="cancel__btn">キャンセル</button>
         </form>
     </div>

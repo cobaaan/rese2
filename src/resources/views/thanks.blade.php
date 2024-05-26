@@ -11,7 +11,7 @@
         <form action="/" method="get">
             @csrf
             <div class="content__form">
-                <button class="content__btn">HOME</button>
+                <button class="content__btn">戻る</button>
             </div>
         </div>
     </form>

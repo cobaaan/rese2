@@ -54,13 +54,15 @@
 
 .right__content {
     margin-bottom: 6vw;
-    border: solid;
+    border: none;
     border-radius: 10px;
-    padding: 0 1vw 1vw 1vw;
+    padding: 1vw;
+    background-color: #0066ff;
+    color: white;
 }
 
 .right__ttl {
-    font-size: 3rem;
+    font-size: 3.5rem;
 }
 
 .right__name {
@@ -73,6 +75,7 @@
     border: none;
     padding: 0.5vw;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .right__textarea {
@@ -81,6 +84,7 @@
     border: none;
     padding: 0.5vw;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .right__file {
@@ -90,13 +94,22 @@
 
 .right__btn {
     text-decoration: none;
-    border: none;
-    background-color: #0066ff;
+    border: solid #454545 3px;
+    background-color: white;
     font-size: 2rem;
     color: white;
     padding: 0.5vw 1vw 0.5vw 1vw;
     border-radius: 5px;
     cursor: pointer;
+    color: #454545;
+	box-shadow: 5px 5px #454545;
+}
+
+.right__btn:active {
+    box-shadow: none;
+	transform: translate(2px, 2px);
+	color: #eee;
+    background-color: #454545;
 }
 
 .form__subject--error {
@@ -110,4 +123,39 @@
     background-color: #dc143c;
     border-radius: 5px;
     color: white;
+}
+
+
+
+@media (max-width: 768px) {
+.content {
+    display: inherit;
+}
+
+.left {
+    width: 100%;
+    margin: auto;
+}
+
+.right {
+    width: 100%;
+    margin: auto;
+}
+
+.right__content--item {
+    margin-left: 3vw;
+}
+
+.right__content--item:last-of-type {
+    margin: 3vh 0 3vh 3vw;
+}
+
+.right__input {
+    width: 80%;
+}
+
+.right__file {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
 }

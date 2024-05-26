@@ -40,7 +40,7 @@
                     @endif
                 </div>
                 <div class="form__content--item">
-                    <div><input type="hidden" name="role" value="admin"></div>
+                    <div><input type="hidden" name="role" value="user"></div>
                     <button class="form__btn">登録</button>
                 </div>
             </div>

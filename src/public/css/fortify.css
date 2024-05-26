@@ -1,8 +1,8 @@
 .content {
-    width: 30vw;
+    width: 35vw;
     margin: 0 auto;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
@@ -24,6 +24,7 @@
 .form__content {
     width: 90%;
     margin: 0 auto;
+    padding-top: 1vw;
 }
 
 .form__content--item {
@@ -133,6 +134,24 @@ margin: 0.5vw 0 0.5vw 4vw;
 }
 
 
+
 i {
     font-size: 3rem;
+}
+
+
+
+@media (max-width: 768px){
+    .content {
+    width: 90%;
+}
+
+.form__btn {
+    padding: 2vw 3vw 2vw 3vw;
+    margin: 2vw 1vw 3vw 0;
+}
+
+.content__ttl {
+    padding: 1vw 0 1vw 3vw;
+}
 }

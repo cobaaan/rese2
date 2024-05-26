@@ -102,14 +102,10 @@ class ShopController extends Controller
         $auth = Auth::user();
         $users = User::all();
         
-        $shop = DB::table('shops')
-        ->where('user_id', $auth->id)
-        ->first();
+        $shop = Shop::where('user_id', $auth->id)->first();
         
-        if(isset($shop)){
-            $reserves = DB::table('reserves')
-            ->where('shop_id', $shop->id)
-            ->get();
+        if (isset($shop)) {
+            $reserves = Reserve::where('shop_id', $shop->id)->with('user')->get();
             
             $currentDate = Carbon::now()->toDateString();
             
@@ -131,6 +127,7 @@ class ShopController extends Controller
             
             return view('shop_reserve', compact('users', 'shop', 'pastReserves', 'todayReserves', 'futureReserves', 'auth'));
         }
+        
         return view('shop_reserve', compact('users', 'shop', 'auth'));
     }
     

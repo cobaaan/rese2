@@ -120,94 +120,95 @@
             <div class="cross" id="cross">
                 <a href="/" class="cross__txt">×</a>
             </div>
+            
+            @auth
+            <nav class="ham__nav" id="nav">
+                <ul class="ham__nav--menu">
+                    @if($auth->role === 'user')
+                    <li class="ham__nav--link">
+                        <form action="/" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">Home</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="ham__nav--link-txt">Logout</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/my_page" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">Mypage</button>
+                        </form>
+                    </li>
+                    @elseif ($auth->role === 'admin')
+                    <li class="ham__nav--link">
+                        <form action="/admin_register" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">AdminRegister</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/mail_form" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">SendMail</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="ham__nav--link-txt">Logout</button>
+                        </form>
+                    </li>
+                    @elseif ($auth->role === 'shopManager')
+                    <li class="ham__nav--link">
+                        <form action="/shop_manager" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">ShopManager</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/shop_reserve" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">ShopReserve</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="ham__nav--link-txt">Logout</button>
+                        </form>
+                    </li>
+                    @endif
+                </ul>
+            </nav>
+            @else
+            <nav class="ham__nav" id="nav">
+                <ul class="ham__nav--menu">
+                    <li class="ham__nav--link">
+                        <form action="/" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">Home</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/register" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">Registration</button>
+                        </form>
+                    </li>
+                    <li class="ham__nav--link">
+                        <form action="/login" method="get">
+                            @csrf
+                            <button class="ham__nav--link-txt">Login</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            @endauth
         -->
-        @auth
-        <nav class="ham__nav" id="nav">
-            <ul class="ham__nav--menu">
-                @if($auth->role === 'user')
-                <li class="ham__nav--link">
-                    <form action="/" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">Home</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button class="ham__nav--link-txt">Logout</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/my_page" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">Mypage</button>
-                    </form>
-                </li>
-                @elseif ($auth->role === 'admin')
-                <li class="ham__nav--link">
-                    <form action="/admin_register" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">AdminRegister</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/mail_form" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">SendMail</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button class="ham__nav--link-txt">Logout</button>
-                    </form>
-                </li>
-                @elseif ($auth->role === 'shopManager')
-                <li class="ham__nav--link">
-                    <form action="/shop_manager" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">ShopManager</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/shop_reserve" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">ShopReserve</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button class="ham__nav--link-txt">Logout</button>
-                    </form>
-                </li>
-                @endif
-            </ul>
-        </nav>
-        @else
-        <nav class="ham__nav" id="nav">
-            <ul class="ham__nav--menu">
-                <li class="ham__nav--link">
-                    <form action="/" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">Home</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/register" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">Registration</button>
-                    </form>
-                </li>
-                <li class="ham__nav--link">
-                    <form action="/login" method="get">
-                        @csrf
-                        <button class="ham__nav--link-txt">Login</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-        @endauth
         @yield('header')
     </header>
     @yield('content')
@@ -221,38 +222,6 @@
                 slideMenu.classList.toggle('active');
             });
         });
-        /*
-        document.querySelector('.hamburger').addEventListener('click', function()
-        this.classList.toggle('active');
-        document.querySelector('.side-menu').classList.toggle('active');
-        );
-        */
-        
-        /*
-        document.addEventListener('DOMContentLoaded', function () {
-            const ham = document.getElementById('ham');
-            const nav = document.getElementById('nav');
-            //const cross = document.getElementById('cross');
-            
-            ham.addEventListener('click', () => {
-                if (ham.classList.contains("is-active")) {
-                    ham.classList.remove('is-active');
-                    nav.classList.remove('is-active')
-                    //cross.classList.remove('is-active');
-                } else {
-                    ham.classList.add('is-active');
-                    nav.classList.add('is-active')
-                    //cross.classList.add('is-active');
-                }
-            })
-        });
-        
-        nav.addEventListener('click', () => {
-            ham.classList.remove('is-active');
-            nav.classList.remove('is-active')
-            //cross.classList.remove('is-active');
-        });
-        */
     </script>
 </body>
 </html>

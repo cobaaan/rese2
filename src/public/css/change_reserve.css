@@ -185,3 +185,54 @@ input {
 .reserve__date--error {
     margin: 1vw  0 0 2vw;
 }
+
+
+
+@media (max-width: 768px) {
+    .content {
+    width: 90%;
+    margin: 0 auto;
+    display: inherit;
+}
+
+.current {
+    width: 100%;
+    background-color: #0066ff;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+    position: relative;
+    padding: 3vw;
+}
+
+.reserve {
+    margin-top: 3vh;
+    width: 100%;
+    height: 380px;
+    background-color: #0066ff;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.reserve__ttl {
+    margin: 5vw 0 0 5vw;
+    padding-top: 4vw;
+}
+
+.reserve__date {
+    margin: 3vw 0 0 5vw;
+}
+
+.reserve__time {
+    margin: -1vh 0 0 4vw;
+}
+
+.reserve__number {
+    margin: -2vh 0 0 5vw;
+}
+
+.reserve__confirm {
+    width: 90%;
+    margin: 2vh auto 0;
+}
+}

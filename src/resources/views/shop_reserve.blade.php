@@ -14,27 +14,19 @@
             <div class="content--head">
                 <div class="name">お名前</div>
                 <div class="date">日付</div>
+                <div class="date__mobile">日付</div>
                 <div class="time">時間</div>
                 <div class="number">人数</div>
                 <div class="email">メールアドレス</div>
             </div>
             @foreach($todayReserves as $today)
             <div class="content--item">
-                <div class="name">{{ $users[$today->user_id - 1]->name }}　　様</div>
+                <div class="name">{{ $users[$today->user_id - 1]->name }}様</div>
                 <div class="date">{{ $today->date }}</div>
-                <div class="time">{{ $today->time }}</div>
+                <div class="date__mobile">{{ substr($today->date, 5, 2) . "/" . substr($today->date, 8, 2)}}</div>
+                <div class="time">{{ substr($today->time, 0, 5) }}</div>
                 <div class="number">{{ $today->number }}</div>
                 <div class="email">{{ $users[$today->user_id - 1]->email }}</div>
-                <form action="/mail_form" method="post">
-                    @csrf
-                    <input type="hidden" name="shop_name" value="{{ $shop->name }}">
-                    <input type="hidden" name="name" value="{{ $users[$today->user_id - 1]->name }}">
-                    <input type="hidden" name="date" value="{{ $today->date }}">
-                    <input type="hidden" name="time" value="{{ $today->time }}">
-                    <input type="hidden" name="number" value="{{ $today->number }}">
-                    <input type="hidden" name="email" value="{{ $users[$today->user_id - 1]->email }}">
-                    <button class="btn">メール送信</button>
-                </form>
             </div>
             @endforeach
         </div>
@@ -46,27 +38,19 @@
             <div class="content--head">
                 <div class="name">お名前</div>
                 <div class="date">日付</div>
+                <div class="date__mobile">日付</div>
                 <div class="time">時間</div>
                 <div class="number">人数</div>
                 <div class="email">メールアドレス</div>
             </div>
             @foreach($futureReserves as $future)
             <div class="content--item">
-                <div class="name">{{ $users[$future->user_id - 1]->name }}　　様</div>
+                <div class="name">{{ $future->user->name }}様</div>
                 <div class="date">{{ $future->date }}</div>
-                <div class="time">{{ $future->time }}</div>
+                <div class="date__mobile">{{ substr($future->date, 5, 2) . "/" . substr($future->date, 8, 2)}}</div>
+                <div class="time">{{ substr($future->time, 0, 5) }}</div>
                 <div class="number">{{ $future->number }}</div>
-                <div class="email">{{ $users[$future->user_id - 1]->email }}</div>
-                <form action="/mail_form" method="post">
-                    @csrf
-                    <input type="hidden" name="shop_name" value="{{ $shop->name }}">
-                    <input type="hidden" name="name" value="{{ $users[$future->user_id - 1]->name }}">
-                    <input type="hidden" name="date" value="{{ $future->date }}">
-                    <input type="hidden" name="time" value="{{ $future->time }}">
-                    <input type="hidden" name="number" value="{{ $future->number }}">
-                    <input type="hidden" name="email" value="{{ $users[$future->user_id - 1]->email }}">
-                    <button class="btn">メール送信</button>
-                </form>
+                <div class="email">{{ $future->user->email }}</div>
             </div>
             @endforeach
         </div>
@@ -79,27 +63,19 @@
             <div class="content--head">
                 <div class="name">お名前</div>
                 <div class="date">日付</div>
+                <div class="date__mobile">日付</div>
                 <div class="time">時間</div>
                 <div class="number">人数</div>
                 <div class="email">メールアドレス</div>
             </div>
             @foreach($pastReserves as $past)
             <div class="content--item">
-                <div class="name">{{ $users[$past->user_id - 1]->name }}　　様</div>
+                <div class="name">{{ $users[$past->user_id - 1]->name }}様</div>
                 <div class="date">{{ $past->date }}</div>
-                <div class="time">{{ $past->time }}</div>
+                <div class="date__mobile">{{ substr($past->date, 5, 2) . "/" . substr($past->date, 8, 2)}}</div>
+                <div class="time">{{ substr($past->time, 0, 5) }}</div>
                 <div class="number">{{ $past->number }}</div>
                 <div class="email">{{ $users[$past->user_id - 1]->email }}</div>
-                <form action="/mail_form" method="post">
-                    @csrf
-                    <input type="hidden" name="shop_name" value="{{ $shop->name }}">
-                    <input type="hidden" name="name" value="{{ $users[$past->user_id - 1]->name }}">
-                    <input type="hidden" name="date" value="{{ $past->date }}">
-                    <input type="hidden" name="time" value="{{ $past->time }}">
-                    <input type="hidden" name="number" value="{{ $past->number }}">
-                    <input type="hidden" name="email" value="{{ $users[$past->user_id - 1]->email }}">
-                    <button class="btn">メール送信</button>
-                </form>
             </div>
             @endforeach
         </div>

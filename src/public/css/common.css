@@ -72,7 +72,7 @@ a {
     transform: translateX(100%);
     transition: .5s;
     padding-top: 30vh;
-    z-index: 88;
+    z-index: 8;
 }
 
 .slide-menu.active {
@@ -123,7 +123,7 @@ header {
     position: relative;
     width: 40px;
     height: 40px;
-    background: #0066ff; /* ボタンの背景色 */
+    background: #0066ff;
     border-radius: 5px;
     margin-top: 3vw;
 }
@@ -133,9 +133,9 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1px; /* 棒の幅（太さ） */
-    height: 27px; /* 棒の高さ */
-    background: white; /* バツ印の色 */
+    width: 1px;
+    height: 27px;
+    background: white;
 }
 
 .square_btn::before {
@@ -263,4 +263,10 @@ header {
     text-decoration: none;
     background-color: white;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+header {
+    display: inherit;
+}
 }

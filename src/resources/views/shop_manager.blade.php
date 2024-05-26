@@ -28,11 +28,11 @@
     
     <div class="right">
         @if(isset($shop))
+        <h2 class="right__ttl">店舗情報の修正</h2>
         <div class="right__content">
-            <h2 class="right__ttl">店舗情報の修正</h2>
             <form action="/shop_update" method="post" enctype='multipart/form-data'>
                 @csrf
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">name</p>
                     <input class="right__input" type="text" name="name" value = "{{ old('name') }}">
                     <div class="form__subject--error">
@@ -41,7 +41,7 @@
                         @enderror
                     </div>
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">area</p>
                     <input class="right__input" type="text" name="area" value = "{{ old('area') }}">
                     <div class="form__subject--error">
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">genre</p>
                     <input class="right__input" type="text" name="genre" value = "{{ old('genre') }}">
                     <div class="form__subject--error">
@@ -59,7 +59,7 @@
                         @enderror
                     </div>
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">description</p>
                     <textarea class="right__textarea" name="description" cols="30" rows="10"></textarea>
                     <div class="form__subject--error">
@@ -68,7 +68,7 @@
                         @enderror
                     </div>
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">image</p>
                     <input class="right__file" type="file" name="image">
                     <div class="form__subject--error">
@@ -77,18 +77,16 @@
                         @enderror
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <input class="right__input" type="hidden" name="shop_id" value = "{{ $shop->id }}">
-                        <button class="right__btn">変更</button>
-                    </div>
+                <div class="right__content--item">
+                    <input class="right__input" type="hidden" name="shop_id" value = "{{ $shop->id }}">
+                    <button class="right__btn">変更</button>
                 </div>
             </form>
         </div>
         @else
         
+        <h2 class="right__ttl">店舗の新規登録</h2>
         <div class="right__content">
-            <h2 class="right__ttl">店舗の新規登録</h2>
             <form action="/shop_create" method="post" enctype='multipart/form-data'>
                 @csrf
                 <div>

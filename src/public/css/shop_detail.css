@@ -249,6 +249,7 @@ input {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    border: #454545 solid 2px;
 }
 
 .modal__content {
@@ -313,4 +314,92 @@ input {
 
 .reserve__date--error {
     margin: 1vw;
+}
+
+
+@media (max-width: 768px) {
+    .content {
+    width: 90%;
+    margin: 0 auto 5vh;
+    display: inherit;
+}
+
+.shop {
+    width: 100%;
+}
+
+.reserve {
+    width: 100%;
+    margin-top: 5vh;
+    padding-bottom: 10px;
+}
+
+.reserve__ttl {
+    padding: 1vh 0 0 3vw;
+}
+.reserve__date {
+    margin: 1vh 0 0 3vw;
+    padding: 1vh 0 1vh 0;
+}
+
+.reserve__time {
+    margin: 0 0 0 2vw;
+}
+
+.reserve__time--time
+{
+    padding: 1vh 0 1vh 0;
+}
+
+.reserve__time--minute
+{
+    padding: 1vh 0 1vh 0;
+}
+
+.reserve__number {
+    padding: 1vh 0 1vh 0;
+    margin: 0 0 0 3vw;
+}
+
+.reserve__confirm {
+    width: 94%;
+    height: 170px;
+    margin: 2vh auto 5vh;
+}
+
+
+.modal__back {
+    width: 90%;
+}
+
+.modal__header--ttl {
+    font-size: 2rem;
+}
+
+.modal__header--btn {
+    width: 30px;
+    height: 30px;
+    font-size: 2rem;
+}
+
+.modal__content--header {
+    display: inherit;
+}
+
+.modal__content--name {
+    margin-left: 3vw;
+}
+
+.modal__content--star {
+    margin-left: 2.5vw;
+}
+
+.modal__content--comment-ttl {
+    margin-left: 3vw;
+}
+
+.modal__content--comment {
+    width: 95%;
+    margin: 3vh auto;
+}
 }
