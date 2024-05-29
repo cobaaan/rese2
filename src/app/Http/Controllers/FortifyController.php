@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 class FortifyController extends Controller
 {
     public function adminCreate(AdminRequest $request) {
+        $auth = Auth::user();
         $requests = $request->all();
         $dt = Carbon::now();
         
@@ -26,9 +27,16 @@ class FortifyController extends Controller
             'email' => $requests['email'],
             'password' => Hash::make($requests['password']),
         ]);
-        return redirect()->back()->with('success');
+        
+        return view('thanks', compact('auth'))->with('massage', '新規ユーザーを登録しました。');
     }
     
+    public function adminRegister() {
+        $auth = Auth::user();
+        
+        return view('admin_register', compact('auth'));
+    }
+
     public function verify() {
         $auth = Auth::user();
         

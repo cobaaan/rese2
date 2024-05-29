@@ -21,12 +21,12 @@
             </div>
             @foreach($todayReserves as $today)
             <div class="content--item">
-                <div class="name">{{ $users[$today->user_id - 1]->name }}様</div>
+                <div class="name">{{ $today->user->name }}様</div>
                 <div class="date">{{ $today->date }}</div>
                 <div class="date__mobile">{{ substr($today->date, 5, 2) . "/" . substr($today->date, 8, 2)}}</div>
                 <div class="time">{{ substr($today->time, 0, 5) }}</div>
                 <div class="number">{{ $today->number }}</div>
-                <div class="email">{{ $users[$today->user_id - 1]->email }}</div>
+                <div class="email">{{ $today->user->email }}</div>
             </div>
             @endforeach
         </div>
@@ -70,12 +70,12 @@
             </div>
             @foreach($pastReserves as $past)
             <div class="content--item">
-                <div class="name">{{ $users[$past->user_id - 1]->name }}様</div>
+                <div class="name">{{ $past->user->name }}様</div>
                 <div class="date">{{ $past->date }}</div>
                 <div class="date__mobile">{{ substr($past->date, 5, 2) . "/" . substr($past->date, 8, 2)}}</div>
                 <div class="time">{{ substr($past->time, 0, 5) }}</div>
                 <div class="number">{{ $past->number }}</div>
-                <div class="email">{{ $users[$past->user_id - 1]->email }}</div>
+                <div class="email">{{ $past->user->email }}</div>
             </div>
             @endforeach
         </div>

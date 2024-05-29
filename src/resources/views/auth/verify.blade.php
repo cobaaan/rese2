@@ -10,24 +10,18 @@
     <div class="verify">
         <form action="{{ route('verification.send') }}" method="post">
             @csrf
-            <div>
-                <p>認証メールの再送信</p>
-                <button>再送信</button>
-            </div>
+            <p>認証メールの再送信</p>
+            <button>再送信</button>
         </form>
         <form action="/logout" method="post">
             @csrf
-            <div>
-                <p>アカウントの作り直しはこちら</p>
-                <button>再作成</button>
-            </div>
+            <p>アカウントの作り直しはこちら</p>
+            <button>再作成</button>
         </form>
         <form action="/" method="get">
             @csrf
-            <div>
-                <p>メール確認後ページ遷移しない場合はこちら</p>
-                <button>ホーム</button>
-            </div>
+            <p>メール確認後ページ遷移しない場合はこちら</p>
+            <button>ホーム</button>
         </form>
     </div>
 </div>

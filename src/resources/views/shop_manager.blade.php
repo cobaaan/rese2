@@ -7,12 +7,13 @@
 @section('content')
 <div class="content">
     <div class="left">
-        <h2 class="left__ttl">登録済み店舗情報</h2>
+        
         @if(isset($shop))
+        <h2 class="left__ttl">登録済み店舗情報</h2>
         <div class="left__shop">
             <h2 class="left__name">{{ $shop->name }}</h2>
             <p></p>
-            <img class="left__img" src="{{ $shop->image_path }}">
+            <img class="left__img" src="{{ asset($shop->image_path) }}">
             <div class="left__tag">
                 <p class="left__area-genre">#{{ $shop->area }}</p>
                 <p class="left__area-genre">#{{ $shop->genre }}</p>
@@ -20,7 +21,7 @@
             <p class="left__description">{{ $shop->description }}</p>
         </div>
         @else
-        <h2 class="comtent__ttl">店舗情報はありません</h2>
+        <h2 class="left__ttl">店舗情報が未登録です<br>新規登録してください</h2>
         @endif
     </div>
     
@@ -30,7 +31,7 @@
         @if(isset($shop))
         <h2 class="right__ttl">店舗情報の修正</h2>
         <div class="right__content">
-            <form action="/shop_update" method="post" enctype='multipart/form-data'>
+            <form action="/shop/update" method="post" enctype='multipart/form-data'>
                 @csrf
                 <div class="right__content--item">
                     <p class="right__name">name</p>
@@ -87,29 +88,44 @@
         
         <h2 class="right__ttl">店舗の新規登録</h2>
         <div class="right__content">
-            <form action="/shop_create" method="post" enctype='multipart/form-data'>
+            <form action="/shop/create" method="post" enctype='multipart/form-data'>
                 @csrf
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">name</p>
                     <input class="right__input" type="text" name="name" value = "{{ old('name') }}">
+                    @error('name')
+                    <br><p class="error__message">{{ $errors->first('name') }}</p>
+                    @enderror
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">area</p>
                     <input class="right__input" type="text" name="area" value = "{{ old('area') }}">
+                    @error('area')
+                    <br><p class="error__message">{{ $errors->first('area') }}</p>
+                    @enderror
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">genre</p>
                     <input class="right__input" type="text" name="genre" value = "{{ old('genre') }}">
+                    @error('genre')
+                    <br><p class="error__message">{{ $errors->first('genre') }}</p>
+                    @enderror
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">description</p>
                     <textarea class="right__textarea" name="description" cols="30" rows="10"></textarea>
+                    @error('description')
+                    <br><p class="error__message">{{ $errors->first('description') }}</p>
+                    @enderror
                 </div>
-                <div>
+                <div class="right__content--item">
                     <p class="right__name">image</p>
                     <input class="right__file" type="file" name="image">
+                    @error('image')
+                    <br><p class="error__message">{{ $errors->first('image') }}</p>
+                    @enderror
                 </div>
-                <div>
+                <div class="right__content--item">
                     <input type="hidden" name="user_id" value="{{ $auth->id }}">
                     <div>
                         <button class="right__btn">登録</button>

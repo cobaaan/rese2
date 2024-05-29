@@ -11,7 +11,7 @@
     <div class="modal__back">
         <div class="modal__header">
             <h2 class="modal__header--ttl">レビュー 一覧</h2>
-            <form action="/shop_detail" method="get">
+            <form action="/shop/detail" method="post">
                 @csrf
                 <input type="hidden" name="id" value="{{ $requests['id'] }}">
                 <input type="hidden" name="name" value="{{ $requests['name'] }}">
@@ -42,7 +42,7 @@
         <div class="shop__header">
             <h2 class="shop__name">{{ $requests['name'] }}</h2>
             <div class="review__area shop__header--rate">
-                <form action="/modal" method="post">
+                <form action="/shop/modal" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{ $requests['id'] }}">
                     <input type="hidden" name="name" value="{{ $requests['name'] }}">
@@ -55,7 +55,7 @@
                 </form>
             </div>
         </div>
-        <img class="shop__img" src="{{ $requests['image_path'] }}">
+        <img class="shop__img" src="{{ asset($requests['image_path']) }}">
         <div class="shop__tag">
             <p class="shop__area-genre">#{{ $requests['area'] }}</p>
             <p class="shop__area-genre">#{{ $requests['genre'] }}</p>
@@ -63,7 +63,7 @@
         <p class="shop__description">{{ $requests['description'] }}</p>
     </div>
     
-    @if(isset($auth))
+    @if(isset($auth) && $auth->role === 'user')
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
         <form action="/reserve" method="post" id="reserveForm">
@@ -77,6 +77,7 @@
             <input type="hidden" name="description" value="{{ $requests['description'] }}">
             <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
             <input type="hidden" name="id" value="{{ $requests['id'] }}">
+            <input type="hidden" name="is_visit" value=0>
             <input class="reserve__date" type="date" name="date" value="{{ old('date') }}" min="{{ $dt->format('Y-m-d') }}" id="date">
             <div class="form__subject--error reserve__date--error">
                 @error('date')

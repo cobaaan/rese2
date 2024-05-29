@@ -76,6 +76,7 @@
     padding: 0.5vw;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: -3vh;
 }
 
 .right__textarea {
@@ -85,6 +86,7 @@
     padding: 0.5vw;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: -1vh;
 }
 
 .right__file {
@@ -103,11 +105,12 @@
     cursor: pointer;
     color: #454545;
 	box-shadow: 5px 5px #454545;
+    margin-top: 4vh;
 }
 
 .right__btn:active {
     box-shadow: none;
-	transform: translate(2px, 2px);
+	transform: translate(5px, 5px);
 	color: #eee;
     background-color: #454545;
 }
@@ -117,12 +120,13 @@
 }
 
 .error__message {
-    display: inline;
+    display: inline-block;
     font-size: 2rem;
     padding: 1vw;
     background-color: #dc143c;
     border-radius: 5px;
     color: white;
+    margin-top: 1vh;
 }
 
 
@@ -137,9 +141,17 @@
     margin: auto;
 }
 
+.left__ttl {
+    font-size: 2.5rem;
+}
+
 .right {
     width: 100%;
     margin: auto;
+}
+
+.right__ttl {
+    font-size: 2.5rem;
 }
 
 .right__content--item {
@@ -152,10 +164,16 @@
 
 .right__input {
     width: 80%;
+    padding: 1vh;
 }
 
 .right__file {
     font-size: 1.8rem;
     cursor: pointer;
+}
+
+.right__btn {
+    padding: 1vw 2vw 1vw 2vw;
+	box-shadow: 3px 3px #454545;
 }
 }

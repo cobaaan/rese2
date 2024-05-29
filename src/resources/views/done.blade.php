@@ -7,7 +7,7 @@
 @section('content')
 <div class="content">
     <div>
-        <p class="content__ttl">ご予約ありがとうございます</p>
+        <p class="content__ttl">{{ $massage }}</p>
         <form action="/" method="get">
             @csrf
             <div class="content__form">

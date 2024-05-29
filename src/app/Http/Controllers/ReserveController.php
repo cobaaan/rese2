@@ -30,11 +30,12 @@ class ReserveController extends Controller
             'date' => $requests['date'],
             'time' => $time,
             'number' => $requests['number'],
+            'is_visit' => 0,
         ];
         
         Reserve::create($param);
         
-        return view('done', compact('auth'));
+        return view('done', compact('auth'))->with('massage', 'ご予約ありがとうございます。');
     }
     
     public function cancel(Request $request) {
@@ -52,7 +53,7 @@ class ReserveController extends Controller
         ->where('user_id', $auth->id)
         ->get();
         
-        return redirect('my_page');
+        return view('done', compact('auth'))->with('massage', 'ご予約をキャンセルしました。');
     }
     
     public function changeReserve(Request $request) {
@@ -81,6 +82,6 @@ class ReserveController extends Controller
         
         Reserve::where('id', $requests['id'])->update($param);
         
-        return view('done', compact('auth'));
+        return view('done', compact('auth'))->with('massage', 'ご予約の変更をしました。');
     }
 }

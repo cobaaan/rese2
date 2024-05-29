@@ -8,7 +8,7 @@
 <div class="info">
     <h2 class="info__ttl">メールの一斉送信</h2>
     <div>
-        <form action="/send_mail" method="post">
+        <form action="/mail/send" method="post">
             @csrf
             <input class="form__subject" type="text" name="subject" placeholder="件名">
             <div class="form__subject--error">

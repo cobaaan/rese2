@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td>Time</td>
-                    <td>{{ $reserves[0]->time }}</td>
+                    <td>{{ substr($reserves[0]->time, 0, 5) }}</td>
                 </tr>
                 <tr>
                     <td>Number</td>
@@ -32,7 +32,7 @@
     
     <div class="reserve">
         <h2 class="reserve__ttl">予約の変更</h2>
-        <form action="/update_reserve" method="post">
+        <form action="/reserve/update" method="post">
             @csrf
             <input type="hidden" name="page" value="change_reserve">
             <input type="hidden" name="id" value="{{ $reserves[0]->id }}">
@@ -87,7 +87,7 @@
                     </tr>
                 </table>
             </div>
-            <button class="reserve__btn">予約する</button>
+            <button class="reserve__btn">予約変更する</button>
         </form>
     </div>
 </div>

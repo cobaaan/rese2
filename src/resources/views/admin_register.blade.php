@@ -9,7 +9,7 @@
 <div class="content">
     <h2 class="content__ttl">Registration</h2>
     <div>
-        <form action="/admin_create" method="post">
+        <form action="/admin/create" method="post">
             @csrf
             <div class="form__content">
                 <div class="form__content--item">

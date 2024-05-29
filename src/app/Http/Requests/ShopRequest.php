@@ -28,7 +28,7 @@ class ShopRequest extends FormRequest
             'area' => 'required | string | max:10',
             'genre' => 'required | string | max:10',
             'description' => 'required | string | max:1000',
-            'image' => 'required | image | mimes:jpeg,png,jpg,gif | max:2048',
+            'image' => 'required | image | mimes:jpeg,png,jpg | max:2048',
         ];
     }
     
@@ -43,12 +43,12 @@ class ShopRequest extends FormRequest
             'genre.required' => 'ジャンルを入力してください',
             'genre.string' => '文字列で入力してください',
             'genre.max' => '10文字以下で入力してください',
-            'description.required' => '詳細を入力してください',
+            'description.required' => '店舗説明を入力してください',
             'description.string' => '文字列で入力してください',
             'description.max' => '1000文字以下で入力してください',
-            'image.required' => '画像を入力してください',
+            'image.required' => '画像を選択してください',
             'image.image' => '画像形式で入力してください',
-            'image.mimes' => 'jpeg形式、png形式、jpg形式、gif形式で入力してください',
+            'image.mimes' => 'jpeg形式、png形式、jpg形式で入力してください',
             'image.max' => '2MB以内のファイルを入力してください',
         ];
     }

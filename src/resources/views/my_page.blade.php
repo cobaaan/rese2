@@ -57,6 +57,7 @@
     <h2 class="ttl">{{ $auth['name'] }}さん</h2>
 </div>
 <div class="body">
+    
     <div class="left">
         <h2 class="body__ttl">予約状況</h2>
         @if(!is_null($futureReservations))
@@ -66,7 +67,7 @@
             <div class="left__content--header">
                 <i class="bi bi-clock"></i>
                 <p class="left__content--ttl">予約{{ $counter + 1 }}</p>
-                <form action="/cancel" method="post"  class="left__content--cross">
+                <form action="/reserve/cancel" method="post"  class="left__content--cross">
                     @csrf
                     <input type="hidden" name="id" value="{{ $futureReservation->id }}">
                     <button class="left__content--btn bi bi-x-circle"></button>
@@ -76,7 +77,7 @@
             <table>
                 <tr>
                     <td>Shop</td>
-                    <td>{{ $shops[$futureReservation->shop_id - 1]->name }}</td>
+                    <td>{{ $futureReservation->shop->name }}</td>
                 </tr>
                 <tr>
                     <td>Date</td>
@@ -84,7 +85,7 @@
                 </tr>
                 <tr>
                     <td>Time</td>
-                    <td>{{ $futureReservation->time }}</td>
+                    <td>{{ substr($futureReservation->time, 0, 5) }}</td>
                 </tr>
                 <tr>
                     <td>Number</td>
@@ -93,18 +94,13 @@
             </table>
             <div class="card__footer">
                 <div class="card__footer--qr">
-                    {!! QrCode::encoding('UTF-8')->generate(
-                    'Shop: ' . $shops[$futureReservation->shop_id - 1]->name . "\n" .
-                    'Date: ' . $futureReservation->date . "\n" .
-                    'Time: ' . $futureReservation->time . "\n" .
-                    'Number: ' . $futureReservation->number
-                    ) !!}
+                    {!! QrCode::size(100)->generate(route('visit', ['id' => $futureReservation->id])) !!}
                 </div>
                 <form class="card__footer--form" action="?" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                    <button class="left__content--change-btn" formaction="/my_page_modal">事前決済</button>
-                    <button class="left__content--change-btn" formaction="/change_reserve">変更</button>
+                    <button class="left__content--change-btn" formaction="/my_page/modal">事前決済</button>
+                    <button class="left__content--change-btn" formaction="/reserve/change">変更</button>
                 </form>
             </div>
         </div>
@@ -119,28 +115,26 @@
             <div class="center__content">
                 @foreach ($favorites as $favorite)
                 <div class="card">
-                    <img class="card__img" src="{{ $shops[$favorite->shop_id - 1]->image_path }}">
+                    <img class="card__img" src="{{ $favorite->shop->image_path }}">
+                    <div class="card__ttl">{{ $favorite->shop->name }}</div>
+                    <div class="card__tag">
+                        <div>#{{ $favorite->shop->area }}</div>
+                        <div>#{{ $favorite->shop->genre }}</div>
+                    </div>
                     <div>
-                        <div class="card__ttl">{{ $shops[$favorite->shop_id - 1]->name }}</div>
-                        <div class="card__tag">
-                            <div>#{{ $shops[$favorite->shop_id - 1]->area }}</div>
-                            <div>#{{ $shops[$favorite->shop_id - 1]->genre }}</div>
-                        </div>
-                        <div>
-                            <form class="card__form" method="post" action="?">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $shops[$favorite->shop_id - 1]->id }}">
-                                <input type="hidden" name="name" value="{{ $shops[$favorite->shop_id - 1]->name }}">
-                                <input type="hidden" name="area" value="{{ $shops[$favorite->shop_id - 1]->area }}">
-                                <input type="hidden" name="genre" value="{{ $shops[$favorite->shop_id - 1]->genre }}">
-                                <input type="hidden" name="description" value="{{ $shops[$favorite->shop_id - 1]->description }}">
-                                <input type="hidden" name="image_path" value="{{ $shops[$favorite->shop_id - 1]->image_path }}">
-                                <div class="card__form--footer">
-                                    <button class="card__form--btn" formaction="/shop_detail">詳しく見る</button>
-                                    <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.png"></button>
-                                </div>
-                            </form>
-                        </div>
+                        <form class="card__form" method="post" action="?">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $favorite->shop->id }}">
+                            <input type="hidden" name="name" value="{{ $favorite->shop->name }}">
+                            <input type="hidden" name="area" value="{{ $favorite->shop->area }}">
+                            <input type="hidden" name="genre" value="{{ $favorite->shop->genre }}">
+                            <input type="hidden" name="description" value="{{ $favorite->shop->description }}">
+                            <input type="hidden" name="image_path" value="{{ $favorite->shop->image_path }}">
+                            <div class="card__form--footer">
+                                <button class="card__form--btn" formaction="/shop/detail">詳しく見る</button>
+                                <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.png"></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 @endforeach
@@ -151,50 +145,35 @@
     
     <div class="right">
         <h2 class="body__ttl">来店済み</h2>
+        @if(!is_null($pastReservations))
         <div class="right__content">
-            @if(!is_null($pastReservations))
-            <div class="right__content">
-                @foreach ($pastReservations as $pastReservation)
-                <div class="card right__card">
-                    <img class="card__img" src="{{ $shops[$pastReservation->shop_id - 1]->image_path }}">
+            @foreach ($pastReservations as $pastReservation)
+            <div class="right__card">
+                <img class="card__img" src="{{ $pastReservation->shop->image_path }}">
+                <div>
+                    <div class="card__ttl">{{ $pastReservation->shop->name }}</div>
                     <div>
-                        <div class="card__ttl">{{ $shops[$pastReservation->shop_id - 1]->name }}</div>
-                        <div>
-                            <div class="card__date-time">来店日時 {{ $pastReservation->date }} {{ $pastReservation->time }}</div>
-                        </div>
-                        <div>
-                            <div class="card__date-time">人数 {{ $pastReservation->number }}人</div>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__footer--qr">
-                                {!! QrCode::encoding('UTF-8')->generate(
-                                'Shop: ' . $shops[$pastReservation->shop_id - 1]->name . "\n" .
-                                'Date: ' . $pastReservation->date . "\n" .
-                                'Time: ' . $pastReservation->time . "\n" .
-                                'Number: ' . $pastReservation->number
-                                ) !!}
-                            </div>
-                            <div class="card__footer--btn">
-                                <form class="card__form" method="get" action="/review">
-                                    @csrf
-                                    <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">
-                                    <input type="hidden" name="shop_id" value="{{ $pastReservation->shop_id }}">
-                                    <button class="card__form--btn">レビュー</button>
-                                </form>
-                            </div>
-                        </div>
+                        <div class="card__date-time">来店日時 {{ $pastReservation->date }} {{ substr($pastReservation->time, 0, 5) }}</div>
                     </div>
+                    <div>
+                        <div class="card__date-time">人数 {{ $pastReservation->number }}人</div>
+                    </div>
+                    <form class="right__card--form" method="get" action="/review">
+                        @csrf
+                        <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">
+                        <input type="hidden" name="shop_id" value="{{ $pastReservation->shop_id }}">
+                        <button class="card__form--btn">レビュー</button>
+                    </form>
                 </div>
-                @endforeach
-                @endif
             </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    /* 基本設定*/
     const stripe_public_key = "{{ config('stripe.stripe_public_key') }}"
     const stripe = Stripe(stripe_public_key);
     const elements = stripe.elements();

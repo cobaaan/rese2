@@ -32,26 +32,19 @@ class ReseController extends Controller
         $showModal = null;
         $auth = Auth::user();
         $shops = Shop::all();
-        $dt = Carbon::now();
         
-        $reserves = DB::table('reserves')
-        ->where('user_id', $auth->id)
+        $favorites = Favorite::where('user_id', $auth->id)
+        ->with('shop')
         ->get();
         
-        $pastReservations = [];
-        $futureReservations = [];
+        $futureReservations = Reserve::where('user_id', $auth->id)
+        ->where('is_visit', 0)
+        ->with('shop')
+        ->get();
         
-        foreach($reserves as $reserve) {
-            $visitDateTime = Carbon::parse($reserve->date . ' ' . $reserve->time);
-            if($visitDateTime->isPast()) {
-                $pastReservations[] = $reserve;
-            } else {
-                $futureReservations[] = $reserve;
-            }
-        }
-        
-        $favorites = DB::table('favorites')
-        ->where('user_id', $auth->id)
+        $pastReservations = Reserve::where('user_id', $auth->id)
+        ->where('is_visit', 1)
+        ->with('shop')
         ->get();
         
         return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
@@ -61,6 +54,23 @@ class ReseController extends Controller
         $showModal = 'show';
         $auth = Auth::user();
         $shops = Shop::all();
+        
+        $favorites = Favorite::where('user_id', $auth->id)
+        ->with('shop')
+        ->get();
+        
+        $futureReservations = Reserve::where('user_id', $auth->id)
+        ->where('is_visit', 0)
+        ->with('shop')
+        ->get();
+        
+        $pastReservations = Reserve::where('user_id', $auth->id)
+        ->where('is_visit', 1)
+        ->with('shop')
+        ->get();
+        
+        return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
+        /*
         $dt = Carbon::now();
         
         $reserves = DB::table('reserves')
@@ -84,6 +94,7 @@ class ReseController extends Controller
         ->get();
         
         return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
+        */
     }
     
     public function done (){
@@ -95,7 +106,7 @@ class ReseController extends Controller
     public function thanks (){
         $auth = Auth::user();
         
-        return view('thanks', compact('auth'))->with('massage', 'お支払いありがとうございます。');
+        return view('thanks', compact('auth'))->with('massage', '会員登録ありがとうございます。');
     }
     
     public function reviewStar() {

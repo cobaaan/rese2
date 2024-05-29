@@ -19,7 +19,8 @@ class ReservesTableSeeder extends Seeder
             'shop_id' => 6,
             'date' => '2024/04/28',
             'time' => '18:00:00',
-            'number' => 3
+            'number' => 3,
+            'is_visit' => 0
         ];
         DB::table('reserves')->insert($param);
         
@@ -28,7 +29,8 @@ class ReservesTableSeeder extends Seeder
             'shop_id' => 3,
             'date' => '2024/05/13',
             'time' => '18:00:00',
-            'number' => 6
+            'number' => 6,
+            'is_visit' => 1
         ];
         DB::table('reserves')->insert($param);
     }

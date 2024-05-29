@@ -10,7 +10,7 @@ class Reserve extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['user_id', 'shop_id', 'date', 'time', 'number'];
+    protected $fillable = ['user_id', 'shop_id', 'date', 'time', 'number', 'is_visit'];
     
     public function user(){
         return $this->belongsTo(User::class);

@@ -178,6 +178,8 @@
     padding: 1vw;
     border: none;
     border-radius: 10px;
+    resize: auto;
+    max-width: 90%;
 }
 
 
@@ -263,14 +265,24 @@ input {
 .review {
     width: 95%;
     margin: 0 auto 5vh;
+    padding-top: 2vh;
+}
+
+.review__ttl {
+    margin-left: 3vw;
+}
+
+.review__txt {
+    margin-left: 3vw;
+}
+
+.review__select {
+    margin-left: 3vw;
 }
 
 .review__textarea--input {
     resize: auto;
-    max-width: 330px;
-    max-height: 300px;
-    min-width: 50px;
-    min-height: 50px;
-    margin-bottom: 7vh;
+    max-width: 90%;
+    margin: 0 0 7vh 1vw;
 }
 }

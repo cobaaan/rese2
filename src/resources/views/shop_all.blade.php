@@ -8,25 +8,21 @@
 
 @section('header')
 <div class="search">
-    <form class="search__form" id="searchForm" action="/search" method="post">
-        @csrf
+    <div class="search__form">
         <select class="search__area" name="area" id="areaSelect">
             <option value="" selected>All area</option>
             @foreach ($shopAreas as $shopArea)
             <option value="{{ $shopArea->area }}">{{ $shopArea->area }}</option>
             @endforeach
         </select>
-        
         <select class="search__genre" name="genre" id="genreSelect">
             <option value="" selected>All genre</option>
             @foreach ($shopGenres as $shopGenre)
             <option value="{{ $shopGenre->genre }}">{{ $shopGenre->genre }}</option>
             @endforeach
         </select>
-        
         <input class="search__text" type="text" name="text" value="{{ old('text') }}" id="searchText" placeholder="Search...">
-        <button type="button" class="search__btn" id="searchButton" style="display: none;">Search</button>
-    </form>
+    </div>
 </div>
 @endsection
 
@@ -46,7 +42,7 @@
                 @php
                 $color = 'card__form--heart-img';
                 @endphp
-                @if(isset($auth))
+                @if(isset($auth) && $auth->role === 'user')
                 @foreach($favorites as $favorite)
                 @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
                 @php
@@ -75,8 +71,7 @@
                     <input type="hidden" name="description" value="{{ $shop->description }}">
                     <input type="hidden" name="image_path" value="{{ $shop->image_path }}">
                     
-                    <button class="card__form--btn" formaction="/shop_detail">詳しく見る</button>
-                    
+                    <button class="card__form--btn" formaction="/shop/detail">詳しく見る</button>
                 </form>
             </div>
         </div>

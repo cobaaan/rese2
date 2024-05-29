@@ -67,7 +67,7 @@ class ShopController extends Controller
         return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
     }
     
-    public function shopCreate(Request $request) {
+    public function shopCreate(ShopRequest $request) {
         $auth = Auth::user();
         $requests = $request->all();
         
@@ -156,6 +156,21 @@ class ShopController extends Controller
         
         Shop::where('id', $requests['shop_id'])->update($nonNull);
         
-        return view('thanks', compact('auth'))->with('massage', '店舗登録ありがとうございます。');
+        return view('thanks', compact('auth'))->with('massage', '店舗情報の変更をしました。');
+    }
+    
+    public function visit(Request $request) {
+        $auth = Auth::user();
+        $id = $request->id;
+        
+        return view('visit', compact('auth', 'id'));
+    }
+    
+    public function visited(Request $request) {
+        $auth = Auth::user();
+        
+        Reserve::where('id', $request['id'])->update(['is_visit' => 1]);
+        
+        return view('thanks', compact('auth'))->with('massage', '来店済みに変更しました。');
     }
 }

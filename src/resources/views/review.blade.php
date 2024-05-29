@@ -20,7 +20,7 @@
     </div>
     <div class="review">
         <h2 class="review__ttl">レビュー</h2>
-        <form class="review__form" action="/review_post" method="post">
+        <form class="review__form" action="/review/post" method="post">
             @csrf
             <p class="review__txt">5段階評価</p>
             <select class="review__select" name="rate">
