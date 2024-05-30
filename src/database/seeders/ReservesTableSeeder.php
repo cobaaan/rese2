@@ -15,7 +15,7 @@ class ReservesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'user_id' => 1,
+            'user_id' => 3,
             'shop_id' => 6,
             'date' => '2024/04/28',
             'time' => '18:00:00',
@@ -25,7 +25,7 @@ class ReservesTableSeeder extends Seeder
         DB::table('reserves')->insert($param);
         
         $param = [
-            'user_id' => 1,
+            'user_id' => 3,
             'shop_id' => 3,
             'date' => '2024/05/13',
             'time' => '18:00:00',

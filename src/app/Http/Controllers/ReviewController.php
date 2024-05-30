@@ -17,7 +17,7 @@ class ReviewController extends Controller
     public function review(Request $request) {
         $shops = Shop::all();
         $requests = $request->all();
-        $reserves = Reserve::where('id', $requests['reserve_id'])->get();
+        $reserves = Reserve::where('id', $requests['reserve_id'])->with('shop')->get();
         $auth = Auth::user();
         
         return view('review', compact('shops', 'requests', 'reserves', 'auth'));
@@ -30,7 +30,6 @@ class ReviewController extends Controller
         $param = [
             'user_id' => $requests['user_id'],
             'shop_id' => $requests['shop_id'],
-            'reserve_id' => $requests['reserve_id'],
             'rate' => $requests['rate'],
             'comment' => $requests['comment'],
         ];

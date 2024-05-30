@@ -7,16 +7,16 @@
 @section('content')
 <div class="content">
     <div class="shop">
-        <div class="shop__header">
-            <h2 class="shop__name">{{ $shops[$requests['shop_id'] - 1]->name }}</h2>
-            <h2 class="shop__date-time">{{ $reserves[0]['date'] . " " . substr($reserves[0]['time'], 0, 5) . " 来店" }}</h2>
-        </div>
-        <img class="shop__img" src="{{ $shops[$requests['shop_id'] - 1]->image_path }}">
+        @foreach($reserves as $reserve)
+        <h2 class="shop__name">{{ $reserve->shop->name }}</h2>
+        <h2 class="shop__date-time">{{ $reserve['date'] . " " . substr($reserve['time'], 0, 5) . " 来店" }}</h2>
+        <img class="shop__img" src="{{ $reserve->shop->image_path }}">
         <div class="shop__tag">
-            <p class="shop__area-genre">#{{ $shops[$requests['shop_id'] - 1]->area }}</p>
-            <p class="shop__area-genre">#{{ $shops[$requests['shop_id'] - 1]->genre }}</p>
+            <p class="shop__area-genre">#{{ $reserve->shop->area }}</p>
+            <p class="shop__area-genre">#{{ $reserve->shop->genre }}</p>
         </div>
-        <p class="shop__description">{{ $shops[$requests['shop_id'] - 1]->description }}</p>
+        <p class="shop__description">{{ $reserve->shop->description }}</p>
+        @endforeach
     </div>
     <div class="review">
         <h2 class="review__ttl">レビュー</h2>
@@ -41,7 +41,6 @@
             </div>
             <input type="hidden" name="user_id" value="{{ $auth->id }}">
             <input type="hidden" name="shop_id" value="{{ $requests['shop_id'] }}">
-            <input type="hidden" name="reserve_id" value="{{ $reserves[0]->id }}">
             <button class="review__btn">レビューする</button>
         </form>
     </div>

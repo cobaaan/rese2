@@ -70,31 +70,6 @@ class ReseController extends Controller
         ->get();
         
         return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
-        /*
-        $dt = Carbon::now();
-        
-        $reserves = DB::table('reserves')
-        ->where('user_id', $auth->id)
-        ->get();
-        
-        $pastReservations = [];
-        $futureReservations = [];
-        
-        foreach($reserves as $reserve) {
-            $visitDateTime = Carbon::parse($reserve->date . ' ' . $reserve->time);
-            if($visitDateTime->isPast()) {
-                $pastReservations[] = $reserve;
-            } else {
-                $futureReservations[] = $reserve;
-            }
-        }
-        
-        $favorites = DB::table('favorites')
-        ->where('user_id', $auth->id)
-        ->get();
-        
-        return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
-        */
     }
     
     public function done (){
