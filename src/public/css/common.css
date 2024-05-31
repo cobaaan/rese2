@@ -161,10 +161,6 @@ header {
     z-index: 11;
 }
 
-.ham.is-active {
-
-}
-
 .ham__line {
     position: relative;
     width: inherit;

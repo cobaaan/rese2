@@ -45,7 +45,7 @@
             </div>
             <button class="mt-3 btn btn-primary" type="submit">支払い</button>
         </form>
-        <form action="/my_page" method="get">
+        <form action="/mypage" method="get">
             @csrf
             <button class="cancel__btn">キャンセル</button>
         </form>
@@ -99,7 +99,7 @@
                 <form class="card__footer--form" action="?" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                    <button class="left__content--change-btn" formaction="/my_page/modal">事前決済</button>
+                    <button class="left__content--change-btn" formaction="/mypage/modal">事前決済</button>
                     <button class="left__content--change-btn" formaction="/reserve/change">変更</button>
                 </form>
             </div>

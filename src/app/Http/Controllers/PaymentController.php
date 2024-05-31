@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function create()
-    {
-        return view('create');
-    }
-    
     public function store(Request $request)
     {
         $auth = Auth::user();

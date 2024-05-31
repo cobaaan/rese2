@@ -24,9 +24,9 @@ class ReserveRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required | date',
+            'date' => 'required|date',
             'time' => 'required',
-            'number' => 'required | integer',
+            'number' => 'required|integer',
         ];
     }
     
@@ -44,7 +44,7 @@ class ReserveRequest extends FormRequest
     protected function failedValidation($validator)
     {
         $requests = $this->all();
-        //dd($requests['page']);
+        
         // バリデーションエラーメッセージを取得してセッションにセット
         $this->session()->flash('errors', $validator->errors());
         

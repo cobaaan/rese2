@@ -41,6 +41,7 @@
             </div>
             <input type="hidden" name="user_id" value="{{ $auth->id }}">
             <input type="hidden" name="shop_id" value="{{ $requests['shop_id'] }}">
+            <input type="hidden" name="reserve_id" value="{{ $requests['reserve_id'] }}">
             <button class="review__btn">レビューする</button>
         </form>
     </div>

@@ -29,7 +29,7 @@
                 </form>
             </li>
             <li>
-                <form action="/my_page" method="get">
+                <form action="/mypage" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Mypage</button>
                 </form>

@@ -24,9 +24,9 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:20',
-            'email' => 'required|email',
-            'password' => 'required',
+            'name' => 'required|string|max:191',
+            'email' => 'required|email|unique|string|max:191',
+            'password' => 'required|min:8|max:191',
         ];
     }
     
@@ -34,10 +34,16 @@ class AdminRequest extends FormRequest
     {
         return [
             'name.required' => '名前を入力してください',
-            'name.max' => '20文字以内で入力してください',
+            'name.string' => '文字列で入力してください',
+            'name.max' => '191文字以内で入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレス形式で入力してください',
+            'email.unique' => '入力したメールアドレスはすでに使われています',
+            'email.string' => '文字列で入力してください',
+            'email.max' => '191文字以内で入力してください',
             'password.required' => 'パスワードを入力してください',
+            'password.min' => '8文字以上で入力してください',
+            'password.max' => '191文字以内で入力してください',
         ];
     }
 }

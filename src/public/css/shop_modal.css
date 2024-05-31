@@ -39,17 +39,10 @@
     border: #454545 solid 0.5px;
 }
 
-.form__control--number {
-
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
 -webkit-appearance: none;
 margin: 0;
-}
-
-.card_expiry {
 }
 
 .btn {

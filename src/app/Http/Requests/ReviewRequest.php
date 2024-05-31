@@ -40,6 +40,7 @@ class ReviewRequest extends FormRequest
     protected function failedValidation($validator)
     {
         $requests = $this->all();
+        
         // バリデーションエラーメッセージを取得してセッションにセット
         $this->session()->flash('errors', $validator->errors());
         

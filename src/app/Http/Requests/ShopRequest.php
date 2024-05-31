@@ -24,11 +24,11 @@ class ShopRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required | string | max:20',
-            'area' => 'required | string | max:10',
-            'genre' => 'required | string | max:10',
-            'description' => 'required | string | max:1000',
-            'image' => 'required | image | mimes:jpeg,png,jpg | max:2048',
+            'name' => 'required|string|max:20',
+            'area' => 'required|string|max:10',
+            'genre' => 'required|string|max:10',
+            'description' => 'required|string|max:1000',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ];
     }
     
@@ -49,7 +49,6 @@ class ShopRequest extends FormRequest
             'image.required' => '画像を選択してください',
             'image.image' => '画像形式で入力してください',
             'image.mimes' => 'jpeg形式、png形式、jpg形式で入力してください',
-            'image.max' => '2MB以内のファイルを入力してください',
         ];
     }
     
