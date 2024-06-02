@@ -11,14 +11,14 @@
     <div class="search__form">
         <select class="search__area" name="area" id="areaSelect">
             <option value="" selected>All area</option>
-            @foreach ($shopAreas as $shopArea)
-            <option value="{{ $shopArea->area }}">{{ $shopArea->area }}</option>
+            @foreach ($areas as $area)
+            <option value="{{ $area->area }}">{{ $area->area }}</option>
             @endforeach
         </select>
         <select class="search__genre" name="genre" id="genreSelect">
             <option value="" selected>All genre</option>
-            @foreach ($shopGenres as $shopGenre)
-            <option value="{{ $shopGenre->genre }}">{{ $shopGenre->genre }}</option>
+            @foreach ($genres as $genre)
+            <option value="{{ $genre->genre }}">{{ $genre->genre }}</option>
             @endforeach
         </select>
         <input class="search__text" type="text" name="text" value="{{ old('text') }}" id="searchText" placeholder="Search...">
@@ -29,7 +29,7 @@
 @section('content')
 <div class="shop" id="shopList">
     @foreach ($shops as $shop)
-    <div class="card" data-area="{{ $shop->area }}" data-genre="{{ $shop->genre }}" data-name="{{ $shop->name }}">
+    <div class="card" data-area="{{ $shop->area->area }}" data-genre="{{ $shop->genre->genre }}" data-name="{{ $shop->name }}">
         <img class="card__img" src="{{ $shop->image_path }}">
         <div>
             <div class="card__top">
@@ -58,16 +58,16 @@
             </div>
             
             <div class="card__tag">
-                <div>#{{ $shop->area }}</div>
-                <div>#{{ $shop->genre }}</div>
+                <div>#{{ $shop->area->area }}</div>
+                <div>#{{ $shop->genre->genre }}</div>
             </div>
             <div>
                 <form class="card__form" method="post" action="?">
                     @csrf
                     <input type="hidden" name="id" value="{{ $shop->id }}">
                     <input type="hidden" name="name" value="{{ $shop->name }}">
-                    <input type="hidden" name="area" value="{{ $shop->area }}">
-                    <input type="hidden" name="genre" value="{{ $shop->genre }}">
+                    <input type="hidden" name="area" value="{{ $shop->area->area }}">
+                    <input type="hidden" name="genre" value="{{ $shop->genre->genre }}">
                     <input type="hidden" name="description" value="{{ $shop->description }}">
                     <input type="hidden" name="image_path" value="{{ $shop->image_path }}">
                     
@@ -96,7 +96,7 @@
                 const cardArea = card.getAttribute('data-area').toLowerCase();
                 const cardGenre = card.getAttribute('data-genre').toLowerCase();
                 const cardName = card.getAttribute('data-name').toLowerCase();
-                
+                console.log('cardarea:', cardArea);
                 const matchesArea = area === '' || cardArea.includes(area);
                 const matchesGenre = genre === '' || cardGenre.includes(genre);
                 const matchesText = text === '' || cardName.includes(text);

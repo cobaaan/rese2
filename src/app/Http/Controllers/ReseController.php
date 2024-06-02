@@ -11,6 +11,8 @@ use App\Http\Requests\ReserveRequest;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\User;
 use App\Models\Reserve;
 use App\Models\Favorite;
@@ -32,9 +34,10 @@ class ReseController extends Controller
         $showModal = null;
         $auth = Auth::user();
         $shops = Shop::all();
+        $areas = Area::all();
         
         $favorites = Favorite::where('user_id', $auth->id)
-        ->with('shop')
+        ->with('shop.area', 'shop.genre')
         ->get();
         
         $futureReservations = Reserve::where('user_id', $auth->id)

@@ -118,16 +118,16 @@
                     <img class="card__img" src="{{ $favorite->shop->image_path }}">
                     <div class="card__ttl">{{ $favorite->shop->name }}</div>
                     <div class="card__tag">
-                        <div>#{{ $favorite->shop->area }}</div>
-                        <div>#{{ $favorite->shop->genre }}</div>
+                        <div>#{{ $favorite->shop->area->area }}</div>
+                        <div>#{{ $favorite->shop->genre->genre }}</div>
                     </div>
                     <div>
                         <form class="card__form" method="post" action="?">
                             @csrf
                             <input type="hidden" name="id" value="{{ $favorite->shop->id }}">
                             <input type="hidden" name="name" value="{{ $favorite->shop->name }}">
-                            <input type="hidden" name="area" value="{{ $favorite->shop->area }}">
-                            <input type="hidden" name="genre" value="{{ $favorite->shop->genre }}">
+                            <input type="hidden" name="area" value="{{ $favorite->shop->area->area }}">
+                            <input type="hidden" name="genre" value="{{ $favorite->shop->genre->genre }}">
                             <input type="hidden" name="description" value="{{ $favorite->shop->description }}">
                             <input type="hidden" name="image_path" value="{{ $favorite->shop->image_path }}">
                             <div class="card__form--footer">

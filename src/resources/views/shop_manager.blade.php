@@ -15,8 +15,8 @@
             <p></p>
             <img class="left__img" src="{{ asset($shop->image_path) }}">
             <div class="left__tag">
-                <p class="left__area-genre">#{{ $shop->area }}</p>
-                <p class="left__area-genre">#{{ $shop->genre }}</p>
+                <p class="left__area-genre">#{{ $shop->area->area }}</p>
+                <p class="left__area-genre">#{{ $shop->genre->genre }}</p>
             </div>
             <p class="left__description">{{ $shop->description }}</p>
         </div>

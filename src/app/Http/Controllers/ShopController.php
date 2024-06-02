@@ -11,6 +11,8 @@ use App\Models\Reserve;
 use App\Models\Review;
 use App\Models\Shop;
 use App\Models\User;
+use App\Models\Area;
+use App\Models\Genre;
 
 use Auth;
 
@@ -25,13 +27,14 @@ class ShopController extends Controller
     public function shopAll() {
         $auth = Auth::user();
         $shops = Shop::all();
-        $shopAreas = DB::select('SELECT DISTINCT area FROM shops');
-        $shopGenres = DB::select('SELECT DISTINCT genre FROM shops');
+        $areas = Area::all();
+        $genres = Genre::all();
         
         $favorites = Favorite::all();
         
         $averageRatings = ReseController::reviewStar();
-        return view('shop_all', compact('shops', 'shopAreas', 'shopGenres', 'favorites', 'auth', 'averageRatings'));
+        
+        return view('shop_all', compact('shops', 'areas', 'genres', 'favorites', 'auth', 'averageRatings'));
     }
     
     public function shopDetail(Request $request) {
@@ -75,11 +78,13 @@ class ShopController extends Controller
         $file_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->storeAs('public/' . $dir, $file_name);
         
+        $areaGenre = ShopController::areaGenreGet($requests);
+        
         $params = [
             'user_id' => $request['user_id'],
             'name' => $requests['name'],
-            'area' => $requests['area'],
-            'genre' => $requests['genre'],
+            'area_id' => $areaGenre['area'],
+            'genre_id' => $areaGenre['genre'],
             'description' => $requests['description'],
             'image_path' => 'storage/' . $dir . '/' . $file_name,
         ];
@@ -91,8 +96,9 @@ class ShopController extends Controller
     
     public function shopManager() {
         $auth = Auth::user();
-        $shop = DB::table('shops')
-        ->where('user_id', $auth->id)
+        
+        $shop = Shop::where('user_id', $auth->id)
+        ->with('area', 'genre')
         ->first();
         
         return view('shop_manager', compact('auth', 'shop'));
@@ -131,6 +137,46 @@ class ShopController extends Controller
         return view('shop_reserve', compact('users', 'shop', 'auth'));
     }
     
+    public function areaGenreGet($requests) {
+        $area = DB::table('areas')
+        ->where('area', $requests['area'])
+        ->first();
+        
+        if($area === null){
+            $params = [
+                'area' => $requests['area'],
+            ];
+            
+            $newArea = Area::create($params);
+            $areaId = $newArea->id;
+            
+        } else {
+            $areaId = $area->id;
+        }
+        
+        $genre = DB::table('genres')
+        ->where('genre', $requests['genre'])
+        ->first();
+        
+        if($genre === null){
+            $params = [
+                'genre' => $requests['genre'],
+            ];
+            
+            $newGenre = Genre::create($params);
+            $genreId = $newGenre->id;
+            
+        } else {
+            $genreId = $genre->id;
+        }
+        
+        $params = [
+            'area' => $areaId,
+            'genre' => $genreId
+        ];
+        return($params);
+    }
+    
     public function shopUpdate(ShopRequest $request) {
         $requests = $request->all();
         $auth = Auth::user();
@@ -143,10 +189,12 @@ class ShopController extends Controller
         ->where('id', $requests['shop_id'])
         ->first();
         
+        $areaGenre = ShopController::areaGenreGet($requests);
+        
         $params = [
             'name' => $requests['name'],
-            'area' => $requests['area'],
-            'genre' => $requests['genre'],
+            'area_id' => $areaGenre['area'],
+            'genre_id' => $areaGenre['genre'],
             'description' => $requests['description'],
             'image_path' => 'storage/' . $dir . '/' . $file_name,
         ];
