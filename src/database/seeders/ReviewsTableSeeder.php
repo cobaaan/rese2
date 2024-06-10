@@ -23,6 +23,6 @@ class ReviewsTableSeeder extends Seeder
         ];
         DB::table('reviews')->insert($param);
         
-        Review::factory()->count(100)->create();
+        Review::factory()->count(99)->create();
     }
 }

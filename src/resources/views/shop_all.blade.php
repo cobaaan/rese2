@@ -42,7 +42,7 @@
                 @php
                 $color = 'card__form--heart-img';
                 @endphp
-                @if(isset($auth) && $auth->role === 'user')
+                @auth
                 @foreach($favorites as $favorite)
                 @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
                 @php
@@ -54,7 +54,7 @@
                     @csrf
                     <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
                 </form>
-                @endif
+                @endauth
             </div>
             
             <div class="card__tag">

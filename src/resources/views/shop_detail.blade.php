@@ -63,7 +63,7 @@
         <p class="shop__description">{{ $requests['description'] }}</p>
     </div>
     
-    @if(isset($auth) && $auth->role === 'user')
+    @auth
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
         <form action="/reserve" method="post" id="reserveForm">
@@ -135,7 +135,7 @@
             <button class="reserve__btn">予約する</button>
         </form>
     </div>
-    @endif
+    @endauth
 </div>
 
 <script>

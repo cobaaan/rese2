@@ -19,6 +19,100 @@
             </div>
             <a href="/" class="header-area-ttl">Rese</a>
         </div>
+        
+        @php
+        $admin = auth('admin')->user();
+        $manager = auth('manager')->user();
+        $user = auth('web')->user();
+        @endphp
+        
+        @if(!is_null($admin))
+        <ul class="slide-menu" id="slide-menu">
+            <li>
+                <form action="/admin/register" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">AdminRegister</button>
+                </form>
+            </li>
+            <li>
+                <form action="/mail/form" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">SendMail</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="ham__nav--link-txt">Logout</button>
+                </form>
+            </li>
+        </ul>
+        @elseif(!is_null($manager))
+        <ul class="slide-menu" id="slide-menu">
+            <li>
+                <form action="/shop/manager" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">ShopManager</button>
+                </form>
+            </li>
+            <li>
+                <form action="/shop/reserve" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">ShopReserve</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="ham__nav--link-txt">Logout</button>
+                </form>
+            </li>
+        </ul>
+        @elseif(!is_null($user))
+        <ul class="slide-menu" id="slide-menu">
+            <li>
+                <form action="/" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">Home</button>
+                </form>
+            </li>
+            <li>
+                <form action="/mypage" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">Mypage</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="ham__nav--link-txt">Logout</button>
+                </form>
+            </li>
+        </ul>
+        @elseif(is_null($admin) && is_null($manager) && is_null($user))
+        <ul class="slide-menu" id="slide-menu">
+            <li>
+                <form action="/" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">Home</button>
+                </form>
+            </li>
+            <li>
+                <form action="/register" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">Registration</button>
+                </form>
+            </li>
+            <li>
+                <form action="/login" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">Login</button>
+                </form>
+            </li>
+        </ul>
+        @endif
+        
+        {{--
         @auth
         @if($auth->role === 'user')
         <ul class="slide-menu" id="slide-menu">
@@ -106,7 +200,7 @@
             </li>
         </ul>
         @endauth
-        
+        --}}
         @yield('header')
     </header>
     @yield('content')

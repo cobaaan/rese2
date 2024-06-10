@@ -10,9 +10,9 @@ class Shop extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['user_id', 'area_id', 'genre_id',  'name', 'description', 'image_path'];
+    protected $fillable = ['manager_id', 'area_id', 'genre_id',  'name', 'description', 'image_path'];
     
-    public function user(){
+    public function manager(){
         return $this->belongsTo(User::class);
     }
     

@@ -37,7 +37,7 @@
                     <i class="bi bi-exclude"></i>
                     <select class="form__input form__content--right" name="role">
                         <option value="admin">Admin</option>
-                        <option value="shopManager">ShopManager</option>
+                        <option value="manager">Manager</option>
                         <option value="user">User</option>
                     </select>
                 </div>

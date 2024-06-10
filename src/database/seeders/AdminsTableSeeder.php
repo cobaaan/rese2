@@ -5,9 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 
-class UsersTableSeeder extends Seeder
+class AdminsTableSeeder extends Seeder
 {
     /**
     * Run the database seeds.
@@ -17,13 +16,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'name' => '千葉真一',
-            'email' => 'sunnychiba@samurai.example',
+            'name' => '高倉健',
+            'email' => 'k.takakura@poppoya.example',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ];
-        DB::table('users')->insert($param);
-        
-        User::factory()->count(9)->create();
+        DB::table('admins')->insert($param);
     }
 }

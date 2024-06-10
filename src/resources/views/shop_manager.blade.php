@@ -126,7 +126,7 @@
                     @enderror
                 </div>
                 <div class="right__content--item">
-                    <input type="hidden" name="user_id" value="{{ $auth->id }}">
+                    <input type="hidden" name="manager_id" value="{{ $auth->id }}">
                     <div>
                         <button class="right__btn">登録</button>
                     </div>

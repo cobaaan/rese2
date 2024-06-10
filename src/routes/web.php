@@ -22,18 +22,39 @@ use App\Http\Controllers\ShopController;
 |
 */
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', [FortifyController::class, 'login']);
+Route::post('/logout', [FortifyController::class, 'logout'])->name('logout');
+
 /*  FavoriteController  */
 Route::post('/favorite/{id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 
 /*  FortifyController  */
+/*
 Route::middleware(['auth', 'verified'])->prefix('/admin')->group(function () {
+Route::post('/create', [FortifyController::class, 'adminCreate']);
+Route::get('/verify', [FortifyController::class,'verify']);
+Route::get('/register', [FortifyController::class, 'adminRegister']);
+});
+*/
+Route::middleware(['auth:admin'])->prefix('/admin')->group(function () {
     Route::post('/create', [FortifyController::class, 'adminCreate']);
     Route::get('/verify', [FortifyController::class,'verify']);
     Route::get('/register', [FortifyController::class, 'adminRegister']);
 });
 
 /*  MailController  */
+/*
 Route::middleware(['auth', 'verified'])->prefix('/mail')->group(function () {
+Route::match(['get', 'post'], '/form', [MailController::class, 'mailForm'])->name('mail_form');
+Route::post('/send', [MailController::class, 'sendMail']);
+});
+*/
+
+Route::middleware(['auth:admin'])->prefix('/mail')->group(function () {
     Route::match(['get', 'post'], '/form', [MailController::class, 'mailForm'])->name('mail_form');
     Route::post('/send', [MailController::class, 'sendMail']);
 });
@@ -64,18 +85,31 @@ Route::middleware(['auth', 'verified'])->prefix('/review')->group(function (){
 });
 
 /*  ShopController  */
+/*
 Route::middleware(['auth', 'verified'])->prefix('/shop')->group(function() {
+Route::get('/manager', [ShopController::class, 'shopManager'])->name('shop_manager');
+Route::get('/reserve', [ShopController::class, 'shopReserve']);
+Route::post('/create', [ShopController::class, 'shopCreate']);
+Route::post('/update', [ShopController::class, 'shopUpdate']);
+Route::get('/visit', [ShopController::class,'visit'])->name('visit');
+Route::post('/visited', [ShopController::class,'visited']);
+});
+*/
+
+Route::middleware(['auth:manager'])->prefix('/shop')->group(function() {
     Route::get('/manager', [ShopController::class, 'shopManager'])->name('shop_manager');
     Route::get('/reserve', [ShopController::class, 'shopReserve']);
     Route::post('/create', [ShopController::class, 'shopCreate']);
     Route::post('/update', [ShopController::class, 'shopUpdate']);
-    Route::get('/visit', [ShopController::class,'visit'])->name('visit');
-    Route::post('/visited', [ShopController::class,'visited']);
+    //Route::get('/visit', [ShopController::class,'visit'])->name('visit');
+    //Route::post('/visited', [ShopController::class,'visited']);
 });
 
 Route::prefix('/shop')->group(function() {
     Route::match(['get', 'post'], '/detail', [ShopController::class, 'shopDetail'])->name('shop_detail');
     Route::post('/modal', [ShopController::class,'modal']);
+    Route::get('/visit', [ShopController::class,'visit'])->name('visit');
+    Route::post('/visited', [ShopController::class,'visited']);
 });
 
 Route::match(['get', 'post'], '/', [ShopController::class, 'shopAll']);

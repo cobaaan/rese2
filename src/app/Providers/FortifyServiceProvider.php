@@ -31,6 +31,18 @@ class FortifyServiceProvider extends ServiceProvider
     */
     public function boot(): void
     {
+        
+        Fortify::authenticateUsing(function (Request $request) {
+            if (Auth::guard('manager')->attempt($request->only('email', 'password'))) {
+                return Auth::guard('manager')->user();
+            } elseif (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+                return Auth::guard('admin')->user();
+            } elseif (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+                return Auth::guard('web')->user();
+            }
+        });
+        
+        
         Fortify::createUsersUsing(CreateNewUser::class);
         
         Fortify::registerView(function () {

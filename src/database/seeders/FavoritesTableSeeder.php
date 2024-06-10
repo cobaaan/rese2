@@ -15,13 +15,13 @@ class FavoritesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'user_id' => 3,
+            'user_id' => 1,
             'shop_id' => 6
         ];
         DB::table('favorites')->insert($param);
         
         $param = [
-            'user_id' => 3,
+            'user_id' => 1,
             'shop_id' => 12
         ];
         DB::table('favorites')->insert($param);

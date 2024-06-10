@@ -81,7 +81,7 @@ class ShopController extends Controller
         $areaGenre = ShopController::areaGenreGet($requests);
         
         $params = [
-            'user_id' => $request['user_id'],
+            'manager_id' => $request['manager_id'],
             'name' => $requests['name'],
             'area_id' => $areaGenre['area'],
             'genre_id' => $areaGenre['genre'],
@@ -97,7 +97,7 @@ class ShopController extends Controller
     public function shopManager() {
         $auth = Auth::user();
         
-        $shop = Shop::where('user_id', $auth->id)
+        $shop = Shop::where('manager_id', $auth->id)
         ->with('area', 'genre')
         ->first();
         
@@ -108,7 +108,7 @@ class ShopController extends Controller
         $auth = Auth::user();
         $users = User::all();
         
-        $shop = Shop::where('user_id', $auth->id)->first();
+        $shop = Shop::where('manager_id', $auth->id)->first();
         
         if (isset($shop)) {
             $reserves = Reserve::where('shop_id', $shop->id)->with('user')->get();
