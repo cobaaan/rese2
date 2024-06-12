@@ -15,7 +15,6 @@ class ShopsTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            //'user_id' => 1,
             'manager_id' => 1,
             'area_id' => 1,
             'genre_id' => 1,

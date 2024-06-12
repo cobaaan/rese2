@@ -6,53 +6,33 @@
 @endsection
 
 @section('content')
-@if(isset($shopModal))
-<div class="modal">
-    <div class="modal__back">
-        <div class="modal__header">
-            <h2 class="modal__header--ttl">レビュー 一覧</h2>
-            <form action="/shop/detail" method="post">
-                @csrf
-                <input type="hidden" name="id" value="{{ $requests['id'] }}">
-                <input type="hidden" name="name" value="{{ $requests['name'] }}">
-                <input type="hidden" name="area" value="{{ $requests['area'] }}">
-                <input type="hidden" name="genre" value="{{ $requests['genre'] }}">
-                <input type="hidden" name="description" value="{{ $requests['description'] }}">
-                <input type="hidden" name="image_path" value="{{ $requests['image_path'] }}">
-                <button class="modal__header--btn">×</button>
-            </form>
-        </div>
-        @foreach ($reviews as $review)
-        <div class="modal__content">
-            <div class="modal__content--header">
-                <h2 class="modal__content--name">{{ $user[$review['user_id'] - 1]->name }} 様</h2>
-                <div class="review__area modal__content--star">
-                    <p class="star{{ $review['rate'] }}"></p>
-                </div>
-            </div>
-            <p class="modal__content--comment-ttl">コメント</p>
-            <p class="modal__content--comment">{{ $review['comment'] }}</p>
-        </div>
-        @endforeach
+<section id="modal">
+    <div class="modal__header">
+        <h2 class="modal__header--ttl">レビュー 一覧</h2>
+        <button class="modal__header--btn" id="close">×</button>
     </div>
-</div>
-@endif
+    @foreach ($reviews as $review)
+    <div class="modal__content">
+        <div class="modal__content--header">
+            <h2 class="modal__content--name">{{ $user[$review['user_id'] - 1]->name }} 様</h2>
+            <div class="review__area modal__content--star">
+                <p class="star{{ $review['rate'] }}"></p>
+            </div>
+        </div>
+        <p class="modal__content--comment-ttl">コメント</p>
+        <p class="modal__content--comment">{{ $review['comment'] }}</p>
+    </div>
+    @endforeach
+</section>
+<div id="mask"></div>
+
 <div class="content">
     <div class="shop">
         <div class="shop__header">
             <h2 class="shop__name">{{ $requests['name'] }}</h2>
             <div class="review__area shop__header--rate">
-                <form action="/shop/modal" method="post">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $requests['id'] }}">
-                    <input type="hidden" name="name" value="{{ $requests['name'] }}">
-                    <input type="hidden" name="area" value="{{ $requests['area'] }}">
-                    <input type="hidden" name="genre" value="{{ $requests['genre'] }}">
-                    <input type="hidden" name="description" value="{{ $requests['description'] }}">
-                    <input type="hidden" name="image_path" value="{{ $requests['image_path'] }}">
-                    <button class="review__area--btn">レビューを見る</button>
-                    <p class="{{ $averageRatings[$requests['id']] }}"></p>
-                </form>
+                <button class="review__area--btn" id="open">レビューを見る</button>
+                <p class="{{ $averageRatings[$requests['id']] }}"></p>
             </div>
         </div>
         <img class="shop__img" src="{{ asset($requests['image_path']) }}">
@@ -139,6 +119,41 @@
 </div>
 
 <script>
+    //モーダルウインドウ表示・非表示
+    const open = document.querySelector('#open');
+    const close = document.querySelector('#close');
+    const modal = document.querySelector('#modal');
+    const mask = document.querySelector('#mask');
+    const showKeyframes = {
+        opacity: [0, 1],
+        visibility: 'visible',
+    };
+    const hideKeyframes = {
+        opacity: [1, 0],
+        visibility: 'hidden',
+    };
+    const options = {
+        duration: 800,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+    
+    open.addEventListener('click', () => {
+        modal.animate(showKeyframes, options);
+        mask.animate(showKeyframes, options);
+    });
+    
+    close.addEventListener('click', () => {
+        modal.animate(hideKeyframes, options);
+        mask.animate(hideKeyframes, options);
+    });
+    
+    mask.addEventListener('click', () => {
+        close.click();
+    });
+    
+    
+    //入力内容即時反映
     document.addEventListener('DOMContentLoaded', function() {
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('time');

@@ -19,7 +19,6 @@ class ManagersTableSeeder extends Seeder
         $param = [
             'name' => '北大路欣也',
             'email' => 'kitaouji@kinkin.example',
-            'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ];
         DB::table('managers')->insert($param);
@@ -27,7 +26,6 @@ class ManagersTableSeeder extends Seeder
         $param = [
             'name' => '杉良太郎',
             'email' => 'r.sugi@osugi.example',
-            'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ];
         DB::table('managers')->insert($param);

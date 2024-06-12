@@ -7,8 +7,11 @@
 @endsection
 
 @section('content')
-@if(isset($showModal))
-<div class="container">
+
+
+
+
+<section id="modal">
     @if (session('flash_alert'))
     <div class="alert alert-danger">{{ session('flash_alert') }}</div>
     @elseif(session('status'))
@@ -16,42 +19,38 @@
         {{ session('status') }}
     </div>
     @endif
-    
-    <div class="modal">
-        <div class="modal__ttl">事前決済</div>
-        <div id="card-errors" class="text-danger"></div>
-        <form id="card-form" action="{{ route('payment.store') }}" method="POST">
-            @csrf
-            <div class="modal__content">
-                <label for="card_number">カード番号</label>
-                <div id="card-number" class="form__control"></div>
-            </div>
-            <div class="modal__content">
-                <label for="card_expiry">有効期限</label>
-                <div id="card-expiry" class="form__control"></div>
-            </div>
-            <div class="modal__content">
-                <label for="card-cvc">セキュリティコード</label>
-                <div id="card-cvc" class="form__control"></div>
-            </div>
-            <div class="modal__content">
-                <label for="card-amount">支払い価格</label><br>
-                <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000" required min="100">
-            </div>
-            <div>
-                @if($errors->has('amount'))
-                <div>{{ $erros->first('amount') }}</div>
-                @endif
-            </div>
-            <button class="mt-3 btn btn-primary" type="submit">支払い</button>
-        </form>
-        <form action="/mypage" method="get">
-            @csrf
-            <button class="cancel__btn">キャンセル</button>
-        </form>
-    </div>
+    <div class="modal__ttl">事前決済</div>
+    <div id="card-errors" class="text-danger"></div>
+    <form id="card-form" action="{{ route('payment.store') }}" method="POST">
+        @csrf
+        <div class="modal__content">
+            <label for="card_number">カード番号</label>
+            <div id="card-number" class="form__control"></div>
+        </div>
+        <div class="modal__content">
+            <label for="card_expiry">有効期限</label>
+            <div id="card-expiry" class="form__control"></div>
+        </div>
+        <div class="modal__content">
+            <label for="card-cvc">セキュリティコード</label>
+            <div id="card-cvc" class="form__control"></div>
+        </div>
+        <div class="modal__content">
+            <label for="card-amount">支払い価格</label><br>
+            <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000" required min="100">
+        </div>
+        <div>
+            @if($errors->has('amount'))
+            <div>{{ $erros->first('amount') }}</div>
+            @endif
+        </div>
+        <button class="mt-3 btn btn-primary" type="submit">支払い</button>
+    </form>
+    <button id="close" class="cancel__btn">キャンセル</button>
 </div>
-@endif
+</section>
+
+<div id="mask"></div>
 
 <div>
     <h2 class="ttl">{{ $auth['name'] }}さん</h2>
@@ -96,12 +95,15 @@
                 <div class="card__footer--qr">
                     {!! QrCode::size(100)->generate(route('visit', ['id' => $futureReservation->id])) !!}
                 </div>
-                <form class="card__footer--form" action="?" method="post">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $futureReservation->id }}">
-                    <button class="left__content--change-btn" formaction="/mypage/modal">事前決済</button>
-                    <button class="left__content--change-btn" formaction="/reserve/change">変更</button>
-                </form>
+                <div class="card__footer--btn">
+                    <button type="menu" class="left__content--change-btn" id="open">事前決済</button>
+                    <form class="card__footer--form" action="?" method="post">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $futureReservation->id }}">
+                        <button class="left__content--change-btn" formaction="/reserve/change">変更</button>
+                    </form>
+                </div>
+                
             </div>
         </div>
         @endforeach
@@ -174,6 +176,40 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+    const open = document.querySelector('#open');
+    const close = document.querySelector('#close');
+    const modal = document.querySelector('#modal');
+    const mask = document.querySelector('#mask');
+    const showKeyframes = {
+        opacity: [0, 1],
+        visibility: 'visible',
+    };
+    const hideKeyframes = {
+        opacity: [1, 0],
+        visibility: 'hidden',
+    };
+    const options = {
+        duration: 800,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+    
+    open.addEventListener('click', () => {
+        modal.animate(showKeyframes, options);
+        mask.animate(showKeyframes, options);
+    });
+    
+    close.addEventListener('click', () => {
+        modal.animate(hideKeyframes, options);
+        mask.animate(hideKeyframes, options);
+    });
+    
+    mask.addEventListener('click', () => {
+        close.click();
+    });
+    
+    
+    
     const stripe_public_key = "{{ config('stripe.stripe_public_key') }}"
     const stripe = Stripe(stripe_public_key);
     const elements = stripe.elements();

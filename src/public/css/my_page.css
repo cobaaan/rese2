@@ -1,3 +1,27 @@
+#mask {
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#modal {
+    background: #fff;
+    max-width: 36rem;
+    padding: 2rem;
+    border-radius: .5rem;
+    position: absolute;
+    inset: 10rem 0 auto;
+    margin: auto;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
 .ttl {
     font-size: 3rem;
     text-align: center;
@@ -6,7 +30,7 @@
 
 .body {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     display: flex;
     justify-content: space-between;
 }
@@ -84,6 +108,7 @@ i {
 	border: 3px solid #454545;
 	box-shadow: 2px 2px #454545;
     margin-right: 1vw;
+    cursor: pointer;
 }
 
 .left__content--change-btn:active {
@@ -142,7 +167,7 @@ i {
     justify-content: space-between;
 }
 
-.card__footer--form {
+.card__footer--btn {
     display: flex;
 }
 

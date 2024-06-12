@@ -53,28 +53,6 @@ class ReseController extends Controller
         return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
     }
     
-    public function modal() {
-        $showModal = 'show';
-        $auth = Auth::user();
-        $shops = Shop::all();
-        
-        $favorites = Favorite::where('user_id', $auth->id)
-        ->with('shop')
-        ->get();
-        
-        $futureReservations = Reserve::where('user_id', $auth->id)
-        ->where('is_visit', 0)
-        ->with('shop')
-        ->get();
-        
-        $pastReservations = Reserve::where('user_id', $auth->id)
-        ->where('is_visit', 1)
-        ->with('shop')
-        ->get();
-        
-        return view('my_page', compact('pastReservations', 'futureReservations', 'shops', 'favorites', 'auth', 'showModal'));
-    }
-    
     public function done (){
         $auth = Auth::user();
         
@@ -84,7 +62,7 @@ class ReseController extends Controller
     public function thanks (){
         $auth = Auth::user();
         
-        return view('thanks', compact('auth'))->with('massage', '会員登録ありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', '会員登録ありがとうございます。');
     }
     
     public function reviewStar() {

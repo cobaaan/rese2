@@ -18,6 +18,10 @@ use Illuminate\Http\Request;
 
 class FortifyController extends Controller
 {
+    public function loginPage() {
+        return view('auth.login');
+    }
+    
     public function login(Request $request)
     {
         $request->validate([
@@ -84,15 +88,8 @@ class FortifyController extends Controller
                         ]);
                         break;
                     }
-                    /*
-                    $user = User::create([
-                    'role' => $requests['role'],
-                    'name' => $requests['name'],
-                    'email' => $requests['email'],
-                    'password' => Hash::make($requests['password']),
-                    ]);
-                    */
-                    return view('thanks', compact('auth'))->with('massage', '新規ユーザーを登録しました。');
+                    
+                    return view('thanks', compact('auth'))->with('message', '新規ユーザーを登録しました。');
                 }
                 
                 public function adminRegister() {

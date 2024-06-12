@@ -21,6 +21,6 @@ class PaymentController extends Controller
         } catch (Exception $e) {
             return view('done', compact('auth'));
         }
-        return view('thanks', compact('auth'))->with('massage', 'お支払いありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', 'お支払いありがとうございます。');
     }
 }

@@ -6,7 +6,7 @@
 
 @section('content')
 @if(isset($shop))
-<div>
+<div class="body">
     <h2 class="shop-name">{{ $shop->name }}</h2>
     <div class="today">
         <h2 class="ttl">本日のご予約</h2>

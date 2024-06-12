@@ -53,23 +53,6 @@ class ShopController extends Controller
         return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
     }
     
-    public function modal(Request $request) {
-        $shopModal = 'set';
-        
-        $requests = $request->all();
-        $dt = Carbon::now();
-        $auth = Auth::user();
-        
-        
-        $averageRatings = ReseController::reviewStar();
-        
-        $user = User::all();
-        
-        $reviews = Review::where('shop_id', $request->id)->get();
-        
-        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
-    }
-    
     public function shopCreate(ShopRequest $request) {
         $auth = Auth::user();
         $requests = $request->all();
@@ -91,7 +74,7 @@ class ShopController extends Controller
         
         Shop::create($params);
         
-        return view('thanks', compact('auth'))->with('massage', '店舗登録ありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', '店舗登録ありがとうございます。');
     }
     
     public function shopManager() {
@@ -204,7 +187,7 @@ class ShopController extends Controller
         
         Shop::where('id', $requests['shop_id'])->update($nonNull);
         
-        return view('thanks', compact('auth'))->with('massage', '店舗情報の変更をしました。');
+        return view('thanks', compact('auth'))->with('message', '店舗情報の変更をしました。');
     }
     
     public function visit(Request $request) {
@@ -219,6 +202,6 @@ class ShopController extends Controller
         
         Reserve::where('id', $request['id'])->update(['is_visit' => 1]);
         
-        return view('thanks', compact('auth'))->with('massage', '来店済みに変更しました。');
+        return view('thanks', compact('auth'))->with('message', '来店済みに変更しました。');
     }
 }
