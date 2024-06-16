@@ -43,21 +43,11 @@
         <p class="shop__description">{{ $requests['description'] }}</p>
     </div>
     
-    @auth
+    {{--@auth--}}
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
         <form action="/reserve" method="post" id="reserveForm">
             @csrf
-            <input type="hidden" name="page" value="shop_detail">
-            <input type="hidden" name="user_id" value="{{ $auth['id'] }}">
-            <input type="hidden" name="name" value="{{ $requests['name'] }}">
-            <input type="hidden" name="image_path" value="{{ $requests['image_path'] }}">
-            <input type="hidden" name="area" value="{{ $requests['area'] }}">
-            <input type="hidden" name="genre" value="{{ $requests['genre'] }}">
-            <input type="hidden" name="description" value="{{ $requests['description'] }}">
-            <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
-            <input type="hidden" name="id" value="{{ $requests['id'] }}">
-            <input type="hidden" name="is_visit" value=0>
             <input class="reserve__date" type="date" name="date" value="{{ old('date') }}" min="{{ $dt->format('Y-m-d') }}" id="date">
             <div class="form__subject--error reserve__date--error">
                 @error('date')
@@ -112,10 +102,22 @@
                     </tr>
                 </table>
             </div>
+            @auth
+            <input type="hidden" name="user_id" value="{{ $auth['id'] }}">
+            @endauth
+            <input type="hidden" name="page" value="shop_detail">
+            <input type="hidden" name="name" value="{{ $requests['name'] }}">
+            <input type="hidden" name="image_path" value="{{ $requests['image_path'] }}">
+            <input type="hidden" name="area" value="{{ $requests['area'] }}">
+            <input type="hidden" name="genre" value="{{ $requests['genre'] }}">
+            <input type="hidden" name="description" value="{{ $requests['description'] }}">
+            <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
+            <input type="hidden" name="id" value="{{ $requests['id'] }}">
+            <input type="hidden" name="is_visit" value=0>
             <button class="reserve__btn">予約する</button>
         </form>
     </div>
-    @endauth
+    {{-- @endauth--}}
 </div>
 
 <script>

@@ -31,11 +31,21 @@ class MailController extends Controller
         $managers = Manager::all();
         $users = User::all();
         
-        $recipients = $admins->merge($managers)->merge($users);
-        
-        foreach($recipients as $recipient) {
-            Mail::send([], [], function ($message) use ($request, $recipient) {
-                $message->to($recipient->email)
+        foreach($users as $user){
+            Mail::send([], [], function ($message) use ($request, $user) {
+                $message->to($user->email)
+                ->subject($request['subject'])
+                ->setBody($request['body']);
+            });
+        }        foreach($managers as $manager){
+            Mail::send([], [], function ($message) use ($request, $manager) {
+                $message->to($manager->email)
+                ->subject($request['subject'])
+                ->setBody($request['body']);
+            });
+        }        foreach($admins as $admin){
+            Mail::send([], [], function ($message) use ($request, $admin) {
+                $message->to($admin->email)
                 ->subject($request['subject'])
                 ->setBody($request['body']);
             });

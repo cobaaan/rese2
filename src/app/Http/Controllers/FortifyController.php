@@ -28,13 +28,13 @@ class FortifyController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        
         if (Auth::guard('manager')->attempt($request->only('email', 'password'))) {
             return redirect()->intended('/');
         } elseif (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             return redirect()->intended('/');
         } elseif (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/');
+            //return redirect()->intended('/');
+            return redirect('/');
         }
         
         return back()->withErrors([

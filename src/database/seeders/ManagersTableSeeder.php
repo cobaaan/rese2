@@ -30,6 +30,6 @@ class ManagersTableSeeder extends Seeder
         ];
         DB::table('managers')->insert($param);
         
-        Manager::factory()->count(18)->create();
+        Manager::factory()->count(1)->create();
     }
 }
