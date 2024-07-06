@@ -36,47 +36,48 @@
                 <div class="right__content--item">
                     <p class="right__name">name</p>
                     <input class="right__input" type="text" name="name" value = "{{ old('name') }}">
-                    <div class="form__subject--error">
-                        @error('name')
-                        <p class="error__message">{{ $errors->first('name') }}</p>
-                        @enderror
-                    </div>
+                    <br>
+                    
+                    @error('name')
+                    <p class="error__message">{{ $errors->first('name') }}</p>
+                    @enderror
                 </div>
+                
                 <div class="right__content--item">
                     <p class="right__name">area</p>
                     <input class="right__input" type="text" name="area" value = "{{ old('area') }}">
-                    <div class="form__subject--error">
-                        @error('area')
-                        <p class="error__message">{{ $errors->first('area') }}</p>
-                        @enderror
-                    </div>
+                    <br>
+                    
+                    @error('area')
+                    <p class="error__message">{{ $errors->first('area') }}</p>
+                    @enderror
                 </div>
                 <div class="right__content--item">
                     <p class="right__name">genre</p>
                     <input class="right__input" type="text" name="genre" value = "{{ old('genre') }}">
-                    <div class="form__subject--error">
-                        @error('genre')
-                        <p class="error__message">{{ $errors->first('genre') }}</p>
-                        @enderror
-                    </div>
+                    <br>
+                    
+                    @error('genre')
+                    <p class="error__message">{{ $errors->first('genre') }}</p>
+                    @enderror
                 </div>
                 <div class="right__content--item">
                     <p class="right__name">description</p>
-                    <textarea class="right__textarea" name="description" cols="30" rows="10"></textarea>
-                    <div class="form__subject--error">
-                        @error('description')
-                        <p class="error__message">{{ $errors->first('description') }}</p>
-                        @enderror
-                    </div>
+                    <textarea class="right__textarea" name="description" cols="30" rows="10" maxlength="1000"></textarea>
+                    <br>
+                    
+                    @error('description')
+                    <p class="error__message">{{ $errors->first('description') }}</p>
+                    @enderror
                 </div>
                 <div class="right__content--item">
                     <p class="right__name">image</p>
                     <input class="right__file" type="file" name="image">
-                    <div class="form__subject--error">
-                        @error('image')
-                        <p class="error__message">{{ $errors->first('image') }}</p>
-                        @enderror
-                    </div>
+                    <br>
+                    
+                    @error('image')
+                    <p class="error__message">{{ $errors->first('image') }}</p>
+                    @enderror
                 </div>
                 <div class="right__content--item">
                     <input class="right__input" type="hidden" name="shop_id" value = "{{ $shop->id }}">
@@ -113,7 +114,7 @@
                 </div>
                 <div class="right__content--item">
                     <p class="right__name">description</p>
-                    <textarea class="right__textarea" name="description" cols="30" rows="10"></textarea>
+                    <textarea class="right__textarea" name="description" cols="30" rows="10" maxlength="1000"></textarea>
                     @error('description')
                     <br><p class="error__message">{{ $errors->first('description') }}</p>
                     @enderror

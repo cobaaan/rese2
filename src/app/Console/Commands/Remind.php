@@ -66,7 +66,7 @@ class Remind extends Command
                 ->subject('<Rese>本日ご来店予約のお知らせ')
                 ->setBody($user->name . ' 様' . "\n" .
                 "\n" .
-                '本日 ' . substr($reserve->time, 0, 5) . ' より、' . $reserve->number . ' 名様でのご来店予定となっております。' . "\n" .
+                '本日 ' . substr($reserve->time, 0, 5) . ' より、' . $shopName . ' に ' . $reserve->number . ' 名様でのご来店予定となっております。' . "\n" .
                 '従業員一同、心よりお待ちいたしております。' . "\n" .
                 "\n" .
                 'こちら配信専用メールとなっております。' . "\n" .

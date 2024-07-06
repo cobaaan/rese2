@@ -2,21 +2,15 @@
     margin-bottom: 100px;
 }
 
-
-
 .shop-name {
     font-size: 3rem;
     text-align: center;
 }
 
-
-
 .ttl {
     font-size: 3rem;
     text-align: center;
 }
-
-
 
 .today {
     width: 90%;
@@ -102,47 +96,47 @@
 
 
 @media (max-width: 768px) {
-.ttl {
-    font-size: 2.5rem;
-}
+    .ttl {
+        font-size: 2.5rem;
+    }
 
-.content {
-    font-size: 1rem;
-}
+    .content {
+        font-size: 1rem;
+    }
 
-.content--head {
-    display: flex;
-    padding: 1vw 0 0.5vw 0;
-    border-bottom: #454545 solid 1px;
-}
+    .content--head {
+        display: flex;
+        padding: 1vw 0 0.5vw 0;
+        border-bottom: #454545 solid 1px;
+    }
 
-.name {
-    width: 15%;
-    margin-left: 1vw;
-    text-align: center;
-}
+    .name {
+        width: 15%;
+        margin-left: 1vw;
+        text-align: center;
+    }
 
-.date {
-    display: none;
-}
+    .date {
+        display: none;
+    }
 
-.date__mobile {
-    display: block;
-    width: 11%;
-    text-align: center;
-}
+    .date__mobile {
+        display: block;
+        width: 11%;
+        text-align: center;
+    }
 
-.time {
-    width: 11%;
-    text-align: center;
-}
+    .time {
+        width: 11%;
+        text-align: center;
+    }
 
-.number {
-    width: 10%;
-    text-align: center;
-}
+    .number {
+        width: 10%;
+        text-align: center;
+    }
 
-.email {
-    width: 45%;
-}
+    .email {
+        width: 45%;
+    }
 }

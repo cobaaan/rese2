@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/shop.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/shop_all.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/review_star.css') }}" />
 @endsection
@@ -36,7 +36,7 @@
                 <div>
                     <div class="card__ttl">{{ $shop->name }}</div>
                     <div class="review__area card__review">
-                        <p class="{{ $averageRatings[$shop->id] }}"></p>
+                        <p class="review__area--star {{ $averageRatings[$shop->id] }}"></p>
                     </div>
                 </div>
                 @php

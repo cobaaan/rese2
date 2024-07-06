@@ -2,7 +2,9 @@
     width:90%;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    flex: 25%;
 }
 
 .card {
@@ -10,8 +12,8 @@
     height: 350px;
     border-radius: 10px;
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
-    margin: 1vw 1vw 1vw 1vw;
     background-color: white;
+    margin-bottom: 2vw;
 }
 
 .card__img {
@@ -72,8 +74,6 @@
     filter: brightness(0) saturate(100%) invert(84%) sepia(0%) saturate(0%) hue-rotate(194deg) brightness(89%) contrast(97%);
 }
 
-
-
 .search {
     margin-top: 3vw;
     background-color: white;
@@ -129,42 +129,44 @@
     margin-left: 10px;
 }
 
+
+
 @media (max-width: 768px) {
-.search {
-    width: 100%;
-}
-.search__form {
+    .search {
+        width: 100%;
+    }
 
-}
-.search__area {
-    width: 20%;
-}
-.search__genre {
-    width: 25%;
-}
+    .search__area {
+        width: 20%;
+    }
 
-.shop {
-    width:90%;
-    margin: 0 auto;
-    display: inherit;
-}
-.card {
-    width: 90%;
-    height: 350px;
-    margin: 4vh auto;
-}
-.card__top {
-    margin: 0 0 0 5vw;
-}
-.card__review {
+    .search__genre {
+        width: 25%;
+    }
 
-}
-.card__tag {
-    font-size: 1.2rem;
-    display: flex;
-    margin: 1vh 0 2vh 5vw;
-}
-.card__form {
-    margin: 1vh 0 0 5vw;
-}
+    .shop {
+        width:90%;
+        margin: 0 auto;
+        display: inherit;
+    }
+
+    .card {
+        width: 100%;
+        height: 350px;
+        margin: 4vh auto;
+    }
+
+    .card__top {
+        margin: 0 0 0 5vw;
+    }
+
+    .card__tag {
+        font-size: 1.2rem;
+        display: flex;
+        margin: 1vh 0 2vh 5vw;
+    }
+
+    .card__form {
+        margin: 1vh 0 0 5vw;
+    }
 }

@@ -8,9 +8,6 @@
 
 @section('content')
 
-
-
-
 <section id="modal">
     @if (session('flash_alert'))
     <div class="alert alert-danger">{{ session('flash_alert') }}</div>
@@ -47,7 +44,6 @@
         <button class="mt-3 btn btn-primary" type="submit">支払い</button>
     </form>
     <button id="close" class="cancel__btn">キャンセル</button>
-</div>
 </section>
 
 <div id="mask"></div>
@@ -56,7 +52,6 @@
     <h2 class="ttl">{{ $auth['name'] }}さん</h2>
 </div>
 <div class="body">
-    
     <div class="left">
         <h2 class="body__ttl">予約状況</h2>
         @if(!is_null($futureReservations))
@@ -64,7 +59,7 @@
         @foreach($futureReservations as $futureReservation)
         <div class="left__content">
             <div class="left__content--header">
-                <i class="bi bi-clock"></i>
+                <i class="left__content--header-icon bi bi-clock"></i>
                 <p class="left__content--ttl">予約{{ $counter + 1 }}</p>
                 <form action="/reserve/cancel" method="post"  class="left__content--cross">
                     @csrf
@@ -73,22 +68,22 @@
                 </form>
             </div>
             <?php $counter++; ?>
-            <table>
+            <table class="left__content--table">
                 <tr>
-                    <td>Shop</td>
-                    <td>{{ $futureReservation->shop->name }}</td>
+                    <td class="left__content--txt">Shop</td>
+                    <td class="left__content--txt">{{ $futureReservation->shop->name }}</td>
                 </tr>
                 <tr>
-                    <td>Date</td>
-                    <td>{{ $futureReservation->date }}</td>
+                    <td class="left__content--txt">Date</td>
+                    <td class="left__content--txt">{{ $futureReservation->date }}</td>
                 </tr>
                 <tr>
-                    <td>Time</td>
-                    <td>{{ substr($futureReservation->time, 0, 5) }}</td>
+                    <td class="left__content--txt">Time</td>
+                    <td class="left__content--txt">{{ substr($futureReservation->time, 0, 5) }}</td>
                 </tr>
                 <tr>
-                    <td>Number</td>
-                    <td>{{ $futureReservation->number }}</td>
+                    <td class="left__content--txt">Number</td>
+                    <td class="left__content--txt">{{ $futureReservation->number }}</td>
                 </tr>
             </table>
             <div class="card__footer">
@@ -96,20 +91,18 @@
                     {!! QrCode::size(100)->generate(route('visit', ['id' => $futureReservation->id])) !!}
                 </div>
                 <div class="card__footer--btn">
-                    <button type="menu" class="left__content--change-btn" id="open">事前決済</button>
+                    <button type="menu" class="left__content--change-btn open">事前決済</button>
                     <form class="card__footer--form" action="?" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{ $futureReservation->id }}">
                         <button class="left__content--change-btn" formaction="/reserve/change">変更</button>
                     </form>
                 </div>
-                
             </div>
         </div>
         @endforeach
         @endif
     </div>
-    
     <div class="center">
         <h2 class="body__ttl">お気に入り店舗</h2>
         <div class="center__content">
@@ -144,7 +137,6 @@
             </div>
         </div>
     </div>
-    
     <div class="right">
         <h2 class="body__ttl">来店済み</h2>
         @if(!is_null($pastReservations))
@@ -176,7 +168,6 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    const open = document.querySelector('#open');
     const close = document.querySelector('#close');
     const modal = document.querySelector('#modal');
     const mask = document.querySelector('#mask');
@@ -194,9 +185,11 @@
         fill: 'forwards',
     };
     
-    open.addEventListener('click', () => {
-        modal.animate(showKeyframes, options);
-        mask.animate(showKeyframes, options);
+    document.querySelectorAll('.open').forEach(button => {
+        button.addEventListener('click', () => {
+            modal.animate(showKeyframes, options);
+            mask.animate(showKeyframes, options);
+        });
     });
     
     close.addEventListener('click', () => {
@@ -207,8 +200,6 @@
     mask.addEventListener('click', () => {
         close.click();
     });
-    
-    
     
     const stripe_public_key = "{{ config('stripe.stripe_public_key') }}"
     const stripe = Stripe(stripe_public_key);

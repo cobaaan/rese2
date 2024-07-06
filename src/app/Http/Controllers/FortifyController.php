@@ -33,7 +33,6 @@ class FortifyController extends Controller
         } elseif (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             return redirect()->intended('/');
         } elseif (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-            //return redirect()->intended('/');
             return redirect('/');
         }
         
@@ -57,8 +56,6 @@ class FortifyController extends Controller
         
         return redirect('/');
     }
-    
-    
     
     public function adminCreate(AdminRequest $request) {
         $auth = Auth::user();
@@ -104,4 +101,3 @@ class FortifyController extends Controller
                     return view('auth/verify', compact('auth'));
                 }
             }
-            

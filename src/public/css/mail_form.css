@@ -1,6 +1,6 @@
 .info {
     width: 60%;
-    margin: auto;
+    margin: 0 auto 5vh;
 }
 
 .info__ttl {
@@ -20,12 +20,14 @@
     font-size: 2rem;
     margin-bottom: 0.5vw;
 }
+
 .form__subject {
     border: none;
     padding: 1vw;
     font-size: 2rem;
     cursor: pointer;
     border-radius: 5px;
+    margin-bottom: 2vh;
 }
 
 .form__subject--error {
@@ -38,6 +40,8 @@
     font-size: 2rem;
     cursor: pointer;
     border-radius: 5px;
+    width: 100%;
+    margin: 3vh 0 2vh 0;
 }
 
 .form__btn {
@@ -71,30 +75,35 @@
 
 
 @media (max-width: 768px) {
-.info {
-    width: 90%;
-    margin: 0 auto;
-}
+    .info {
+        width: 90%;
+        margin: 0 auto;
+    }
 
-.form__subject {
-    padding: 3vw;
-}
+    .form__subject {
+        padding: 3vw;
+    }
 
-.form__body{
-    resize: auto;
-    max-width: 330px;
-    max-height: 300px;
-    min-width: 50px;
-    min-height: 50px;
-    padding: 3vw;
-}
+    .form__body{
+        resize: auto;
+        max-width: 330px;
+        max-height: 300px;
+        min-width: 50px;
+        min-height: 50px;
+        padding: 3vw;
+    }
 
-.form__btn {
-    box-shadow: 2px 2px #0066ff;
-    padding: 1vw 2vw 1vw 2vw;
-}
+    .form__btn {
+        box-shadow: 2px 2px #0066ff;
+        padding: 1vw 2vw 1vw 2vw;
+    }
 
-.form__btn:active {
-    transform: translate(2px, 2px);
-}
+    .form__btn:active {
+        transform: translate(2px, 2px);
+    }
+
+    .error__message {
+        font-size: 1.5rem;
+        padding: 2vw;
+    }
 }

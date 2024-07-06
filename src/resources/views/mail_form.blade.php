@@ -11,19 +11,21 @@
         <form action="/mail/send" method="post">
             @csrf
             <input class="form__subject" type="text" name="subject" placeholder="件名">
-            <div class="form__subject--error">
-                @error('subject')
-                <p class="error__message">{{ $errors->first('subject') }}</p>
-                @enderror
-            </div>
             <br>
-            <textarea class="form__body" name="body" id="" cols="70" rows="10" placeholder="送信内容"></textarea>
-            <div class="form__subject--error">
-                @error('body')
-                <p class="error__message">{{ $errors->first('body') }}</p>
-                @enderror
-            </div>
+            
+            @error('subject')
+            <p class="error__message">{{ $errors->first('subject') }}</p>
+            @enderror
             <br>
+            
+            <textarea class="form__body" name="body" rows="10" placeholder="送信内容"></textarea>
+            <br>
+            
+            @error('body')
+            <p class="error__message">{{ $errors->first('body') }}</p>
+            @enderror
+            <br>
+            
             <button class="form__btn">送信</button>
         </form>
     </div>

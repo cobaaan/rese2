@@ -36,18 +36,14 @@ class ReviewRequest extends FormRequest
         ];
     }
     
-    // バリデーションエラーが発生したときのリダイレクト先を指定
     protected function failedValidation($validator)
     {
         $requests = $this->all();
         
-        // バリデーションエラーメッセージを取得してセッションにセット
         $this->session()->flash('errors', $validator->errors());
         
-        // リダイレクト先のURLにパラメータを付けてリダイレクト
         $this->redirect = route('review', $requests);
         
-        // 親クラスのfailedValidationメソッドを呼び出してバリデーションエラーの処理を続行
         parent::failedValidation($validator);
     }
 }

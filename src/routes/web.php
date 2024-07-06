@@ -22,10 +22,8 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-// FavoriteController
 Route::post('/favorite/{id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 
-// FortifyController
 Route::middleware(['auth:admin'])->prefix('/admin')->group(function () {
     Route::post('/create', [FortifyController::class, 'adminCreate']);
     Route::get('/verify', [FortifyController::class,'verify']);
@@ -34,23 +32,19 @@ Route::middleware(['auth:admin'])->prefix('/admin')->group(function () {
 Route::post('/login', [FortifyController::class, 'login']);
 Route::post('/logout', [FortifyController::class, 'logout'])->name('logout');
 
-// MailController
 Route::middleware(['auth:admin'])->prefix('/mail')->group(function () {
     Route::match(['get', 'post'], '/form', [MailController::class, 'mailForm'])->name('mail_form');
     Route::post('/send', [MailController::class, 'sendMail']);
 });
 
-// PaymentController
 Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store')->middleware(['auth', 'verified']);
 
-// ReseController
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::match(['get', 'post'], '/mypage', [ReseController::class, 'myPage']);
     Route::get('/thanks', [ReseController::class,'thanks']);
     Route::get('/done', [ReseController::class,'done']);
 });
 
-// ReserveController
 Route::middleware(['auth', 'verified'])->prefix('/reserve')->group(function (){
     Route::post('', [ReserveController::class, 'reserve']);
     Route::post('/cancel', [ReserveController::class, 'cancel']);
@@ -58,13 +52,11 @@ Route::middleware(['auth', 'verified'])->prefix('/reserve')->group(function (){
     Route::post('/update', [ReserveController::class, 'updateReserve']);
 });
 
-// ReviewController
 Route::middleware(['auth', 'verified'])->prefix('/review')->group(function (){
     Route::get('', [ReviewController::class,'review'])->name('review');
     Route::post('/post', [ReviewController::class,'reviewPost']);
 });
 
-// ShopController
 Route::middleware(['auth:manager'])->prefix('/shop')->group(function() {
     Route::get('/manager', [ShopController::class, 'shopManager'])->name('shop_manager');
     Route::get('/reserve', [ShopController::class, 'shopReserve']);

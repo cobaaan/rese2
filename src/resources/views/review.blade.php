@@ -32,12 +32,12 @@
             </select>
             <p class="review__txt">レビュー</p>
             <div class="review__textarea">
-                <textarea class="review__textarea--input" name="comment" rows="5" cols="60" placeholder="レビューを書いてください"></textarea>
-                <div class="form__subject--error">
-                    @error('comment')
-                    <p class="error__message">{{ $errors->first('comment') }}</p>
-                    @enderror
-                </div>
+                <textarea class="review__textarea--input" name="comment" rows="5" cols="60" maxlength="1000" placeholder="レビューを書いてください"></textarea>
+                
+                @error('comment')
+                <p class="error__message">{{ $errors->first('comment') }}</p>
+                @enderror
+                
             </div>
             <input type="hidden" name="user_id" value="{{ $auth->id }}">
             <input type="hidden" name="shop_id" value="{{ $requests['shop_id'] }}">

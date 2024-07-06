@@ -32,7 +32,7 @@
             <h2 class="shop__name">{{ $requests['name'] }}</h2>
             <div class="review__area shop__header--rate">
                 <button class="review__area--btn" id="open">レビューを見る</button>
-                <p class="{{ $averageRatings[$requests['id']] }}"></p>
+                <p class="review__area--star {{ $averageRatings[$requests['id']] }}"></p>
             </div>
         </div>
         <img class="shop__img" src="{{ asset($requests['image_path']) }}">
@@ -43,7 +43,6 @@
         <p class="shop__description">{{ $requests['description'] }}</p>
     </div>
     
-    {{--@auth--}}
     <div class="reserve">
         <h2 class="reserve__ttl">予約</h2>
         <form action="/reserve" method="post" id="reserveForm">
@@ -117,11 +116,9 @@
             <button class="reserve__btn">予約する</button>
         </form>
     </div>
-    {{-- @endauth--}}
 </div>
 
 <script>
-    //モーダルウインドウ表示・非表示
     const open = document.querySelector('#open');
     const close = document.querySelector('#close');
     const modal = document.querySelector('#modal');
@@ -129,10 +126,12 @@
     const showKeyframes = {
         opacity: [0, 1],
         visibility: 'visible',
+        display: 'block',
     };
     const hideKeyframes = {
         opacity: [1, 0],
         visibility: 'hidden',
+        display: 'none',
     };
     const options = {
         duration: 800,
@@ -155,7 +154,6 @@
     });
     
     
-    //入力内容即時反映
     document.addEventListener('DOMContentLoaded', function() {
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('time');

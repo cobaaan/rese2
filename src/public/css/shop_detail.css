@@ -17,12 +17,8 @@
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
-    margin-bottom: 100px;
+    display: none;
 }
-
-
-
-
 
 .content {
     width: 90%;
@@ -68,8 +64,6 @@
 .shop__description {
     font-size: 1.6rem;
 }
-
-
 
 .reserve {
     width: 46%;
@@ -206,10 +200,10 @@
     border-radius: 10px;
 }
 
-
 input[type="date"]{
     position: relative;
 }
+
 input[type=date]::-webkit-calendar-picker-indicator {
     position: absolute;
     width: 100%;
@@ -220,6 +214,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 input[type="time"]{
     position: relative;
 }
+
 input[type=time]::-webkit-calendar-picker-indicator {
     position: absolute;
     width: 100%;
@@ -230,21 +225,6 @@ input[type=time]::-webkit-calendar-picker-indicator {
 input {
     text-indent: 5px;
     width: 100%;
-}
-
-
-
-.modal {
-    position: fixed;
-    top: 0vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255,255,255,0.5);
-    position: fixed;
-    z-index: 10;
-    overflow-y: scroll;
 }
 
 .modal__back {
@@ -282,11 +262,10 @@ input {
 .modal__content {
     width: 90%;
     height: auto;
-    margin: 0 auto;
+    margin: 2vh auto;
     background-color: white;
     border: solid;
     border-radius: 10px;
-    margin-top: 2vh;
     padding: 1vw;
     z-index: 10;
 }
@@ -325,7 +304,6 @@ input {
     cursor: pointer;
 }
 
-
 .form__subject--error {
     margin: 1vw 0 2vw 0;
 }
@@ -344,93 +322,93 @@ input {
 }
 
 
+
 @media (max-width: 768px) {
     .content {
-    width: 90%;
-    margin: 0 auto 5vh;
-    display: inherit;
-}
+        width: 90%;
+        margin: 0 auto 5vh;
+        display: inherit;
+    }
 
-.shop {
-    width: 100%;
-}
+    .shop {
+        width: 100%;
+    }
 
-.reserve {
-    width: 100%;
-    margin-top: 5vh;
-    padding-bottom: 10px;
-}
+    .reserve {
+        width: 100%;
+        margin-top: 5vh;
+        padding-bottom: 10px;
+    }
 
-.reserve__ttl {
-    padding: 1vh 0 0 3vw;
-}
-.reserve__date {
-    margin: 1vh 0 0 3vw;
-    padding: 1vh 0 1vh 0;
-}
+    .reserve__ttl {
+        padding: 1vh 0 0 3vw;
+    }
 
-.reserve__time {
-    margin: 0 0 0 2vw;
-}
+    .reserve__date {
+        margin: 1vh 0 0 3vw;
+        padding: 1vh 0 1vh 0;
+    }
 
-.reserve__time--time
-{
-    padding: 1vh 0 1vh 0;
-}
+    .reserve__time {
+        margin: 0 0 0 2vw;
+    }
 
-.reserve__time--minute
-{
-    padding: 1vh 0 1vh 0;
-}
+    .reserve__time--time{
+        padding: 1vh 0 1vh 0;
+    }
 
-.reserve__number {
-    padding: 1vh 0 1vh 0;
-    margin: 0 0 0 3vw;
-}
+    .reserve__time--minute
+    {
+        padding: 1vh 0 1vh 0;
+    }
 
-.reserve__confirm {
-    width: 94%;
-    height: 170px;
-    margin: 2vh auto 5vh;
-}
+    .reserve__number {
+        padding: 1vh 0 1vh 0;
+        margin: 0 0 0 3vw;
+    }
 
+    .reserve__confirm {
+        width: 94%;
+        height: 170px;
+        margin: 2vh auto 5vh;
+    }
 
-#modal {
-    max-width: 90%;
-}
+    #modal {
+        max-width: 90%;
+    }
 
-.modal__back {
-    width: 90%;
-}
+    .modal__back {
+        width: 90%;
+    }
 
-.modal__header--ttl {
-    font-size: 2rem;
-}
+    .modal__header--ttl {
+        font-size: 2rem;
+    }
 
-.modal__header--btn {
-    width: 30px;
-    height: 30px;
-    font-size: 2rem;
-}
+    .modal__header--btn {
+        width: 30px;
+        height: 30px;
+        font-size: 2rem;
+    }
 
-.modal__content--header {
-    display: inherit;
-}
+    .modal__content--header {
+        display: inherit;
+    }
 
-.modal__content--name {
-    margin-left: 3vw;
-}
+    .modal__content--name {
+        margin-left: 3vw;
+    }
 
-.modal__content--star {
-    margin-left: 2.5vw;
-}
+    .modal__content--star {
+        margin-left: 2.5vw;
+    }
 
-.modal__content--comment-ttl {
-    margin-left: 3vw;
-}
+    .modal__content--comment-ttl {
+        margin-left: 3vw;
+    }
 
-.modal__content--comment {
-    width: 95%;
-    margin: 3vh auto;
-}
+    .modal__content--comment {
+        width: 95%;
+        margin: 3vh auto;
+    }
 }

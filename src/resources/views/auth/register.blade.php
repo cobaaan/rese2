@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/fortify.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/register.css') }}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 @endsection
 
@@ -13,35 +13,36 @@
             @csrf
             <div class="form__content">
                 <div class="form__content--item">
-                    <i class="bi bi-person-fill"></i>
-                    <input class="form__input form__content--right" type="text" name="name" value="{{ old('name') }}" placeholder="Username">
+                    <i class="form__content--icon bi bi-person-fill"></i>
+                    <input class="form__content--input form__content--right" type="text" name="name" value="{{ old('name') }}" placeholder="Username">
                 </div>
-                <div class="error">
-                    @if($errors->has('name'))
-                    <div class="error__txt">{{ $errors->first('name') }}</div>
-                    @endif
-                </div>
+                
+                @if($errors->has('name'))
+                <div class="error__txt">{{ $errors->first('name') }}</div>
+                @endif
+                
                 <div class="form__content--item">
-                    <i class="bi bi-envelope-fill"></i>
-                    <input class="form__input form__content--right" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+                    <i class="form__content--icon bi bi-envelope-fill"></i>
+                    <input class="form__content--input form__content--right" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                 </div>
-                <div class="error">
-                    @if($errors->has('email'))
-                    <div class="error__txt">{{ $errors->first('email') }}</div>
-                    @endif
-                </div>
+                
+                @if($errors->has('email'))
+                <div class="error__txt">{{ $errors->first('email') }}</div>
+                @endif
+                
                 <div class="form__content--item">
-                    <i class="bi bi-file-lock-fill"></i>
-                    <input class="form__input form__content--right" type="password" name="password" placeholder="Password">
+                    <i class="form__content--icon bi bi-file-lock-fill"></i>
+                    <input class="form__content--input form__content--right" type="password" name="password" placeholder="Password">
                 </div>
-                <div class="error">
-                    @if($errors->has('password'))
-                    <div class="error__txt">{{ $errors->first('password') }}</div>
-                    @endif
-                </div>
+                
+                @if($errors->has('password'))
+                <div class="error__txt">{{ $errors->first('password') }}</div>
+                @endif
+                
                 <div class="form__content--item">
-                    <div><input type="hidden" name="role" value="user"></div>
-                    <button class="form__btn">登録</button>
+                    <div></div>
+                    <input type="hidden" name="role" value="user">
+                    <button class="form__content--btn">登録</button>
                 </div>
             </div>
         </form>

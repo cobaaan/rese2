@@ -7,27 +7,25 @@
 @section('content')
 <div class="content">
     <div class="current">
-        <div class="">
-            <h2 class="current__ttl">現在の予約</h2>
-            <table>
-                <tr>
-                    <td>Shop</td>
-                    <td>{{ $shops[$reserves[0]->shop_id - 1]->name }}</td>
-                </tr>
-                <tr>
-                    <td>Date</td>
-                    <td>{{ $reserves[0]->date }}</td>
-                </tr>
-                <tr>
-                    <td>Time</td>
-                    <td>{{ substr($reserves[0]->time, 0, 5) }}</td>
-                </tr>
-                <tr>
-                    <td>Number</td>
-                    <td>{{ $reserves[0]->number }}</td>
-                </tr>
-            </table>
-        </div>
+        <h2 class="current__ttl">現在の予約</h2>
+        <table class="current__table">
+            <tr>
+                <td class="current__table--td">Shop</td>
+                <td class="current__table--td">{{ $shops[$reserves[0]->shop_id - 1]->name }}</td>
+            </tr>
+            <tr>
+                <td class="current__table--td">Date</td>
+                <td class="current__table--td">{{ $reserves[0]->date }}</td>
+            </tr>
+            <tr>
+                <td class="current__table--td">Time</td>
+                <td class="current__table--td">{{ substr($reserves[0]->time, 0, 5) }}</td>
+            </tr>
+            <tr>
+                <td class="current__table--td">Number</td>
+                <td class="current__table--td">{{ $reserves[0]->number }}</td>
+            </tr>
+        </table>
     </div>
     
     <div class="reserve">
@@ -68,22 +66,22 @@
                 <option value="10">10人以上</option>
             </select>
             <div class="reserve__confirm">
-                <table>
+                <table class="reserve__confirm--table">
                     <tr>
-                        <td>Shop</td>
-                        <td>{{ $shops[$reserves[0]->shop_id - 1]->name }}</td>
+                        <td class="reserve__confirm--td">Shop</td>
+                        <td class="reserve__confirm--td">{{ $shops[$reserves[0]->shop_id - 1]->name }}</td>
                     </tr>
                     <tr>
-                        <td>Date</td>
-                        <td id="confirmDate"></td>
+                        <td class="reserve__confirm--td">Date</td>
+                        <td class="reserve__confirm--td" id="confirmDate"></td>
                     </tr>
                     <tr>
-                        <td>Time</td>
-                        <td id="confirmTime"></td>
+                        <td class="reserve__confirm--td">Time</td>
+                        <td class="reserve__confirm--td" id="confirmTime"></td>
                     </tr>
                     <tr>
-                        <td>Number</td>
-                        <td id="confirmNumber"></td>
+                        <td class="reserve__confirm--td">Number</td>
+                        <td class="reserve__confirm--td" id="confirmNumber"></td>
                     </tr>
                 </table>
             </div>

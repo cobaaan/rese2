@@ -10,12 +10,12 @@
     <title>Rese</title>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="header-area">
             <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
             </div>
             <a href="/" class="header-area-ttl">Rese</a>
         </div>
@@ -28,19 +28,19 @@
         
         @if(!is_null($admin))
         <ul class="slide-menu" id="slide-menu">
-            <li>
+            <li class="slide-menu__list">
                 <form action="/admin/register" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">AdminRegister</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/mail/form" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">SendMail</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/logout" method="post">
                     @csrf
                     <button class="ham__nav--link-txt">Logout</button>
@@ -49,19 +49,19 @@
         </ul>
         @elseif(!is_null($manager))
         <ul class="slide-menu" id="slide-menu">
-            <li>
+            <li class="slide-menu__list">
                 <form action="/shop/manager" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">ShopManager</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/shop/reserve" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">ShopReserve</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/logout" method="post">
                     @csrf
                     <button class="ham__nav--link-txt">Logout</button>
@@ -70,19 +70,19 @@
         </ul>
         @elseif(!is_null($user))
         <ul class="slide-menu" id="slide-menu">
-            <li>
+            <li class="slide-menu__list">
                 <form action="/" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Home</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/mypage" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Mypage</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/logout" method="post">
                     @csrf
                     <button class="ham__nav--link-txt">Logout</button>
@@ -91,19 +91,19 @@
         </ul>
         @elseif(is_null($admin) && is_null($manager) && is_null($user))
         <ul class="slide-menu" id="slide-menu">
-            <li>
+            <li class="slide-menu__list">
                 <form action="/" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Home</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/register" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Registration</button>
                 </form>
             </li>
-            <li>
+            <li class="slide-menu__list">
                 <form action="/login" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">Login</button>
