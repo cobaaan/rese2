@@ -82,22 +82,22 @@
                 <option value="10">10人以上</option>
             </select>
             <div class="reserve__confirm">
-                <table>
+                <table class="reserve__confirm--table">
                     <tr>
-                        <td>Shop</td>
-                        <td>{{ $requests['name'] }}</td>
+                        <td class="reserve__confirm--txt">Shop</td>
+                        <td class="reserve__confirm--txt">{{ $requests['name'] }}</td>
                     </tr>
                     <tr>
-                        <td>Date</td>
-                        <td id="confirmDate"></td>
+                        <td class="reserve__confirm--txt">Date</td>
+                        <td class="reserve__confirm--txt" id="confirmDate"></td>
                     </tr>
                     <tr>
-                        <td>Time</td>
-                        <td id="confirmTime"></td>
+                        <td class="reserve__confirm--txt">Time</td>
+                        <td class="reserve__confirm--txt" id="confirmTime"></td>
                     </tr>
                     <tr>
-                        <td>Number</td>
-                        <td id="confirmNumber"></td>
+                        <td class="reserve__confirm--txt">Number</td>
+                        <td class="reserve__confirm--txt" id="confirmNumber"></td>
                     </tr>
                 </table>
             </div>

@@ -50,7 +50,13 @@ class ShopController extends Controller
         
         $reviews = Review::where('shop_id', $request->id)->get();
         
-        return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        if(empty($requests)) {
+            return redirect('/');
+            
+        }
+        else {
+            return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
+        }
     }
     
     public function shopCreate(ShopRequest $request) {
@@ -74,7 +80,7 @@ class ShopController extends Controller
         
         Shop::create($params);
         
-        return view('thanks', compact('auth'))->with('message', '店舗登録ありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', '店舗登録ありがとうございます。')->with('message1', 'ホーム');
     }
     
     public function shopManager() {
@@ -187,7 +193,7 @@ class ShopController extends Controller
         
         Shop::where('id', $requests['shop_id'])->update($nonNull);
         
-        return view('thanks', compact('auth'))->with('message', '店舗情報の変更をしました。');
+        return view('thanks', compact('auth'))->with('message', '店舗情報の変更をしました。')->with('message1', 'ホーム');
     }
     
     public function visit(Request $request) {
@@ -202,6 +208,6 @@ class ShopController extends Controller
         
         Reserve::where('id', $request['id'])->update(['is_visit' => 1]);
         
-        return view('thanks', compact('auth'))->with('message', '来店済みに変更しました。');
+        return view('thanks', compact('auth'))->with('message', '来店済みに変更しました。')->with('message1', 'ホーム');
     }
 }

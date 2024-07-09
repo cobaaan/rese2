@@ -7,12 +7,10 @@
 @section('content')
 <div class="content">
     <div class="left">
-        
         @if(isset($shop))
         <h2 class="left__ttl">登録済み店舗情報</h2>
         <div class="left__shop">
             <h2 class="left__name">{{ $shop->name }}</h2>
-            <p></p>
             <img class="left__img" src="{{ asset($shop->image_path) }}">
             <div class="left__tag">
                 <p class="left__area-genre">#{{ $shop->area->area }}</p>

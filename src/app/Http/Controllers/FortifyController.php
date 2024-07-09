@@ -14,6 +14,7 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 class FortifyController extends Controller
@@ -57,47 +58,45 @@ class FortifyController extends Controller
         return redirect('/');
     }
     
+    public function adminRegister() {
+        $auth = Auth::user();
+        
+        return view('admin_register', compact('auth'));
+    }
+    
+    public function verify() {
+        $auth = Auth::user();
+        
+        return view('auth/verify', compact('auth'));
+    }
+    
     public function adminCreate(AdminRequest $request) {
         $auth = Auth::user();
         $requests = $request->all();
         $dt = Carbon::now();
         
-        switch ($request->role) {
-            case 'user':
-                $user = User::create([
-                    'name' => $requests['name'],
-                    'email' => $requests['email'],
-                    'password' => Hash::make($requests['password']),
-                ]);
-                break;
-                case 'manager':
-                    $user = Manager::create([
-                        'name' => $requests['name'],
-                        'email' => $requests['email'],
-                        'password' => Hash::make($requests['password']),
-                    ]);
-                    break;
-                    case 'admin':
-                        $user = Admin::create([
-                            'name' => $requests['name'],
-                            'email' => $requests['email'],
-                            'password' => Hash::make($requests['password']),
-                        ]);
-                        break;
-                    }
-                    
-                    return view('thanks', compact('auth'))->with('message', '新規ユーザーを登録しました。');
-                }
-                
-                public function adminRegister() {
-                    $auth = Auth::user();
-                    
-                    return view('admin_register', compact('auth'));
-                }
-                
-                public function verify() {
-                    $auth = Auth::user();
-                    
-                    return view('auth/verify', compact('auth'));
-                }
-            }
+        if($request->role === 'user'){
+            $user = User::create([
+                'name' => $requests['name'],
+                'email' => $requests['email'],
+                'password' => Hash::make($requests['password']),
+            ]);
+        }
+        else if($request->role === 'manager') {
+            $user = Manager::create([
+                'name' => $requests['name'],
+                'email' => $requests['email'],
+                'password' => Hash::make($requests['password']),
+            ]);
+        }
+        else if($request->role === 'admin') {
+            $user = Admin::create([
+                'name' => $requests['name'],
+                'email' => $requests['email'],
+                'password' => Hash::make($requests['password']),
+            ]);
+        }
+        
+        return view('thanks', compact('auth'))->with('message', '新規ユーザーを登録しました。')->with('message1', 'ホーム');
+    }
+}

@@ -62,7 +62,7 @@ class ReseController extends Controller
     public function thanks (){
         $auth = Auth::user();
         
-        return view('thanks', compact('auth'))->with('message', '会員登録ありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', '会員登録ありがとうございます。')->with('message1', 'ログインする');
     }
     
     public function reviewStar() {

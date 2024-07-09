@@ -36,6 +36,6 @@ class ReviewController extends Controller
         
         Review::create($param);
         
-        return view('thanks', compact('auth'))->with('message', 'レビュー投稿ありがとうございます。');
+        return view('thanks', compact('auth'))->with('message', 'レビュー投稿ありがとうございます。')->with('message1', 'ホーム');
     }
 }

@@ -31,50 +31,45 @@
     @foreach ($shops as $shop)
     <div class="card" data-area="{{ $shop->area->area }}" data-genre="{{ $shop->genre->genre }}" data-name="{{ $shop->name }}">
         <img class="card__img" src="{{ $shop->image_path }}">
-        <div>
-            <div class="card__top">
-                <div>
-                    <div class="card__ttl">{{ $shop->name }}</div>
-                    <div class="review__area card__review">
-                        <p class="review__area--star {{ $averageRatings[$shop->id] }}"></p>
-                    </div>
-                </div>
-                @php
-                $color = 'card__form--heart-img';
-                @endphp
-                @auth
-                @foreach($favorites as $favorite)
-                @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
-                @php
-                $color = 'card__form--heart-red';
-                @endphp
-                @endif
-                @endforeach
-                <form method="post" action="?">
-                    @csrf
-                    <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
-                </form>
-                @endauth
-            </div>
-            
-            <div class="card__tag">
-                <div>#{{ $shop->area->area }}</div>
-                <div>#{{ $shop->genre->genre }}</div>
-            </div>
-            <div>
-                <form class="card__form" method="post" action="?">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $shop->id }}">
-                    <input type="hidden" name="name" value="{{ $shop->name }}">
-                    <input type="hidden" name="area" value="{{ $shop->area->area }}">
-                    <input type="hidden" name="genre" value="{{ $shop->genre->genre }}">
-                    <input type="hidden" name="description" value="{{ $shop->description }}">
-                    <input type="hidden" name="image_path" value="{{ $shop->image_path }}">
-                    
-                    <button class="card__form--btn" formaction="/shop/detail">詳しく見る</button>
-                </form>
-            </div>
+        
+        <div class="card__ttl">{{ $shop->name }}</div>
+        
+        <div class="review__area card__review">
+            <p class="review__area--star {{ $averageRatings[$shop->id] }}"></p>
         </div>
+        
+        @php
+        $color = 'card__form--heart-img';
+        @endphp
+        @auth
+        @foreach($favorites as $favorite)
+        @if($favorite['user_id'] === $auth->id && $favorite['shop_id'] === $shop->id)
+        @php
+        $color = 'card__form--heart-red';
+        @endphp
+        @endif
+        @endforeach
+        <form method="post" action="?" class="card__form--heart-1">
+            @csrf
+            <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
+        </form>
+        @endauth
+        
+        <div class="card__tag">
+            <div>#{{ $shop->area->area }}</div>
+            <div>#{{ $shop->genre->genre }}</div>
+        </div>
+        
+        <form class="card__form" method="post" action="?">
+            @csrf
+            <input type="hidden" name="id" value="{{ $shop->id }}">
+            <input type="hidden" name="name" value="{{ $shop->name }}">
+            <input type="hidden" name="area" value="{{ $shop->area->area }}">
+            <input type="hidden" name="genre" value="{{ $shop->genre->genre }}">
+            <input type="hidden" name="description" value="{{ $shop->description }}">
+            <input type="hidden" name="image_path" value="{{ $shop->image_path }}">
+            <button class="card__form--btn" formaction="/shop/detail">詳しく見る</button>
+        </form>
     </div>
     @endforeach
 </div>

@@ -159,6 +159,6 @@ return [
     
     'redirects' => [
         'logout' => config('app.url') . '/',
-        'register' => '/thanks'
+        'register' => '/thanks',
     ],
 ];

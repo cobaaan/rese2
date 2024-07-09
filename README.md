@@ -11,30 +11,33 @@ Rese
 - 本番環境：http://atte.blog
 
 - ログインは、admin・shopManager・userの3つの役割で行える
-- admin(管理者) Email:sunnychiba@samurai.example Password:password
+- admin(管理者)  Email:k.takakura@poppoya.example Password:password
 - shopManager(店舗管理者) Email:kitaouji@kinkin.example Password:password
-- user(一般ユーザー) Email:k.takakura@poppoya.example Password:password
+- user(一般ユーザー) Email:sunnychiba@samurai.example Password:password
 
 ## 機能一覧
+- 飲食店一覧
+- 飲食店詳細表示機能
+- エリア検索機能
+- ジャンル検索機能
+- 店名検索機能
+- レビュー表示機能
+- 会員登録機能（一般ユーザーアカウント）
 - ログイン機能
 - ログアウト機能
-- ユーザー登録機能(userアカウントのみ)
-- 飲食店一覧閲覧
-- 飲食店の詳細情報確認
-- 飲食店検索(エリア・ジャンル・キーワード)
-- レビューの閲覧
-- お気に入り登録・解除
-- 飲食店の予約・キャンセル・予約の変更
-- ユーザーの予約の確認
-- 事前決済
-- レビュー投稿
-- 飲食店新規登録
-- 飲食店情報の変更
-- 飲食店側の予約状況確認
-- adminロールによるユーザー登録機能(adminアカウント・shopManagerアカウント・userアカウント)
-- アカウント全員に対するメールの一斉送信
-- 来店確認機能
-  
+- お気に入り追加機能
+- お気に入り削除機能
+- 予約機能
+- 予約削除機能
+- 予約変更機能
+- 事前決済機能
+- 来店済み確認機能
+- レビュー投稿機能
+- 店舗新規登録機能
+- 店舗情報変更機能
+- 店舗の予約確認機能
+- 管理者による会員登録機能（管理者アカウント・店舗マネージャーアカウント・一般ユーザーアカウント）
+- 全アカウントに対する一斉メール送信機能
 
 ## 使用技術(実行環境)
 - PHP8.3.3
@@ -46,7 +49,7 @@ Rese
 
 ## 環境構築
 **Dockerビルド**
-1. `git clone git@github.com:cobaaan/rese.git`
+1. `git clone git@github.com:cobaaan/rese2.git`
 2. DockerDesktopアプリを立ち上げる
 3. `docker-compose up -d --build`
 

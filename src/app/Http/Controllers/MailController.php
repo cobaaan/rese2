@@ -51,6 +51,6 @@ class MailController extends Controller
             });
         }
         
-        return view('thanks', compact('auth'))->with('message', 'メールを送信しました。');
+        return view('thanks', compact('auth'))->with('message', 'メールを送信しました。')->with('message1', 'ホーム');
     }
 }

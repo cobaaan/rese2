@@ -19,6 +19,7 @@
     width: 90%;
     margin: 0 auto;
     padding-top: 1vw;
+    text-align: right;
 }
 
 .form__content--item {
@@ -46,11 +47,19 @@
     border: none;
     border-radius: 5px;
     padding: 0.5vw 1vw 0.5vw 1vw;
-    margin: 1vw 1vw 1vw 0;
+    margin: 1vw 0 1vw 0;
     cursor: pointer;
 }
 
-
+.error__txt {
+    text-align: left;
+    margin: 0.5vw 0 0.5vw 4vw;
+    font-size: 1.5rem;
+    padding: 1vw;
+    background-color: #dc143c;
+    border-radius: 5px;
+    color: white;
+}
 
 @media (max-width: 768px){
     .content {
