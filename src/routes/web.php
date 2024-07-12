@@ -21,16 +21,6 @@ use App\Http\Controllers\ShopController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/email/verify', [FortifyController::class, 'emailVerify'])
-->middleware(['auth', 'signed'])
-->name('verification.notice');
-
-Route::post('/email/verification-notification', [FortifyController::class, 'resend'])
-->middleware(['auth', 'throttle:6,1'])
-->name('verification.send');
-*/
-
 
 Route::post('/favorite/{id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 

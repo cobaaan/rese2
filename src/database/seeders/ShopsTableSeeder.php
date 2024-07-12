@@ -25,7 +25,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 2,
             'name' => '牛助',
@@ -35,7 +35,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 3,
             'genre_id' => 3,
             'name' => '戦慄',
@@ -45,7 +45,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 4,
             'name' => 'ルーク',
@@ -55,7 +55,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 3,
             'genre_id' => 5,
             'name' => '志摩屋',
@@ -65,7 +65,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 2,
             'name' => '香',
@@ -75,7 +75,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 4,
             'name' => 'JJ',
@@ -85,7 +85,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 5,
             'name' => 'らーめん極み',
@@ -95,7 +95,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 3,
             'name' => '鳥雨',
@@ -105,7 +105,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 1,
             'name' => '築地色合',
@@ -115,7 +115,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 2,
             'name' => '晴海',
@@ -125,7 +125,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 3,
             'genre_id' => 2,
             'name' => '三子',
@@ -135,7 +135,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 3,
             'name' => '八戒',
@@ -145,7 +145,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 1,
             'name' => '福助',
@@ -155,7 +155,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 5,
             'name' => 'ラー北',
@@ -165,7 +165,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 3,
             'name' => '翔',
@@ -175,7 +175,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 1,
             'name' => '経緯',
@@ -185,7 +185,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 1,
             'genre_id' => 2,
             'name' => '漆',
@@ -195,7 +195,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 3,
             'genre_id' => 4,
             'name' => 'THE TOOL',
@@ -205,7 +205,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
         
         $param = [
-            'manager_id' => 2,
+            'manager_id' => 3,
             'area_id' => 2,
             'genre_id' => 1,
             'name' => '木船',

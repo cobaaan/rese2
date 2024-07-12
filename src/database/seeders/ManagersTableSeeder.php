@@ -23,6 +23,13 @@ class ManagersTableSeeder extends Seeder
         ];
         DB::table('managers')->insert($param);
         
+        $param = [
+            'name' => '渡哲也',
+            'email' => 'ishiharapro@example',
+            'password' => Hash::make('password'),
+        ];
+        DB::table('managers')->insert($param);
+        
         Manager::factory()->count(1)->create();
         
     }

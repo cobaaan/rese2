@@ -42,7 +42,7 @@
                 <i class="form__content--icon bi bi-exclude"></i>
                 <select class="form__content--input form__content--right" name="role">
                     <option value="admin">Admin</option>
-                    <option value="manager">Manager</option>
+                    <option value="manager">ShopManager</option>
                     <option value="user">User</option>
                 </select>
             </div>
