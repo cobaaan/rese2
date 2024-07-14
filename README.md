@@ -84,7 +84,7 @@ Userアカウントでログイン後、MyPageに遷移するタイミング、�
 ## 使用技術(実行環境)
 - PHP8.3.3
 - Laravel8.83.8
-- MySQL8.3.0
+- MySQL8.0.26
 
 ## ER図
 ![alt text](rese.drawio-1.png)
