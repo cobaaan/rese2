@@ -49,7 +49,7 @@
         @endforeach
         <form method="post" action="?" class="card__form--heart-1">
             @csrf
-            <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.png"></button>
+            <button class="card__form--heart" method="POST" formaction="{{ route('favorite.toggle', $shop->id) }}"><img class="{{ $color }}" src="image/life.jpg"></button>
         </form>
         @endauth
         

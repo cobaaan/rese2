@@ -123,7 +123,7 @@
                             <input type="hidden" name="image_path" value="{{ $favorite->shop->image_path }}">
                             <div class="card__form--footer">
                                 <button class="card__form--btn" formaction="/shop/detail">詳しく見る</button>
-                                <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.png"></button>
+                                <button class="card__form--heart"  method="POST" formaction="{{ route('favorite.toggle', $shops[$favorite->shop_id - 1]) }}"><img  class="card__form--heart-red" src="image/life.jpg"></button>
                             </div>
                         </form>
                     </div>
