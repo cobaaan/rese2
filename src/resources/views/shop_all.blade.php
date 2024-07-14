@@ -31,9 +31,7 @@
     @foreach ($shops as $shop)
     <div class="card" data-area="{{ $shop->area->area }}" data-genre="{{ $shop->genre->genre }}" data-name="{{ $shop->name }}">
         <img class="card__img" src="{{ $shop->image_path }}">
-        
-        <div class="card__ttl">{{ $shop->name }}</div>
-        
+        <p class="card__ttl">{{ $shop->name }}</p>
         <div class="review__area card__review">
             <p class="review__area--star {{ $averageRatings[$shop->id] }}"></p>
         </div>

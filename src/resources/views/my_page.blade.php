@@ -10,11 +10,9 @@
 
 <section id="modal">
     @if (session('flash_alert'))
-    <div class="alert alert-danger">{{ session('flash_alert') }}</div>
+    <p class="alert alert-danger">{{ session('flash_alert') }}</p>
     @elseif(session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
+    <p class="alert alert-success">{{ session('status') }}</p>
     @endif
     <div class="modal__ttl">事前決済</div>
     <div id="card-errors" class="text-danger"></div>
@@ -36,11 +34,9 @@
             <label for="card-amount">支払い価格</label><br>
             <input type="number" name="amount" id="card-amount" class="form__control form__control--number" placeholder="1000" required min="100">
         </div>
-        <div>
-            @if($errors->has('amount'))
-            <div>{{ $erros->first('amount') }}</div>
-            @endif
-        </div>
+        @if($errors->has('amount'))
+        <p>{{ $erros->first('amount') }}</p>
+        @endif
         <button class="mt-3 btn btn-primary" type="submit">支払い</button>
     </form>
     <button id="close" class="cancel__btn">キャンセル</button>
@@ -48,9 +44,9 @@
 
 <div id="mask"></div>
 
-<div>
-    <h2 class="ttl">{{ $auth['name'] }}さん</h2>
-</div>
+
+<h2 class="ttl">{{ $auth['name'] }}さん</h2>
+
 <div class="body">
     <div class="left">
         <h2 class="body__ttl">予約状況</h2>
@@ -146,12 +142,8 @@
                 <img class="card__img" src="{{ $pastReservation->shop->image_path }}">
                 <div>
                     <div class="card__ttl">{{ $pastReservation->shop->name }}</div>
-                    <div>
-                        <div class="card__date-time">来店日時 {{ $pastReservation->date }} {{ substr($pastReservation->time, 0, 5) }}</div>
-                    </div>
-                    <div>
-                        <div class="card__date-time">人数 {{ $pastReservation->number }}人</div>
-                    </div>
+                    <div class="card__date-time">来店日時 {{ $pastReservation->date }} {{ substr($pastReservation->time, 0, 5) }}</div>
+                    <div class="card__date-time">人数 {{ $pastReservation->number }}人</div>
                     <form class="right__card--form" method="get" action="/review">
                         @csrf
                         <input type="hidden" name="reserve_id" value="{{ $pastReservation->id }}">

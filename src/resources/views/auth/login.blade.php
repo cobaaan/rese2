@@ -17,7 +17,7 @@
             </div>
             
             @if($errors->has('email'))
-            <div class="error__txt">{{ $errors->first('email') }}</div>
+            <p class="error__txt">{{ $errors->first('email') }}</p>
             @endif
             
             <div class="form__content--item">
@@ -26,7 +26,7 @@
             </div>
             
             @if($errors->has('password'))
-            <div class="error__txt">{{ $errors->first('password') }}</div>
+            <p class="error__txt">{{ $errors->first('password') }}</p>
             @endif
             
             <button class="form__content--btn">ログイン</button>

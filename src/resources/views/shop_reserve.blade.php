@@ -12,21 +12,21 @@
         <h2 class="ttl">本日のご予約</h2>
         <div class="content">
             <div class="content--head">
-                <div class="name">お名前</div>
-                <div class="date">日付</div>
-                <div class="date__mobile">日付</div>
-                <div class="time">時間</div>
-                <div class="number">人数</div>
-                <div class="email">メールアドレス</div>
+                <p class="name">お名前</p>
+                <p class="date">日付</p>
+                <p class="date__mobile">日付</p>
+                <p class="time">時間</p>
+                <p class="number">人数</p>
+                <p class="email">メールアドレス</p>
             </div>
             @foreach($todayReserves as $today)
             <div class="content--item">
-                <div class="name">{{ $today->user->name }}様</div>
-                <div class="date">{{ $today->date }}</div>
-                <div class="date__mobile">{{ substr($today->date, 5, 2) . "/" . substr($today->date, 8, 2)}}</div>
-                <div class="time">{{ substr($today->time, 0, 5) }}</div>
-                <div class="number">{{ $today->number }}</div>
-                <div class="email">{{ $today->user->email }}</div>
+                <p class="name">{{ $today->user->name }}様</p>
+                <p class="date">{{ $today->date }}</p>
+                <p class="date__mobile">{{ substr($today->date, 5, 2) . "/" . substr($today->date, 8, 2)}}</p>
+                <p class="time">{{ substr($today->time, 0, 5) }}</p>
+                <p class="number">{{ $today->number }}</p>
+                <p class="email">{{ $today->user->email }}</p>
             </div>
             @endforeach
         </div>
@@ -36,21 +36,21 @@
         <h2 class="ttl">明日以降のご予約</h2>
         <div class="content">
             <div class="content--head">
-                <div class="name">お名前</div>
-                <div class="date">日付</div>
-                <div class="date__mobile">日付</div>
-                <div class="time">時間</div>
-                <div class="number">人数</div>
-                <div class="email">メールアドレス</div>
+                <p class="name">お名前</p>
+                <p class="date">日付</p>
+                <p class="date__mobile">日付</p>
+                <p class="time">時間</p>
+                <p class="number">人数</p>
+                <p class="email">メールアドレス</p>
             </div>
             @foreach($futureReserves as $future)
             <div class="content--item">
-                <div class="name">{{ $future->user->name }}様</div>
-                <div class="date">{{ $future->date }}</div>
-                <div class="date__mobile">{{ substr($future->date, 5, 2) . "/" . substr($future->date, 8, 2)}}</div>
-                <div class="time">{{ substr($future->time, 0, 5) }}</div>
-                <div class="number">{{ $future->number }}</div>
-                <div class="email">{{ $future->user->email }}</div>
+                <p class="name">{{ $future->user->name }}様</p>
+                <p class="date">{{ $future->date }}</p>
+                <p class="date__mobile">{{ substr($future->date, 5, 2) . "/" . substr($future->date, 8, 2)}}</p>
+                <p class="time">{{ substr($future->time, 0, 5) }}</p>
+                <p class="number">{{ $future->number }}</p>
+                <p class="email">{{ $future->user->email }}</p>
             </div>
             @endforeach
         </div>
@@ -61,21 +61,21 @@
         <h2 class="ttl">過去のご予約</h2>
         <div class="content">
             <div class="content--head">
-                <div class="name">お名前</div>
-                <div class="date">日付</div>
-                <div class="date__mobile">日付</div>
-                <div class="time">時間</div>
-                <div class="number">人数</div>
-                <div class="email">メールアドレス</div>
+                <p class="name">お名前</p>
+                <p class="date">日付</p>
+                <p class="date__mobile">日付</p>
+                <p class="time">時間</p>
+                <p class="number">人数</p>
+                <p class="email">メールアドレス</p>
             </div>
             @foreach($pastReserves as $past)
             <div class="content--item">
-                <div class="name">{{ $past->user->name }}様</div>
-                <div class="date">{{ $past->date }}</div>
-                <div class="date__mobile">{{ substr($past->date, 5, 2) . "/" . substr($past->date, 8, 2)}}</div>
-                <div class="time">{{ substr($past->time, 0, 5) }}</div>
-                <div class="number">{{ $past->number }}</div>
-                <div class="email">{{ $past->user->email }}</div>
+                <p class="name">{{ $past->user->name }}様</p>
+                <p class="date">{{ $past->date }}</p>
+                <p class="date__mobile">{{ substr($past->date, 5, 2) . "/" . substr($past->date, 8, 2)}}</p>
+                <p class="time">{{ substr($past->time, 0, 5) }}</p>
+                <p class="number">{{ $past->number }}</p>
+                <p class="email">{{ $past->user->email }}</p>
             </div>
             @endforeach
         </div>
