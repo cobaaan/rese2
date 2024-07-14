@@ -40,10 +40,10 @@ Rese
 ログインは、admin・shopManager・userの3つの役割で行える
 シーディング後下記4つのアカウントを使用できます
 
-admin(管理者)  Email:k.takakura@poppoya.example Password:password
-shopManager(店舗管理者) Email:kitaouji@kinkin.example Password:password
-shopManager(店舗管理者) Email:ishiharapro@example Password:password
-user(一般ユーザー) Email:sunnychiba@samurai.example Password:password
+admin(管理者)  Email:k.takakura@poppoya.example Password:password  
+shopManager(店舗管理者) Email:kitaouji@kinkin.example Password:password  
+shopManager(店舗管理者) Email:ishiharapro@example Password:password  
+user(一般ユーザー) Email:sunnychiba@samurai.example Password:password  
 
 shopManagerアカウントを2つ用意しています
 店舗新規登録機能の確認はkitaouji@kinkin.exampleアカウントで行なってください
