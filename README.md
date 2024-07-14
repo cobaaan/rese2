@@ -37,48 +37,49 @@ Rese
 
 ## 機能補足
 ##### ログイン機能
-ログインは、admin・shopManager・userの3つの役割で行える
-シーディング後下記4つのアカウントを使用できます
+ログインは、admin・shopManager・userの3つの役割で行える  
+シーディング後下記4つのアカウントを使用できます  
 
 admin(管理者)  Email:k.takakura@poppoya.example Password:password  
 shopManager(店舗管理者) Email:kitaouji@kinkin.example Password:password  
 shopManager(店舗管理者) Email:ishiharapro@example Password:password  
 user(一般ユーザー) Email:sunnychiba@samurai.example Password:password  
 
-shopManagerアカウントを2つ用意しています
-店舗新規登録機能の確認はkitaouji@kinkin.exampleアカウントで行なってください
-店舗情報変更機能と店舗の予約確認機能の確認はishiharapro@exampleアカウントで行なってください
+shopManagerアカウントを2つ用意しています  
+店舗新規登録機能の確認はkitaouji@kinkin.exampleアカウントで行なってください  
+店舗情報変更機能と店舗の予約確認機能の確認はishiharapro@exampleアカウントで行なってください  
 <br>
 
 ##### 来店済み確認機能
-userアカウントでログイン後、ハンバーガーメニューよりMyPageを選択
-MyPage画面左の予約状況のQRコードを読み取り、画面遷移する
-来店確認画面が表示されるので、はいを選択すれば来店済みになります
-来店済みにすると、MyPageの画面左に表示されていた予約が、画面右の来店済みの方に表示されます
+userアカウントでログイン後、ハンバーガーメニューよりMyPageを選択  
+MyPage画面左の予約状況のQRコードを読み取り、画面遷移する  
+来店確認画面が表示されるので、はいを選択すれば来店済みになります  
+来店済みにすると、MyPageの画面左に表示されていた予約が、画面右の来店済みの方に表示されます  
 <br>
 
 ##### 店舗新規登録機能
-kitaouji@kinkin.exampleアカウントでログイン後、ハンバーガーメニューよりShopManagerを選択
+kitaouji@kinkin.exampleアカウントでログイン後、ハンバーガーメニューよりShopManagerを選択  
 <br>
 
 ##### 店舗情報変更機能
-ishiharapro@exampleアカウントでログイン後、ハンバーガーメニューよりShopManagerを選択
+ishiharapro@exampleアカウントでログイン後、ハンバーガーメニューよりShopManagerを選択  
 <br>
+
 #####  店舗の予約確認機能
-ishiharapro@exampleアカウントでログイン後、ハンバーガーメニューよりShopReserveを選択
+ishiharapro@exampleアカウントでログイン後、ハンバーガーメニューよりShopReserveを選択  
 <br>
 
 ##### 管理者による会員登録機能
-adminアカウントでログイン後、ハンバーガーメニューよりAdminRegisterを選択
-Username Email Password は任意のものを記入
-一番下の欄でAdmin・ShopManager・Userの3つの役割から選択できます
-Userアカウントを作成した場合のみメール認証が必要です
-Userアカウントでログイン後、MyPageに遷移するタイミング、もしくは店舗詳細より予約を行おうとするタイミングで認証画面に遷移します
-認証メールの再送信をして、送信されたメールより認証を行なってください
+adminアカウントでログイン後、ハンバーガーメニューよりAdminRegisterを選択  
+Username Email Password は任意のものを記入  
+一番下の欄でAdmin・ShopManager・Userの3つの役割から選択できます  
+Userアカウントを作成した場合のみメール認証が必要です  
+Userアカウントでログイン後、MyPageに遷移するタイミング、もしくは店舗詳細より予約を行おうとするタイミングで認証画面に遷移します  
+認証メールの再送信をして、送信されたメールより認証を行なってください  
 <br>
 
 ##### 全アカウントに対する一斉メール送信機能
-メール送信に時間がかかる場合があるので、送信が完了するまでしばしお待ちください
+メール送信に時間がかかる場合があるので、送信が完了するまでしばしお待ちください  
 
 ## 使用技術(実行環境)
 - PHP8.3.3
