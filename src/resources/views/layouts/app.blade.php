@@ -29,6 +29,18 @@
         @if(!is_null($admin))
         <ul class="slide-menu" id="slide-menu">
             <li class="slide-menu__list">
+                <form action="/review/list" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">ReviewList</button>
+                </form>
+            </li>
+            <li class="slide-menu__list">
+                <form action="/csv/import" method="get">
+                    @csrf
+                    <button class="ham__nav--link-txt">NewShopCreate</button>
+                </form>
+            </li>
+            <li class="slide-menu__list">
                 <form action="/admin/register" method="get">
                     @csrf
                     <button class="ham__nav--link-txt">AdminRegister</button>

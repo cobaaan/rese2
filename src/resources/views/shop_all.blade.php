@@ -7,6 +7,15 @@
 @endsection
 
 @section('header')
+<div class="sort">
+    <select class="sort__form" name="sort" id="sortSelect">
+        <option value="" selected>並び替え</option>
+        <option value="random">ランダム</option>
+        <option value="high">評価が高い順</option>
+        <option value="low">評価が低い順</option>
+    </select>
+</div>
+
 <div class="search">
     <div class="search__form">
         <select class="search__area" name="area" id="areaSelect">
@@ -29,12 +38,9 @@
 @section('content')
 <div class="shop" id="shopList">
     @foreach ($shops as $shop)
-    <div class="card" data-area="{{ $shop->area->area }}" data-genre="{{ $shop->genre->genre }}" data-name="{{ $shop->name }}">
+    <div class="card" data-area="{{ $shop->area->area }}" data-genre="{{ $shop->genre->genre }}" data-name="{{ $shop->name }}" data-rating="{{ $shop->reviews->avg('rate') }}">
         <img class="card__img" src="{{ $shop->image_path }}">
         <p class="card__ttl">{{ $shop->name }}</p>
-        <div class="review__area card__review">
-            <p class="review__area--star {{ $averageRatings[$shop->id] }}"></p>
-        </div>
         
         @php
         $color = 'card__form--heart-img';
@@ -73,6 +79,39 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const shopList = document.getElementById('shopList');
+        let shops = Array.from(shopList.getElementsByClassName('card'));
+        
+        const originalOrder = [...shops];
+        
+        document.querySelector('.sort__form').addEventListener('change', function () {
+            const sortValue = this.value;
+            shops = Array.from(shopList.getElementsByClassName('card'));
+            
+            if (sortValue === 'high') {
+                shops.sort((a, b) => {
+                    if (b.dataset.rating == 0) return -1;
+                    if (a.dataset.rating == 0) return 1;
+                    return b.dataset.rating - a.dataset.rating;
+                });
+            } else if (sortValue === 'low') {
+                shops.sort((a, b) => {
+                    if (a.dataset.rating == 0) return 1;
+                    if (b.dataset.rating == 0) return -1;
+                    return a.dataset.rating - b.dataset.rating;
+                });
+            } else if (sortValue === 'random') {
+                shops.sort(() => 0.5 - Math.random());
+            } else if (sortValue === '') {
+                shops = originalOrder;
+            }
+            
+            shopList.innerHTML = '';
+            shops.forEach(shop => shopList.appendChild(shop));
+        });
+    });
+    
     document.addEventListener('DOMContentLoaded', function() {
         const areaSelect = document.getElementById('areaSelect');
         const genreSelect = document.getElementById('genreSelect');

@@ -8,7 +8,7 @@
 @section('content')
 <section id="modal">
     <div class="modal__header">
-        <h2 class="modal__header--ttl">レビュー 一覧</h2>
+        <h2 class="modal__header--ttl">口コミ一覧</h2>
         <button class="modal__header--btn" id="close">×</button>
     </div>
     @foreach ($reviews as $review)
@@ -26,21 +26,58 @@
 </section>
 <div id="mask"></div>
 
+<section id="modal-delete" class="modal-delete">
+    <h2 class="modal-delete__ttl">レビューを削除しますか？</h2>
+    <div class="modal-delete__btn">
+        <form action="/review/delete" method="post">
+            @csrf
+            <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
+            <button class="modal-delete__btn--delete">削除する</button>
+        </form>
+        <button class="modal-delete__btn--close" onclick="closeModal()">閉じる</button>
+    </div>
+</section>
+<div id="mask-delete" class="mask-delete" onclick="closeModal()" disabled></div>
+
 <div class="content">
     <div class="shop">
-        <div class="shop__header">
-            <h2 class="shop__name">{{ $requests['name'] }}</h2>
-            <div class="review__area shop__header--rate">
-                <button class="review__area--btn" id="open">レビューを見る</button>
-                <p class="review__area--star {{ $averageRatings[$requests['id']] }}"></p>
-            </div>
-        </div>
+        @php
+        $admin = auth('admin')->user();
+        $manager = auth('manager')->user();
+        $user = auth('web')->user();
+        @endphp
+        <h2 class="shop__name">{{ $requests['name'] }}</h2>
         <img class="shop__img" src="{{ asset($requests['image_path']) }}">
         <div class="shop__tag">
             <p class="shop__area-genre">#{{ $requests['area'] }}</p>
             <p class="shop__area-genre">#{{ $requests['genre'] }}</p>
         </div>
         <p class="shop__description">{{ $requests['description'] }}</p>
+        <button class="review__area--btn" id="open">全ての口コミ情報</button>
+        
+        @if(!is_null($user) && is_null($myReview))
+        <form action="/review" method="get">
+            @csrf
+            <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
+            <button class="shop__review--post">口コミを投稿する</button>
+        </form>
+        @elseif(!is_null($user) && !is_null($myReview))
+        
+        <div class="shop__review">
+            <form class="shop__review--form" action="/review" method="get">
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $requests['id'] }}">
+                <button class="shop__review--update">口コミを編集</button>
+            </form>
+            
+            <button class="shop__review--delete" onclick="openModal()">口コミを削除</button>
+            
+            <div class="review__area shop__header--rate">
+                <p class="review__area--star star{{ $myReview->rate }}"></p>
+                <p class="shop__review--comment">{{ $myReview->comment }}</p>
+            </div>
+        </div>
+        @endif
     </div>
     
     <div class="reserve">
@@ -119,6 +156,20 @@
 </div>
 
 <script>
+    function openModal() {
+        const modal = document.getElementById('modal-delete');
+        const mask = document.getElementById('mask-delete');
+        modal.style.display = 'block';
+        mask.style.display = 'block';
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('modal-delete');
+        const mask = document.getElementById('mask-delete');
+        modal.style.display = 'none';
+        mask.style.display = 'none';
+    }
+    
     const open = document.querySelector('#open');
     const close = document.querySelector('#close');
     const modal = document.querySelector('#modal');
@@ -152,7 +203,6 @@
     mask.addEventListener('click', () => {
         close.click();
     });
-    
     
     document.addEventListener('DOMContentLoaded', function() {
         const dateInput = document.getElementById('date');

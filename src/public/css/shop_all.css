@@ -16,15 +16,19 @@
     margin: 0.5vw;
 }
 .card__ttl {
+    width: 95%;
+    height: 57px;
     font-size: 2rem;
     font-weight: bold;
-    margin: 0.5vw 0 0 1vw;
+    margin: 1vw 0 0 1vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card__tag {
     font-size: 1.2rem;
     display: flex;
-    margin: 0.5vw 0 0 1vw;
+    margin: 0 0 0 1vw;
 }
 
 .card__form {
@@ -32,12 +36,12 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    margin: 1vw 0 0 1vw;
+    margin: 2vw 0 0 1vw;
 }
 
 .card__form--heart {
     float: right;
-    margin-top: -70px;
+    margin-top: 30px;
     border: none;
     background-color: white;
     cursor: pointer;
@@ -81,8 +85,21 @@
     filter: brightness(0) saturate(100%) invert(84%) sepia(0%) saturate(0%) hue-rotate(194deg) brightness(89%) contrast(97%);
 }
 
+.sort {
+    font-size: 1.8rem;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+    padding: 1vw 1vw 1vw 1vw;
+    border: solid;
+    background-color: white;
+}
+
+.sort__form {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
 .search {
-    margin-top: 3vw;
     background-color: white;
     width: 50%;
     border-radius: 10px;
@@ -137,6 +154,11 @@
 }
 
 @media (max-width: 768px) {
+    .sort {
+        width: 110px;
+        margin: 20px 0 10px;
+    }
+
     .search {
         width: 100%;
     }
@@ -162,7 +184,8 @@
     }
 
     .card__ttl {
-        margin: 1vh 0 2vh 5vw;
+        width: 90%;
+        margin: 2vh 0 2vh 5vw;
     }
 
     .card__top {
@@ -176,11 +199,11 @@
     }
 
     .card__form {
-        margin: 1vh 0 0 5vw;
+        margin: 2vh 0 0 5vw;
     }
 
     .card__form--heart {
-        margin-top: -100px;
+        margin-top: 18px;
     }
 
     .card__review {

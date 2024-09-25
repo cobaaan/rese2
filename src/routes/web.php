@@ -55,7 +55,11 @@ Route::middleware(['auth', 'verified'])->prefix('/reserve')->group(function (){
 Route::middleware(['auth', 'verified'])->prefix('/review')->group(function (){
     Route::get('', [ReviewController::class,'review'])->name('review');
     Route::post('/post', [ReviewController::class,'reviewPost']);
+    Route::post('/update', [ReviewController::class,'reviewUpdate']);
+    Route::post('/delete', [ReviewController::class,'reviewDelete']);
 });
+Route::get('/review/list', [ReviewController::class,'reviewList']);
+Route::post('/review/delete/admin', [ReviewController::class,'reviewDeleteAdmin']);
 
 Route::middleware(['auth:manager'])->prefix('/shop')->group(function() {
     Route::get('/manager', [ShopController::class, 'shopManager'])->name('shop_manager');
@@ -69,3 +73,5 @@ Route::prefix('/shop')->group(function() {
     Route::post('/visited', [ShopController::class,'visited']);
 });
 Route::match(['get', 'post'], '/', [ShopController::class, 'shopAll']);
+Route::get('/csv/import', [ShopController::class, 'csvImportPage']);
+Route::post('/shop/create/admin', [ShopController::class, 'shopCreateAdmin']);

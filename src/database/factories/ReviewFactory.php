@@ -16,10 +16,11 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1,5),
+            'user_id' => $this->faker->numberBetween(2,5),
             'shop_id' => $this->faker->numberBetween(1,20),
             'rate' =>$this->faker->numberBetween(1,5),
-            'comment' =>$this->faker->realText(59)
+            'comment' =>$this->faker->realText(59),
+            'image_path' => 'image/ramen.jpg'
         ];
     }
 }

@@ -1,0 +1,177 @@
+.main {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    background-color: white;
+}
+
+.main__ttl {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    padding-top: 20px;
+}
+
+.main__search {
+    width: 60%;
+    font-size: 1.5rem;
+    padding: 5px;
+    text-indent: 5px;
+    margin-bottom: 50px;
+}
+
+.main__list--index {
+    border-bottom: solid 3px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.main__list {
+    border-bottom: solid;
+    padding-bottom: 5px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__list--item {
+    display: inline-block;
+}
+
+.main__list--item-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: #ff5555;
+    color: white;
+    font-weight: bold;
+    padding: 7px 15px 7px 15px;
+    cursor: pointer;
+}
+
+.main__list--item-btn:hover {
+    background-color: #ccc;
+    color: #454545;
+}
+
+.txt__id {
+    width: 6%;
+}
+
+.txt__name {
+    width: 15%;
+}
+
+.txt__comment {
+    width: 60%;
+}
+
+.txt__btn {
+    width: 10%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.modal__ttl {
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+.modal__txt {
+    font-size: 1.5rem;
+}
+
+.modal__buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.modal__btn {
+    padding: 7px 10px 7px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 50px 20px 20px;
+}
+
+.modal__btn--delete {
+    background-color: #ff5555;
+    color: white;
+}
+
+.modal__btn--delete:hover {
+    background-color: #ccc;
+    color: #ff5555;
+}
+
+.modal__btn--close:hover {
+    background-color: #ccc;
+    color: #454545;
+}
+
+.mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+
+
+@media (max-width: 768px) {
+    .main {
+        width: 90%;
+    }
+
+    .main__ttl {
+        font-size: 2rem;
+    }
+
+    .main__list--index {
+        font-size: 1.5rem;
+    }
+
+    .main__list {
+        font-size: 1.2rem;
+    }
+
+    .txt__id {
+        width: 6%;
+        margin-left: -50px;
+    }
+
+    .txt__name {
+        width: 18%;
+    }
+
+    .txt__email {
+        width: 60%;
+    }
+
+    .txt__btn {
+        width: 20%;
+    }
+
+    .modal {
+        width: 90%;
+        height: 90%;
+        overflow: scroll;
+    }
+}

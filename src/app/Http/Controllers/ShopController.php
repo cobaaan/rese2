@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\ReseController;
 
+use App\Http\Requests\CsvRequest;
 use App\Http\Requests\ShopRequest;
 
 use App\Models\Favorite;
@@ -13,6 +14,7 @@ use App\Models\Shop;
 use App\Models\User;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Manager;
 
 use Auth;
 
@@ -22,6 +24,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
+use Validator;
+
 class ShopController extends Controller
 {
     public function shopAll() {
@@ -29,6 +33,7 @@ class ShopController extends Controller
         $shops = Shop::all();
         $areas = Area::all();
         $genres = Genre::all();
+        $reviews = Review::all();
         
         $favorites = Favorite::all();
         
@@ -49,10 +54,15 @@ class ShopController extends Controller
         $user = User::all();
         
         $reviews = Review::where('shop_id', $request->id)->get();
+        if(!is_null($auth)){
+            $myReview = Review::where('user_id', $auth->id)
+            ->where('shop_id', $request->id)
+            ->first();
+            return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal', 'myReview'));
+        }
         
-        if(empty($requests)) {
+        elseif(empty($requests)) {
             return redirect('/');
-            
         }
         else {
             return view('shop_detail', compact('requests', 'dt', 'auth', 'user', 'reviews', 'averageRatings', 'shopModal'));
@@ -209,5 +219,74 @@ class ShopController extends Controller
         Reserve::where('id', $request['id'])->update(['is_visit' => 1]);
         
         return view('thanks', compact('auth'))->with('message', '来店済みに変更しました。')->with('message1', 'ホーム');
+    }
+    
+    public function csvImportPage() {
+        return view('csvImport');
+    }
+    
+    public function shopCreateAdmin(CsvRequest $request) {
+        $file = $request->file('csv_file');
+        $csvData = array_map('str_getcsv', file($file));
+        
+        $managerCount = Manager::count();
+        
+        foreach ($csvData as $key => $row) {
+            if ($key === 0) {
+                continue;
+            }
+            
+            $data = [
+                'manager_id' => $row[0],
+                'area' => $row[1],
+                'genre' => $row[2],
+                'name' => $row[3],
+                'description' => $row[4],
+                'image_url' => $row[5],
+            ];
+            
+            $validator = Validator::make($data, [
+                'manager_id' => 'required|integer|min:1|max:' . $managerCount,
+                'name' => 'required|string|max:50',
+                'area' => 'required|in:東京都,大阪府,福岡県',
+                'genre' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+                'description' => 'required|string|max:400',
+                'image_url' => 'required|ends_with:.jpeg,.png',
+            ], [
+                'manager_id.required' => '店舗管理者IDは必須です',
+                'manager_id.integer' => '店舗管理者IDは数値である必要があります',
+                'manager_id.min' => '店舗管理者IDは1以上である必要があります',
+                'manager_id.max' => '入力された店舗管理者IDが存在しません',
+                'name.required' => '店舗名は必須です',
+                'name.max' => '店舗名は50文字以内で入力してください',
+                'area.required' => 'エリアは必須です',
+                'area.in' => 'エリアは「東京都」、「大阪府」、「福岡県」のいずれかを選択してください',
+                'genre.required' => 'ジャンルは必須です',
+                'genre.in' => 'ジャンルは「寿司」、「焼肉」、「イタリアン」、「居酒屋」、「ラーメン」のいずれかを選択してください',
+                'description.required' => '店舗説明は必須です',
+                'description.max' => '店舗説明は400文字以内で入力してください',
+                'image_url.required' => '店舗画像は必須です',
+                'image_url.ends_with' => '店舗画像はjpegまたはpng形式でなければなりません',
+            ]);
+            
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            
+            $areaGenre = ShopController::areaGenreGet($data);
+            
+            $params = [
+                'manager_id' => $data['manager_id'],
+                'name' => $data['name'],
+                'area_id' => $areaGenre['area'],
+                'genre_id' => $areaGenre['genre'],
+                'description' => $data['description'],
+                'image_path' => $data['image_url'],
+            ];
+            
+            Shop::create($params);
+        }
+        
+        return view('thanks')->with('message', '店舗を作成しました。')->with('message1', 'ホーム');
     }
 }
