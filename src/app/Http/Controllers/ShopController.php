@@ -242,7 +242,7 @@ class ShopController extends Controller
                 'genre' => $row[2],
                 'name' => $row[3],
                 'description' => $row[4],
-                'image_url' => $row[5],
+                'image_path' => $row[5],
             ];
             
             $validator = Validator::make($data, [
@@ -251,7 +251,7 @@ class ShopController extends Controller
                 'area' => 'required|in:東京都,大阪府,福岡県',
                 'genre' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
                 'description' => 'required|string|max:400',
-                'image_url' => 'required|ends_with:.jpeg,.png',
+                'image_path' => 'required|url|ends_with:.jpeg,.png',
             ], [
                 'manager_id.required' => '店舗管理者IDは必須です',
                 'manager_id.integer' => '店舗管理者IDは数値である必要があります',
@@ -265,12 +265,24 @@ class ShopController extends Controller
                 'genre.in' => 'ジャンルは「寿司」、「焼肉」、「イタリアン」、「居酒屋」、「ラーメン」のいずれかを選択してください',
                 'description.required' => '店舗説明は必須です',
                 'description.max' => '店舗説明は400文字以内で入力してください',
-                'image_url.required' => '店舗画像は必須です',
-                'image_url.ends_with' => '店舗画像はjpegまたはpng形式でなければなりません',
+                'image_path.required' => '店舗画像は必須です',
+                'image_path.url' => '店舗画像は正しいURL形式でなければなりません',
+                'image_path.ends_with' => '店舗画像はjpegまたはpng形式でなければなりません',
             ]);
             
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
+            }
+            
+            $dir = 'image';
+            $file_name = basename($data['image_path']);
+            $file_path = public_path('storage/' . $dir . '/' . $file_name);
+            
+            if (@file_get_contents($data['image_path'])) {
+                $imageContent = file_get_contents($data['image_path']);
+                file_put_contents($file_path, $imageContent);
+            } else {
+                return redirect()->back()->withErrors('指定された画像URLが存在しません: ' . $data['image_path']);
             }
             
             $areaGenre = ShopController::areaGenreGet($data);
@@ -281,7 +293,7 @@ class ShopController extends Controller
                 'area_id' => $areaGenre['area'],
                 'genre_id' => $areaGenre['genre'],
                 'description' => $data['description'],
-                'image_path' => $data['image_url'],
+                'image_path' => 'storage/' . $dir . '/' . $file_name,
             ];
             
             Shop::create($params);

@@ -30,8 +30,8 @@
     @if($errors->has('description'))
     <p class="error__message--csv">{{ $errors->first('description') }}</p>
     @endif
-    @if($errors->has('image_url'))
-    <p class="error__message--csv">{{ $errors->first('image_url') }}</p>
+    @if($errors->has('image_path'))
+    <p class="error__message--csv">{{ $errors->first('image_path') }}</p>
     @endif
 </div>
 @endsection
